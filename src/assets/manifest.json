@@ -1,0 +1,43 @@
+{
+  "name": "angular-webpack-skeleton",
+  "short_name": "Ks89",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "github.com/Ks89",
+  "icons": [
+    {
+      "src": "/assets/favicon.png",
+      "sizes": "36x36",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/favicon.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/favicon.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/favicon.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/favicon.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "related_applications": [{
+    "platform": "web"
+  }]
+}

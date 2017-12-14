@@ -1,0 +1,92 @@
+<div>
+  <mmw-page-header [header]="pageHeader"></mmw-page-header>
+
+  <br>
+  <p><b>Please, open your browser's console to see all features of this application!!!</b></p>
+
+  <div class="container-fluid">
+    <div class="row">
+      Custom bootstrap buttons thanks to bootstrap-loader (folder ./bootstrap).
+      To override other variables check https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
+    </div>
+    <br>
+    <div class="row">
+      <button class="btn btn-primary col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">Custom primary button</button>
+    </div>
+    <br>
+    <div class="row">
+      <button class="btn btn-info col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">Custom info button</button>
+    </div>
+    <br>
+    <div class="row">
+      <button class="btn btn-danger col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">Custom danger button</button>
+    </div>
+    <br>
+    <div class="row">
+      <button class="btn btn-success col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">Custom success button</button>
+    </div>
+    <br>
+    <br>
+
+    <div class="row">
+      <span>Font-awesome example:   <i class="fa fa-address-book fa-3x" aria-hidden="true"></i></span>
+    </div>
+    <br>
+    <br>
+
+    <br>
+    <p>For cycle example.ts:</p>
+    <ul>
+      <li *ngFor="let element of elements">{{element.field}}</li>
+    </ul>
+    <br>
+    <p>For async cycle example:</p>
+    <ul>
+      <li *ngFor="let elementObs of elementsObs | async">{{elementObs.field}}</li>
+    </ul>
+    <br>
+    <p>If example:</p>
+    <p *ngIf="elements.length >= 0">`Elements` contains at least on element</p>
+    <br>
+
+    <div class="row">
+      <!-- taken from https://ng-bootstrap.github.io/#/components/accordion -->
+      <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <ngb-panel title="Simple">
+          <ng-template ngbPanelContent>
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+            aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+            labore sustainable VHS.
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel>
+          <ng-template ngbPanelTitle>
+            <span>&#9733; <b>Fancy</b> title &#9733;</span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+            aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+            labore sustainable VHS.
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel title="Disabled" [disabled]="true">
+          <ng-template ngbPanelContent>
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+            aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+            labore sustainable VHS.
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </div>
+
+  </div>
+</div>

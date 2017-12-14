@@ -57,3 +57,18 @@ typings/
 # dotenv environment variables file
 .env
 
+# mac os files
+.DS_Store
+
+# IntelliJ folder
+.idea
+
+# Angular build and temp directories
+dist
+docs
+documentation
+
+# Sonarqube
+.scannerwork/
+/reports/
+

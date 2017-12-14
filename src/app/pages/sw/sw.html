@@ -1,0 +1,14 @@
+<div>
+  <mmw-page-header [header]="pageHeader"></mmw-page-header>
+
+  <p>In this page I'm testing service workers :)</p>
+
+  <br>
+
+  <div class="container-fluid">
+    <p>Response from github.com/users/Ks89:</p>
+    <p>Now try to shut down your internet connection, navigate to the homepage and go back here.</p>
+    <p>Can you see the same data also offline? It's magical!!!! :)</p>
+    {{githubUser | async | json}}
+  </div>
+</div>
