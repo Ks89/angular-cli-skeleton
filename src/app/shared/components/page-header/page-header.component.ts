@@ -44,7 +44,7 @@ export class PageHeader {
  * Page header component to display a big title and a smaller strapline (or subtitle)
  */
 @Component({
-  selector: 'mmw-page-header',
+  selector: 'app-page-header',
   templateUrl: 'page-header.html'
 })
 export class PageHeaderComponent {

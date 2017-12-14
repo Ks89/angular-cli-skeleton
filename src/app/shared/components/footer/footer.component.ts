@@ -28,7 +28,7 @@ import { Component } from '@angular/core';
  * Footer of your application with copyright info and so on
  */
 @Component({
-  selector: 'mmw-footer',
+  selector: 'app-footer',
   styleUrls: ['footer.scss'],
   templateUrl: 'footer.html'
 })

@@ -34,7 +34,7 @@ import { GithubService, GithubUser } from '../../core/services/github.service';
  * component used to display the service worker page
  */
 @Component({
-  selector: 'mmw-sw-page',
+  selector: 'app-sw-page',
   styleUrls: ['sw.scss'],
   templateUrl: 'sw.html'
 })

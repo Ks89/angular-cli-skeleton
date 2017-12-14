@@ -1,7 +1,7 @@
 {
-  "name": "angular-webpack-skeleton",
+  "name": "angular-cli-skeleton",
   "short_name": "Ks89",
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#fff",
   "description": "github.com/Ks89",

@@ -29,7 +29,7 @@ import { Component } from '@angular/core';
  * (or not defined into `app.routing.ts`)
  */
 @Component({
-  selector: 'mmw-not-found',
+  selector: 'app-not-found',
   template: '<h3>Error 404: Not found</h3>'
 })
 export class NotFoundComponent { }

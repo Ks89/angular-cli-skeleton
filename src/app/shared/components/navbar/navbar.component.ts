@@ -29,7 +29,7 @@ import { Router } from '@angular/router';
  * Navbar of your application with the main horizontal menu
  */
 @Component({
-  selector: 'mmw-navigation',
+  selector: 'app-navigation',
   templateUrl: 'navbar.html'
 })
 export class NavbarComponent {

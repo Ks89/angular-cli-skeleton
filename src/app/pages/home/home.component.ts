@@ -42,7 +42,7 @@ import * as example from '../../core/actions/hello-example';
  * component used to display the home page of the app SPA.
  */
 @Component({
-  selector: 'mmw-home-page',
+  selector: 'app-home-page',
   styleUrls: ['home.scss'],
   templateUrl: 'home.html'
 })

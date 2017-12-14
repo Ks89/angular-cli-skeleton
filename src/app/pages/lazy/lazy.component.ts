@@ -39,7 +39,7 @@ console.log('`Lazy` component loaded asynchronously');
  * Component of the lazy loaded module for the app SPA
  */
 @Component({
-  selector: 'mmw-cv-page',
+  selector: 'app-lazy-page',
   templateUrl: 'lazy.html',
   styleUrls: ['lazy.scss']
 })
