@@ -1,0 +1,62 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/project
+    docker:
+      - image: circleci/node:7.10.0-browsers
+    steps:
+      - checkout
+      - run:
+          name: npm-install-global
+          command: sudo npm install -g codeclimate-test-reporter
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: npm-install
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: run-build-dev
+          command: npm run build:dev
+      - run:
+          name: run-build-prod
+          command: npm run build:prod
+      - run:
+          name: run-clean
+          command: npm run clean # clean before the real production build
+      - run:
+          name: run-build-prod-aot
+          command: npm run build:prod:aot
+      - run:
+          name: run-test
+          command: npm test
+      - run:
+          name: Install Chromedriver latest version
+          command: |
+            sudo apt-get update
+            sudo apt-get install lsb-release
+            curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo dpkg -i google-chrome.deb
+            sudo sed -i 's|HERE/chrome"|HERE/chrome" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
+            rm google-chrome.deb
+      - run:
+          name: run-webdriver-update
+          command: npm run webdriver:update
+      - run:
+          name: run-e2e
+          command: npm run e2e:ci
+      - run:
+          name: run-docs
+          command: npm run docs
+      - run:
+          name: run-compodoc
+          command: npm run compodoc
+      - run:
+          name: run-codeclimate
+          command: npm run codeclimate
+      - run:
+          name: run-coveralls
+          command: npm run coveralls

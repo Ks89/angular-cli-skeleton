@@ -1,0 +1,215 @@
+# AppVeyor file
+# based on the official hello-hello-example.ts https://www.appveyor.com/docs/appveyor-yml/
+
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+
+# Build version format
+# you can use {branch} name in version format too
+version: 1.0.{build}-{branch}
+
+# branches to build
+branches:
+  # whitelist
+  #only:
+  #  - master
+  #  - production
+
+  # blacklist
+  except:
+    - gh-pages
+
+# Do not build on tags (GitHub and BitBucket)
+#skip_tags: true
+
+# Skipping commits affecting specific files (GitHub only). More details here: /docs/appveyor-yml
+skip_commits:
+  files:
+     - .circleci/*
+     - travisci/*
+     - .travis.yml
+
+# Including commits affecting specific files (GitHub only). More details here: /docs/appveyor-yml
+#only_commits:
+#  files:
+#    - Project-A/
+#    - Project-B/
+
+# Do not build feature branch with open Pull Requests
+#skip_branch_with_pr: true
+
+# Maximum number of concurrent jobs for the project
+#max_jobs: 1
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+
+# scripts that are called at very beginning, before repo cloning
+init:
+  - git config --global core.autocrlf input
+   # used to access with Windows Remote Desktop
+  #  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
+
+# fetch repository as zip archive
+#shallow_clone: true  # default is false
+
+# set clone depth
+clone_depth: 5                      # clone entire repository history if not defined
+
+# environment variables
+environment:
+  matrix:
+    - nodejs_version: "7"
+    - nodejs_version: "6"
+  NODE_ENV: test
+  CI: yes
+  APPVEYOR: yes
+  CODECLIMATE_REPO_TOKEN:
+    secure: 6JVnrBCedivK2uWNn8gCpKPOcni/pprCZwsS4qRHRFQDeWYtn+Gakf0V//XPK0aoWyqMbzf22FhTVe+vo0ciFltU780UOh5/n3TKBlaPOW0=
+  COVERALLS_REPO_TOKEN:
+    secure: yPyhFiKIQeJBzGxRCdz0gHaR1epFzH2cL0dpBKswJjWlUGmY2zDUzdnyic5mYz4O
+
+# this is how to allow failing jobs in the matrix
+matrix:
+  fast_finish: true     # set this flag to immediately finish build once one of the jobs fails.
+
+# build cache to preserve files/folders between builds
+cache: node_modules -> package.json
+
+# enable service required for build/tests
+#services:
+
+# scripts that run after cloning repository
+install:
+  # by default, all script lines are interpreted as batch
+  - echo Start install
+  # to run script as a PowerShell command prepend it with ps:
+  - ps: Write-Host 'Start install in PowerShell'
+  # batch commands start from cmd:
+  - cmd: echo Start install in cmd
+  # install nodejs and dependencies both global and local
+  # use appveyor-retry to retry if npm install fails
+  - cmd: appveyor-retry powershell Install-Product node $env:nodejs_version
+  - npm install -g npm@5.3
+  - set PATH=%APPDATA%\npm;%PATH%
+  - npm install -g codeclimate-test-reporter
+  - npm install
+
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+# build platform, i.e. x86, x64, Any CPU. This setting is optional.
+platform:
+  - x86
+  - x64
+
+build: off
+
+# scripts to run before build
+before_build:
+
+# scripts to run *after* solution is built and *before* automatic packaging occurs (web apps, NuGet packages, Azure Cloud Services)
+before_package:
+
+# scripts to run after build
+after_build:
+
+# to run your custom scripts instead of automatic MSBuild
+build_script:
+  # Output useful info for debugging.
+  - node --version && npm --version
+  - ps: "npm --version # PowerShell" # Pass comment to PS for easier debugging
+  - # run debug build
+  - echo "npm run debug build on $TRAVIS_OS_NAME"
+  - npm run build:dev
+  # run production build
+  - echo "npm run production build on $TRAVIS_OS_NAME"
+  - npm run build:prod
+  # run production + AOT build
+  - npm run clean
+  - echo "npm run production + AOT build on $TRAVIS_OS_NAME"
+  - npm run build:prod:aot
+
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+
+# scripts to run before tests
+before_test:
+
+# scripts to run after tests
+after_test:
+
+test_script:
+  # Output useful info for debugging.
+  - node --version && npm --version
+  - ps: "npm --version # PowerShell" # Pass comment to PS for easier debugging
+  # run tests
+  - npm test
+  # update webdriver + run e2e tests
+  - npm run webdriver:update
+  - npm run e2e:ci
+
+#---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
+
+#artifacts:
+
+#---------------------------------#
+#     deployment configuration    #
+#---------------------------------#
+
+# providers: Local, FTP, WebDeploy, AzureCS, AzureBlob, S3, NuGet, Environment
+# provider names are case-sensitive!
+#deploy:
+
+# scripts to run before deployment
+before_deploy:
+
+# scripts to run after deployment
+after_deploy:
+
+# to run your custom scripts instead of provider deployments
+deploy_script:
+
+#---------------------------------#
+#        global handlers          #
+#---------------------------------#
+
+# on successful build
+on_success:
+  - npm run docs
+  - npm run compodoc
+  - codeclimate-test-reporter < coverage/lcov.info
+  - node .\node_modules\coveralls\bin\coveralls.js < .\coverage\lcov.info
+
+# on build failure
+#on_failure:
+  # - do something
+
+# after build failure or success
+#on_finish:
+  # - do something
+
+#---------------------------------#
+#         notifications           #
+#---------------------------------#
+
+#notifications:
+# # Slack
+#  - provider: Slack
+#    incoming_webhook: http://incoming-webhook-url
+#
+#  # ...or using auth token
+#
+#  - provider: Slack
+#    auth_token:
+#      secure: kBl9BlxvRMr9liHmnBs14A==
+#    channel: development
+#    template: "{message}, {commitId}, ..."

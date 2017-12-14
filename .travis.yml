@@ -1,0 +1,54 @@
+language: node_js
+node_js:
+  - "7"
+
+os:
+  - linux
+#  - osx
+dist: trusty # to use Ubuntu 14.04
+#osx_image: xcode8.3 # to use macOS Sierra 10.12
+sudo: false
+
+git:
+  depth: 3
+
+branches:
+  only: master
+
+env:
+  global:
+    - secure: Kvfbrwbb4WuzYjdYAFAAIsn43Hk1ed3b7MlezqjENKgXEqJhHmx64BWtVrVuDsgi8b3d23aVSAe7xlRniQc4XbWm1igsgGHese7ubw60rpxovnmbSFTvlPCnRHKsxTGTOKOrVEdBO0s/WiG1efYnQCzW2B7rhETj1F3akwWPASkBJ8nSwpmRuF/iGT7l0TOsb8vNagHrvD++Wxu2EOco8P7ktnuptkyMR1eCLCFl0fqPOY4kgeRBvy4/H2+xuKEy/hGfjznTuD/N0Rc6LZYMmriaMDZo2/r8lGdvzx2MOXSrAW84NxwDczmVOIn+P1jQwfyxQn/yJqwKaMhNDHc1oQSBVyeGEZydEMYQjmSmsaiiD3sM39GIFWdS+fmZYP2byiaLAAt1CMY6ZrQNb2BysdwlkurKJPJzAFGTYpZh55wgKnz5FwIqmbFm+A0R9axRZhHEP7ThsxDT4hrvX/z87DSx2gTEt2C37H17ndsfkI43o3yPYaQAxdH7xErOEreROIvxoqALP0BNMpl0Shmz5ZCUez55GdcyTLuWOCExqV4XKcELEIUK1hv4nWTFIiThrEbGIegPvCaAj1cFGwpHo2FbMAchG2vahb6cnvmfXQjTGQEbwKTCBJXMLrgSVfxx9G51p656ekPSnYeYCEDFIXmUNElS4dMNe2MjYfSh6wI= # CODECLIMATE
+    - secure: lKJT5cW1uBJ2OmJ1vblc++y1kgXFqsXe3D56QVo5RikywahHTDumJWJEMcO1RbxODhDqpq13+2mf7adh5jvimui3V64PR/whsxIVp8+8Ko+YcXYa64S43evjINTDEzCq5UuebSZFTYLnA0ef9Ir7Ltxi7Wr7xA4bPz4RUKiTWQSgvVGDzKdQk1ywJTRnA62fFTXisvmsQggExaEjwtZOJ9t7Th/UBBY4Kd/bv6tYgBOw5k9xs/H/i7Gmc1WtoISIbBQntsrT5ksNgpLPLsmKYDP5y2jesR91uo6Jz5LBTXFqOxDm+2iiVUYgStD+ByVA6wCFaftt4xSHgsFMXJe2V6gRlY87UnJIlai9raq2gi9tijORuaOqkQrKmPD55qtDyyZjOBCkIwcwd9UPJXr992K2YNxSCwcoaYxTbEWutXQKNQ7INKIzZYXNnJMlc9bJOyWZdE5wAD4oOPhk9HUme24JOqaWQp//Lrc8skGyY6kJ3W8zP3lvItEyEbd6hwcHW1wbxvmMGwWeOlInqyvbXSXm+3VcS0hOs8dz2b9M0cm7xFLblDfU5lj87wPTfYh2PJUARqASF8CMMZYGHqYn7Wbq8pwu4kmEUpDhShmDIrmgJXHzbput0HO+d//pGrijX71KGp1F1MgW5BQwByTGoAoEGLgaYXubr92mHqVuqX4= # COVERALLS
+
+addons:
+  firefox: latest
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+matrix:
+  fast_finish: true
+
+
+before_install:
+  - source travisci/before_install.sh
+install:
+  - bash travisci/install.sh
+after_install:
+  - npm rebuild node-sass
+before_script:
+  - source travisci/before_script.sh # starts in the same shell
+script:
+  - bash travisci/script.sh
+after_success:
+  - source travisci/after_success.sh
+#after_script:
+#  - bash travisci/after_script.sh
+
+cache:
+  apt: true
+  bundler: true
+  directories:
+    - node_modules

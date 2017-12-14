@@ -1,0 +1,37 @@
+engines:
+  eslint:
+    enabled: true
+  tslint:
+    enabled: true
+    channel: beta
+  fixme:
+    enabled: true
+    config:
+      strings:
+      - FIXME
+      - TODO
+      - BUG
+  csslint:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+  scss-lint:
+    enabled: true
+  shellcheck:
+    enabled: false
+ratings:
+  paths:
+  - src/**
+  - "**.css"
+  - "**.scss"
+exclude_paths:
+- "docs"
+- "**/*.log"
+- "e2e/"
+- "config/"
+- "assets/"
+- "src/custom-typings.d.ts"
+- "src/app/**/*.spec.ts"
