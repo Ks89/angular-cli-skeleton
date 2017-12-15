@@ -28,9 +28,11 @@
     "pretest": "npm run clean:coverage",
     "test": "ng test --watch=false --code-coverage=true",
     "test:watch": "ng test --watch=true --code-coverage=true",
+    "test:ci": "ng test --watch=false --no-progress --code-coverage=true",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "e2e:ee": "npm run e2e -- --element-explorer=true",
+    "e2e:ci": "ng e2e --no-progress --config=protractor-ci.conf.js",
     "webdriver:update": "webdriver-manager update --gecko false --standalone false",
     "webdriver-manager": "webdriver-manager",
     "webdriver:start": "npm run webdriver-manager start",
@@ -68,7 +70,7 @@
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
-    "@angular/cli": "1.6.0",
+    "@angular/cli": "^1.6.1",
     "@angular/compiler-cli": "^5.1.1",
     "@angular/language-service": "^5.1.1",
     "@angularclass/hmr": "^2.1.3",

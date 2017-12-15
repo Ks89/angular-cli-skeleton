@@ -46,9 +46,9 @@ function getBrowsers() {
   } else {
     switch(os.platform()) {
       case 'win32': // Windows
-        return ['ChromeHeadless', 'Chrome', 'Firefox' /*'IE'*/];
+        return ['ChromeHeadless', 'Chrome', 'Firefox'/*,'IE','Edge'*/];
       case 'darwin': // macOS
-        return ['ChromeHeadless', 'Chrome', 'Firefox'/*, 'Safari'*/];
+        return ['ChromeHeadless', 'Chrome', 'Firefox', 'Safari'];
       default: // other (linux, freebsd, openbsd, sunos, aix)
         return ['ChromeHeadless', 'Chrome', 'Firefox'];
     }

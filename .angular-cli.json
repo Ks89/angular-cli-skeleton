@@ -10,8 +10,7 @@
       "assets": [
         "assets",
         "favicon.png",
-        "manifest.json",
-        "angular-cli.json"
+        "manifest.json"
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -22,11 +21,12 @@
       "prefix": "app",
       "serviceWorker": true,
       "styles": [
-        "styles.scss",
-        "../node_modules/font-awesome/scss/font-awesome.scss"
+        "styles.scss"
       ],
       "scripts": [
-        "../node_modules/popper.js/dist/umd/popper.js"
+        "../node_modules/jquery/dist/jquery.slim.js",
+        "../node_modules/popper.js/dist/umd/popper.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
