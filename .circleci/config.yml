@@ -30,7 +30,7 @@ jobs:
       - run:
           name: run-test
           #xvfb-run is used to run npm run to run a command using a virtual screen, which is needed by Chrome.
-          command: xvfb-run -a npm test:ci
+          command: xvfb-run -a npm run test:ci
       - run:
           name: Install Chromedriver latest version
           command: |

@@ -13,7 +13,7 @@ npm run build:prod
 
 # run test
 echo "npm run test on $TRAVIS_OS_NAME"
-xvfb-run -a npm test:ci
+xvfb-run -a npm run test:ci
 
 sleep 5
 

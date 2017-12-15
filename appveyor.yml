@@ -146,7 +146,7 @@ test_script:
   - node --version && npm --version
   - ps: "npm --version # PowerShell" # Pass comment to PS for easier debugging
   # run tests
-  - npm test:ci
+  - npm run test:ci
   # update webdriver + run e2e tests
   - npm run webdriver:update
   - npm run e2e:ci
