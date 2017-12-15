@@ -51,7 +51,7 @@ jobs:
 #          command: npm run docs
       - run:
           name: run-compodoc
-          command: npm run compodoc
+          command: npm run docs:compodoc
       - run:
           name: run-codeclimate
           command: npm run codeclimate
