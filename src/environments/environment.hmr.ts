@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   showDevModule: true,
-  hmr: false
+  hmr: true
 };

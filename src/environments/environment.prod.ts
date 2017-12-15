@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  showDevModule: false
+  showDevModule: false,
+  hmr: false
 };
