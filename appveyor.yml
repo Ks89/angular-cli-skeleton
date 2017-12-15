@@ -69,9 +69,9 @@ environment:
   CI: yes
   APPVEYOR: yes
   CODECLIMATE_REPO_TOKEN:
-    secure: 6JVnrBCedivK2uWNn8gCpKPOcni/pprCZwsS4qRHRFQDeWYtn+Gakf0V//XPK0aoWyqMbzf22FhTVe+vo0ciFltU780UOh5/n3TKBlaPOW0=
+    secure: 9hN/2kjIaBKuIFMIv5XMLvFWwetltZ/+Zl+1k4Y2w2Imo2FMUWKjwKZCdhavIeXyXUqspBDZKh9Au7VWQtWOjKRaSwqmItNPnylr0tTchxk=
   COVERALLS_REPO_TOKEN:
-    secure: yPyhFiKIQeJBzGxRCdz0gHaR1epFzH2cL0dpBKswJjWlUGmY2zDUzdnyic5mYz4O
+    secure: 6q+0oB84vG7+sniL2uWPhAe53suyDvgQg6ieH/I+BAwUKvNL0ikv6tatsinIpFIv
 
 # this is how to allow failing jobs in the matrix
 matrix:
@@ -128,12 +128,9 @@ build_script:
   - echo "npm run debug build on $TRAVIS_OS_NAME"
   - npm run build:dev
   # run production build
+  - npm run clean
   - echo "npm run production build on $TRAVIS_OS_NAME"
   - npm run build:prod
-  # run production + AOT build
-  - npm run clean
-  - echo "npm run production + AOT build on $TRAVIS_OS_NAME"
-  - npm run build:prod:aot
 
 #---------------------------------#
 #       tests configuration       #
@@ -150,7 +147,7 @@ test_script:
   - node --version && npm --version
   - ps: "npm --version # PowerShell" # Pass comment to PS for easier debugging
   # run tests
-  - npm test
+  - npm test:ci
   # update webdriver + run e2e tests
   - npm run webdriver:update
   - npm run e2e:ci
@@ -184,7 +181,7 @@ deploy_script:
 
 # on successful build
 on_success:
-  - npm run docs
+#  - npm run docs
   - npm run compodoc
   - codeclimate-test-reporter < coverage/lcov.info
   - node .\node_modules\coveralls\bin\coveralls.js < .\coverage\lcov.info

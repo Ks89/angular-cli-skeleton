@@ -4,20 +4,16 @@
 echo "npm run debug build on $TRAVIS_OS_NAME"
 npm run build:dev
 
+# clean before the real production build
+npm run clean
+
 # run production build
 echo "npm run production build on $TRAVIS_OS_NAME"
 npm run build:prod
 
-# clean before the real production build
-npm run clean
-
-# run production + AOT build
-echo "npm run production + AOT build on $TRAVIS_OS_NAME"
-npm run build:prod:aot
-
 # run test
 echo "npm run test on $TRAVIS_OS_NAME"
-npm test
+xvfb-run -a npm test:ci
 
 sleep 5
 
@@ -29,4 +25,4 @@ npm run webdriver:update
 sleep 5
 
 echo "npm run e2e on $TRAVIS_OS_NAME"
-npm run e2e:ci
+xvfb-run -a npm run e2e:ci
