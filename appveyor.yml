@@ -63,8 +63,7 @@ clone_depth: 5                      # clone entire repository history if not def
 # environment variables
 environment:
   matrix:
-    - nodejs_version: "7"
-    - nodejs_version: "6"
+    - nodejs_version: "8"
   NODE_ENV: test
   CI: yes
   APPVEYOR: yes
@@ -94,7 +93,7 @@ install:
   # install nodejs and dependencies both global and local
   # use appveyor-retry to retry if npm install fails
   - cmd: appveyor-retry powershell Install-Product node $env:nodejs_version
-  - npm install -g npm@5.3
+  - npm install -g npm@5
   - set PATH=%APPDATA%\npm;%PATH%
   - npm install -g codeclimate-test-reporter
   - npm install
