@@ -10,6 +10,7 @@
       "assets": [
         "assets",
         "favicon.png",
+        "manifest.json",
         "angular-cli.json"
       ],
       "index": "index.html",
@@ -24,7 +25,9 @@
         "styles.scss",
         "../node_modules/font-awesome/scss/font-awesome.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/popper.js/dist/umd/popper.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
