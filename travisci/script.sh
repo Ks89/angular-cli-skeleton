@@ -11,6 +11,10 @@ npm run clean
 echo "npm run production build on $TRAVIS_OS_NAME"
 npm run build:prod
 
+# run production build + Server Side Rendering
+echo "npm run production build + ssr on $TRAVIS_OS_NAME"
+npm run build:ssr
+
 # run test
 echo "npm run test on $TRAVIS_OS_NAME"
 xvfb-run -a npm run test:ci
