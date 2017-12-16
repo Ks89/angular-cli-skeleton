@@ -5,8 +5,9 @@
   },
   "apps": [
     {
+      "name": "client",
       "root": "src",
-      "outDir": "dist/browser",
+      "outDir": "dist/browser/",
       "assets": [
         "assets",
         "favicon.png",
@@ -36,9 +37,9 @@
       }
     },
     {
-      "platform": "server",
+      "name": "server",
       "root": "src",
-      "outDir": "dist/server",
+      "outDir": "dist/server/",
       "assets": [
         "assets",
         "favicon.png",
@@ -46,6 +47,7 @@
       ],
       "index": "index.html",
       "main": "main.server.ts",
+      "polyfills": "polyfills.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.server.json",
       "testTsconfig": "tsconfig.spec.json",
@@ -64,7 +66,8 @@
         "dev": "environments/environment.ts",
         "hmr": "environments/environment.hmr.ts",
         "prod": "environments/environment.prod.ts"
-      }
+      },
+      "platform": "server"
     }
   ],
   "e2e": {
@@ -93,7 +96,6 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "component": {
-    }
+    "component": {}
   }
 }

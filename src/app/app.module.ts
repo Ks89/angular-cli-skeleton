@@ -26,7 +26,10 @@ import { AppComponent } from './app.component';
     COMPONENTS
   ],
   imports: [
-    BrowserModule,
+    // Add .withServerTransition() to support Universal rendering.
+    // The application ID can be any identifier which is unique on
+    // the page.
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
@@ -38,11 +41,6 @@ import { AppComponent } from './app.component';
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
     }),
-
-    // Add .withServerTransition() to support Universal rendering.
-    // The application ID can be any identifier which is unique on
-    // the page.
-    BrowserModule.withServerTransition({appId: 'my-app'}),
 
     NgbModule.forRoot(), // forRoot ensures the providers are only created once
 
