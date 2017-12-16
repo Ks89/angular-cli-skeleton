@@ -39,6 +39,11 @@ import { AppComponent } from './app.component';
       enabled: environment.production
     }),
 
+    // Add .withServerTransition() to support Universal rendering.
+    // The application ID can be any identifier which is unique on
+    // the page.
+    BrowserModule.withServerTransition({appId: 'my-app'}),
+
     NgbModule.forRoot(), // forRoot ensures the providers are only created once
 
     /**
