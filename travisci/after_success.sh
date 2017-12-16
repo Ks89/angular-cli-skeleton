@@ -2,7 +2,7 @@
 
 # build documentation
 #echo "pm run docs on $TRAVIS_OS_NAME"
-#npm run docs
+npm run docs
 
 echo "pm run compodoc on $TRAVIS_OS_NAME"
 npm run docs:compodoc

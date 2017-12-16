@@ -52,9 +52,9 @@ jobs:
       - run:
           name: run-e2e
           command: xvfb-run -a npm run e2e:ci
-#      - run:
-#          name: run-docs
-#          command: npm run docs
+      - run:
+          name: run-docs
+          command: npm run docs
       - run:
           name: run-compodoc
           command: npm run docs:compodoc

@@ -7,7 +7,7 @@
     {
       "name": "client",
       "root": "src",
-      "outDir": "dist/browser/",
+      "outDir": "dist/browser",
       "assets": [
         "assets",
         "favicon.png",
@@ -39,7 +39,7 @@
     {
       "name": "server",
       "root": "src",
-      "outDir": "dist/server/",
+      "outDir": "dist/server",
       "assets": [
         "assets",
         "favicon.png",
@@ -47,7 +47,6 @@
       ],
       "index": "index.html",
       "main": "main.server.ts",
-      "polyfills": "polyfills.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.server.json",
       "testTsconfig": "tsconfig.spec.json",
