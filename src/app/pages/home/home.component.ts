@@ -26,8 +26,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
 
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/delay';
 import {Subscription} from 'rxjs/Subscription';
+import { of } from 'rxjs/observable/of';
+import { delay } from 'rxjs/operators';
 
 import {PageHeader} from '../../shared/components/components';
 import {ExampleService} from '../../core/services/example.service';
@@ -58,7 +59,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ];
 
   helloExample$: Observable<string>;
-  elementsObs: Observable<any> = Observable.of(this.elements).delay(1000);
+  elementsObs: Observable<any> = of(this.elements).pipe(delay(1000));
 
   socketData: string[] = [];
   private socket;
