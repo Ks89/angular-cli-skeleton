@@ -1,36 +1,17 @@
 Complete file structure:
 
 ```
-angular-webpack-skeleton/
- ├─.circleci/                     * Circle CI 2 config folder
- ├─assets/                        * Images, icons, manifest.json and so on
- ├─bootstrap/                     * bootstrap-loader configuration files
- │ ├─after.scss                   * this gets loaded after bootstrap/variables is loaded
- │ └─before.scss                  * this gets loaded before bootstrap/variables is loaded
- │
- ├─config/                        * config files
- │ ├─html-elements-plugin/        * webpack plugin to add css, icons... during the creation of html files
- │ ├─head-config.common.js        * list of files to be loaded by 'html-elements-plugin'
- │ ├─helpers.js                   * helper functions for configuration files
- │ ├─karma.conf.js                * karma config file for unit testing
- │ ├─karma-test-runner.js         * karma test-runner file for unit testing
- │ ├─protractor.conf.js           * protractor config for e2e tests
- │ ├─webpack.common.js            * common webpack config (for both dev and prod)
- │ ├─webpack.dev.js               * local developmet webpack config
- │ ├─webpack.prod.js              * production webpack config
- │ └─webpack.test.js              * testing webpack config
- │
- ├─setup/                         * some setup files to help you to init the evironment
+angular-cli-skeleton/
+ ├─.circleci/                     * circle ci 2 config folder (is a CI service free for open source projects)
  │
  ├─e2e/                           * end-to-end tests with Protractor
- │ ├─app.e2e.ts                   * e2e test for the main page
- │ ├─home.e2e.ts                  * e2e test for home page
- │ └─home.e2e.ts                  * e2e test for service-worker page
+ │ ├─app.e2e-spec.ts              * e2e test for the main page
+ │ ├─app.po.ts                    * e2e page oject for home page
+ │ └─tsconfig.e2e.ts              * config file for typescript when running e2e tests
  │
  ├─src/                           * main source folder
- │ ├─admin/                       * source folder of 'admin' SPA. Similar to 'app'
- │ │
  │ ├─app/                         * source folder of 'app' SPA
+ │ │ ├─app-shell/                 * app-shell folder (STILL UNUSED)
  │ │ ├─core/                      * CoreModule provides services. You can import this module only on time in the root module
  │ │ │ ├─actions/                 * folder of ngrx actions
  │ │ │ │ └─hello.example.ts       * hello-example ngrx action
@@ -78,11 +59,13 @@ angular-webpack-skeleton/
  │ │ │ │ └─components.ts          * export an array of components to easely import into the module's definition
  │ │ │ └─shared.module.ts         * definition of the SharedModule
  │ │ │
- │ │ ├─app.component.ts           * main component of the app SPA
- │ │ ├─app.e2e.ts                 * example of an e2e test for 'app' SPA
- │ │ ├─app.html                   * main template's component of the app SPA
- │ │ ├─app.module.ts              * root module of the app SPA
- │ │ └─app.routing.ts             * routes of the app SPA
+ │ │ ├─app.component.html         * main template's component of the application
+ │ │ ├─app.component.scss         * scss file for the main component of the application
+ │ │ ├─app.component.spec.ts      * main component's unit test
+ │ │ ├─app.component.ts           * main component of the application
+ │ │ ├─app.module.ts              * root module of the application (browser-side)
+ │ │ ├─app.server.module.ts       * root module of the application (server-side)
+ │ │ └─app-routing.module.ts      * routes module of the app SPA
  │ │
  │ ├─styles/                      * root styles (CSS/SCSS) for the entire application (all SPAs)
  │ │ ├─headings.css               * css file (to show that you can use both css and scss)
@@ -90,31 +73,45 @@ angular-webpack-skeleton/
  │ │ ├─styles.scss                * main SCSS that imports all other SCSS in this directory (loading ad variables)
  │ │ └─variables.scss             * SCSS variables
  │ │
- │ ├─admin.aot.ts                 * main file to boot 'admin' SPA with AOT compiler
- │ ├─admin.ejs                    * admin template that will be converted into an html (admin SPA)
- │ ├─admin.ts                     * main file to boot 'admin' SPA
- │ ├─environmet.ts                * file to configure Angular debug/prod (don't touch this)
- │ ├─index.ejs                    * index template that will be converted into an html (app SPA)
- │ ├─main.aot.ts                  * main file to boot 'app' SPA with AOT compiler
- │ ├─main.ts                      * main file to boot 'app' SPA
+ │ ├─assets/                      * images, icons and other stuff
+ │ │
+ │ ├─environments/                * folder loaded by angular cli depending on dev, prod...
+ │ │ ├─environment.hmr.ts         * environment file for development with hmr
+ │ │ ├─environment.prod.ts        * environment file for production
+ │ │ └─environment.ts             * environment file for development without hmr
+ │ │
+ │ ├─_variables.scss              * file with scss variables to customize bootstrap and to import fonts from third-party deps
+ │ ├─favicon.ico                  * application's icon
+ │ ├─hmr.ts                       * file to init HMR ir running with hrm enabled
+ │ ├─index.html                   * index file of this application
+ │ ├─main.server.ts               * main file to boot this applcation on server-side with angular-universal
+ │ ├─main.ts                      * main file to boot this applcation on browser-side (client)
+ │ ├─manifest.json                * web manifest
+ │ ├─ngsw-config.json             * config file for service workers
  │ ├─polyfills.ts                 * polyfills used by Angular to support older browsers
- │ └─typings.d.ts                 * custom types for Typescript
+ │ ├─styles.scss                  * main scss file to define global styles
+ │ ├─test.ts                      * test config file to load .spec.ts files
+ │ ├─tsconfig.app.json            * typescript's config file for the application (browser-side)
+ │ ├─tsconfig.server.json         * typescript's config file for the application (server-side)
+ │ ├─tsconfig.spec.json           * typescript's config file for unit testing
+ │ └─typings.d.ts                 * typescript's custom types
  │
- ├─travisci/                      * Scripts for Travis continous integration
+ ├─travisci/                      * scripts for travis ci (is a CI service free for open source projects)
  │
- ├─.bootstraprc                   * main bootstrap-loader config file
- ├─.travis.yml                    * travis ci config
- ├─appveyor.yml                   * appveyor config
- ├─karma.conf.js                  * main karma config file for unit testing
+ ├─.angular-cli.json              * angular-cli config file
+ ├─.travis.yml                    * travis ci config (is a CI service free for open source projects)
+ ├─appveyor.yml                   * appveyor config (is a CI service free for open source projects)
+ ├─karma.conf.js                  * karma config file for unit testing
  ├─package.json                   * npm packages.json
  ├─package-lock.json              * lock file for npm >= 5
- ├─postcss.config.js              * postcss config file
- ├─protractor.config.js           * main protractor config file for e2e testing
- ├─sonar-project.properties       * Config file for SonarQube
- ├─tsconfig.json                  * Config file for Typescript
- ├─tsconfig-aot.json              * Config file for Typescript used by AOT compiler
+ ├─protractor.config.js           * protractor config file for e2e testing
+ ├─protractor-ci.config.js        * protractor config file for e2e testing in Continous Integration
+ ├─proxy.conf.json                * proxy configuration for angular-cli when using 'npm start'
+ ├─server.ts                      * NodeJs server to enable Server Side Rendering
+ ├─sonar-project.properties       * config file for SonarQube
+ ├─tsconfig.json                  * typescript's config file
  ├─tslit.json                     * TSLint config file
- └─webpack.conf.js                * main webpack config file
+ └─webpack.server.conf.js         * webpack config file to build server-side (angular-universal)
 ```
 
 Created by Stefano Cappa (Ks89)

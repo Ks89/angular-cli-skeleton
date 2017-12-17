@@ -1,7 +1,17 @@
 {
   "name": "angular-cli-skeleton",
   "version": "1.0.0-beta.1",
+  "author": "Stefano Cappa",
+  "description": "Angular skeleton with angular-cli",
   "license": "MIT",
+  "main": "src/main.ts",
+  "homepage": "https://github.com/Ks89",
+  "private": true,
+  "repository": "https://github.com/Ks89/angular-cli-skeleton",
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": ">=5.2.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "npm run serve:dev",
@@ -44,7 +54,6 @@
     "coveralls": "coveralls < coverage/lcov.info",
     "codeclimate": "codeclimate-test-reporter < coverage/lcov.info"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^5.1.1",
     "@angular/common": "^5.1.1",
