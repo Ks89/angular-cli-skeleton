@@ -93,7 +93,7 @@ install:
   # install nodejs and dependencies both global and local
   # use appveyor-retry to retry if npm install fails
   - cmd: appveyor-retry powershell Install-Product node $env:nodejs_version
-  - npm install -g npm@5
+  - npm install -g npm@latest
   - set PATH=%APPDATA%\npm;%PATH%
   - npm install -g codeclimate-test-reporter
   - npm install

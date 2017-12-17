@@ -4,6 +4,10 @@ jobs:
     working_directory: ~/my-project
     docker:
       - image: circleci/node:latest-browsers # before was 7.10.0-browsers
+      # Environment variable for all commands executed in the primary container
+        environment:
+          NODE_ENV: test
+          CI: yes
     steps:
       - checkout
       - run:
