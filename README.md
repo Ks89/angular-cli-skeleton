@@ -210,6 +210,10 @@ or
 ### Clean all
 - `npm run clean`
 
+### Bundle analyzer
+- Run either `npm run build:dev:stats` or `npm run build:prod:stats`
+- Open analyzer with `npm run analyze:bundle` to see the result
+
 ### SonarQube support
 STILL NOT AVAILABLE IN THIS SKELETON
 
