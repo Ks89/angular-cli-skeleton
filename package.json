@@ -22,8 +22,10 @@
     "serve:prod:url": "ng serve --prod --proxy-config proxy.conf.json --base-href /your-custom-base-href/ --deploy-url /your-custom-base-href/",
     "build": "npm run build:dev",
     "build:dev": "ng build --dev",
+    "build:dev:stats": "npm run build:dev -- --stats-json",
     "build:dev:url": "ng build --dev --base-href /your-custom-base-href/ --deploy-url /your-custom-base-href/",
-    "build:prod": "ng build --prod",
+    "build:prod": "ng build --prod --stats-json",
+    "build:prod:stats": "npm run build:prod -- --stats-json",
     "build:prod:url": "ng build --prod --base-href /your-custom-base-href/ --deploy-url /your-custom-base-href/",
     "build:verbose": "npm run build:dev -- --verbose",
     "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
@@ -50,6 +52,7 @@
     "docs:compodoc": "compodoc -p tsconfig.json",
     "docs:compodoc:serve": "compodoc -p tsconfig.json -s",
     "docs:compodoc:serve:watch": "compodoc -p tsconfig.json -s -w",
+    "analyze:bundle": "webpack-bundle-analyzer dist/browser/stats.json",
     "sonar-scanner": "sonar-scanner",
     "coveralls": "coveralls < coverage/lcov.info",
     "codeclimate": "codeclimate-test-reporter < coverage/lcov.info"
@@ -119,7 +122,8 @@
     "tslint": "~5.7.0",
     "typedoc": "^0.9.0",
     "typescript": "=2.5.3",
-    "webdriver-manager": "^12.0.6"
+    "webdriver-manager": "^12.0.6",
+    "webpack-bundle-analyzer": "^2.9.1"
   },
   "browserslist": [
     "last 2 versions",
