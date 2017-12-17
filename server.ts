@@ -8,12 +8,15 @@ import { enableProdMode } from '@angular/core';
 import * as express from 'express';
 import { join } from 'path';
 import { readFileSync } from 'fs';
+// import * as socketIo from 'socket.io/lib/index.js';
 
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
 
 // Express server
 const app = express();
+
+// const io = socketIo(app);
 
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist');
@@ -50,6 +53,37 @@ app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
 app.get('*', (req, res) => {
   res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
 });
+
+// io.on('connect', handleIO);
+//
+// io.on('connection', function (socket) {
+//   socket.emit('news', { hello: 'world' });
+//   socket.on('my other event', function (data) {
+//     console.log(data);
+//   });
+// });
+//
+// function handler(req, res) {
+//   res.writeHead(200);
+//   res.end();
+// }
+//
+// function handleIO(socket) {
+//   console.log('client connected');
+//   const intv = setInterval(() => {
+//     socket.emit('hello', Math.random());
+//   }, 1000);
+//
+//   socket.on('new-message', msg => {
+//     console.log('received a new message: ' + msg);
+//     socket.emit('message', msg);
+//   });
+//
+//   socket.on('disconnect', () => {
+//     console.log('client disconnected');
+//     clearInterval(intv);
+//   });
+// }
 
 // Start up the Node server
 app.listen(PORT, () => {
