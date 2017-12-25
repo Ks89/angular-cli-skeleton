@@ -1,9 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import 'variables';
 @import '../node_modules/bootstrap/scss/bootstrap';
 @import '../node_modules/font-awesome/scss/font-awesome';
 
 h1 {
   color: #333333;
+}
+
+.gif {
+  width: 200px;
+  height: 200px;
+  background-image: url("./assets/giphy.gif");
+  background-repeat: no-repeat;
 }
