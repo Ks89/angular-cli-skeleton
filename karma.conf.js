@@ -48,7 +48,7 @@ function getBrowsers() {
       case 'win32': // Windows
         return ['ChromeHeadless', 'Chrome', 'Firefox'/*,'IE','Edge'*/];
       case 'darwin': // macOS
-        return ['ChromeHeadless', 'Chrome', 'Firefox', 'Safari'];
+        return ['ChromeHeadless', 'Chrome', 'Firefox'/*, 'Safari'*/];
       default: // other (linux, freebsd, openbsd, sunos, aix)
         return ['ChromeHeadless', 'Chrome', 'Firefox'];
     }
@@ -66,30 +66,34 @@ module.exports = function (config) {
       require('karma-firefox-launcher'),
       require('karma-ie-launcher'),
       require('karma-safari-launcher'),
-      require('karma-coverage'),
-      require('karma-jasmine-diff-reporter'),
       require('karma-jasmine-html-reporter'),
-      require('karma-mocha-reporter'),
-      require('karma-remap-coverage'),
-      require('karma-sonarqube-unit-reporter'),
       require('karma-coverage-istanbul-reporter'),
+      require('karma-coverage'),
+      require('karma-mocha-reporter'),
+      require('karma-sonarqube-unit-reporter'),
       require('@angular/cli/plugins/karma')
     ],
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    coverageIstanbulReporter: {
-      reports: [ 'html', 'lcovonly', 'json' ],
-      fixWebpackSourcePaths: true
-    },
     angularCli: {
       environment: 'dev'
     },
 
-    // TODO restore something like reporters: config.angularCli && config.angularCli.codeCoverage
-    // ? ['progress', 'coverage-istanbul']
-    // : ['progress', 'kjhtml'],
-    reporters: ['progress', 'mocha', 'kjhtml', 'coverage', 'remap-coverage', 'sonarqubeUnit'],
+    /*
+     * when angular-cli's coverage is enabled
+     * - mocha is used to show mocha results in console (ps you cannot add both progress and mocha at the same time)
+     * - coverage is used to show coverage result in console
+     * - coverage-istanbul is recommended by angular-cli and used to emit html and lcov
+     * - sonrqube is used to build the report used by SonarQube
+     * when is disabled
+     * - progress is an alternative of mocha (default and recommended by angular-cli
+     * - kjhtml is used to show karma progress inside the browser
+     *
+     */
+    reporters: config.angularCli && config.angularCli.codeCoverage
+      ? ['mocha', 'coverage', 'coverage-istanbul', 'sonarqubeUnit']
+      : ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
@@ -97,8 +101,15 @@ module.exports = function (config) {
     browsers: getBrowsers(),
     singleRun: false,
 
+    // required by coverage-istanbul
+    coverageIstanbulReporter: {
+      reports: ['html', 'lcovonly'],
+      fixWebpackSourcePaths: true
+    },
+
+    // required by karma-coverage to show code coverage in console
     coverageReporter: {
-      type: 'in-memory'
+      type: 'text-summary'
     },
 
     sonarQubeUnitReporter: {
@@ -108,17 +119,6 @@ module.exports = function (config) {
       testPath: 'src',
       testFilePattern: '.spec.ts',
       useBrowserName: false
-    },
-
-    remapCoverageReporter: {
-      'text-summary': null,
-      'json': './coverage/coverage.json',
-      'html': './coverage/html',
-      'lcovonly': './coverage/lcov.info'
-    },
-
-    jasmineDiffReporter: {
-      multiline: true
     },
 
     customLaunchers: {

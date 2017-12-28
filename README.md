@@ -309,7 +309,7 @@ To deploy with a custom path, please check here: https://angular.io/guide/deploy
 
 **MIT License**
 
-Copyright (c) 2017 **Stefano Cappa**
+Copyright (c) 2017-2018 **Stefano Cappa**
 
 **This license is valid to all my files in this repo**
 
