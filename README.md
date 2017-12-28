@@ -1,7 +1,11 @@
-[![Travis Build](https://travis-ci.org/Ks89/angular-cli-skeleton.svg?branch=master)](https://travis-ci.org/Ks89/angular-cli-skeleton) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FKs89%2Fangular-cli-skeleton.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FKs89%2Fangular-cli-skeleton?ref=badge_shield)
-  [![AppVeyor Build](https://ci.appveyor.com/api/projects/status/9vy98a94l2213rb9/branch/master?svg=true)](https://ci.appveyor.com/project/Ks89/angular-cli-skeleton/branch/master)   [![CircleCI Build](https://circleci.com/gh/Ks89/angular-cli-skeleton/tree/master.svg?style=svg)](https://circleci.com/gh/Ks89/angular-cli-skeleton/tree/master)   [![Code Climate](https://codeclimate.com/github/Ks89/angular-cli-skeleton/badges/gpa.svg)](https://codeclimate.com/github/Ks89/angular-cli-skeleton)   [![CodeClimate Coverage](https://codeclimate.com/github/Ks89/angular-cli-skeleton/badges/coverage.svg)](https://codeclimate.com/github/Ks89/angular-cli-skeleton/coverage)   [![Coveralls Coverage](https://coveralls.io/repos/github/Ks89/angular-cli-skeleton/badge.svg?branch=master)](https://coveralls.io/github/Ks89/angular-cli-skeleton?branch=master)   [![Known Vulnerabilities](https://snyk.io/test/github/ks89/angular-cli-skeleton/badge.svg)](https://snyk.io/test/github/ks89/angular-cli-skeleton)
+[![Travis Build](https://travis-ci.org/Ks89/angular-cli-skeleton.svg?branch=master)](https://travis-ci.org/Ks89/angular-cli-skeleton)   [![AppVeyor Build](https://ci.appveyor.com/api/projects/status/9vy98a94l2213rb9/branch/master?svg=true)](https://ci.appveyor.com/project/Ks89/angular-cli-skeleton/branch/master)   [![CircleCI Build](https://circleci.com/gh/Ks89/angular-cli-skeleton/tree/master.svg?style=svg)](https://circleci.com/gh/Ks89/angular-cli-skeleton/tree/master)
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/Ks89/angular-cli-skeleton.svg)](https://greenkeeper.io/)
+[![vulnerabilities](https://snyk.io/test/github/ks89/angular-cli-skeleton/badge.svg)](https://snyk.io/test/github/ks89/angular-cli-skeleton)   [![Greenkeeper badge](https://badges.greenkeeper.io/Ks89/angular-cli-skeleton.svg)](https://greenkeeper.io/)   [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FKs89%2Fangular-cli-skeleton.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FKs89%2Fangular-cli-skeleton?ref=badge_shield)   [![Code Climate](https://codeclimate.com/github/Ks89/angular-cli-skeleton/badges/gpa.svg)](https://codeclimate.com/github/Ks89/angular-cli-skeleton)   [![CodeClimate Coverage](https://codeclimate.com/github/Ks89/angular-cli-skeleton/badges/coverage.svg)](https://codeclimate.com/github/Ks89/angular-cli-skeleton/coverage)   [![Coveralls Coverage](https://coveralls.io/repos/github/Ks89/angular-cli-skeleton/badge.svg?branch=master)](https://coveralls.io/github/Ks89/angular-cli-skeleton?branch=master)
+
+[![bitHound Overall Score](https://www.bithound.io/github/Ks89/angular-cli-skeleton/badges/score.svg)](https://www.bithound.io/github/Ks89/angular-cli-skeleton)   [![bitHound Code](https://www.bithound.io/github/Ks89/angular-cli-skeleton/badges/code.svg)](https://www.bithound.io/github/Ks89/angular-cli-skeleton)   [![bitHound Dependencies](https://www.bithound.io/github/Ks89/angular-cli-skeleton/badges/dependencies.svg)](https://www.bithound.io/github/Ks89/angular-cli-skeleton/master/dependencies/npm)   [![bitHound Dev Dependencies](https://www.bithound.io/github/Ks89/angular-cli-skeleton/badges/devDependencies.svg)](https://www.bithound.io/github/Ks89/angular-cli-skeleton/master/dependencies/npm)
+
+[![GitHub release](https://img.shields.io/github/release/Ks89/angular-cli-skeleton.svg?style=flat-square)](https://github.com/Ks89/angular-cli-skeleton)   [![GitHub (pre-)release](https://img.shields.io/github/release/Ks89/angular-cli-skeleton/all.svg?style=flat-square)](https://github.com/Ks89/angular-cli-skeleton)
+
 
 <br>
 
@@ -337,7 +341,10 @@ SOFTWARE.
 
 <br/>
 
-**Created by Stefano Cappa**
-
+## FOSSA report
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FKs89%2Fangular-cli-skeleton.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FKs89%2Fangular-cli-skeleton?ref=badge_large)
+
+<br/>
+
+**Created by Stefano Cappa**
