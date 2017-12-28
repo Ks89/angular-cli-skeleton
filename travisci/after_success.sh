@@ -14,3 +14,7 @@ npm run codeclimate
 # send test coverage to coveralls.io
 echo "npm run coveralls on $TRAVIS_OS_NAME"
 npm run coveralls
+
+# send test data to sonarcloud.io
+echo "run sonar-scanner on $TRAVIS_OS_NAME"
+sonar-scanner

@@ -27,6 +27,12 @@ addons:
       - google-chrome
     packages:
       - google-chrome-stable
+  sonarcloud:
+      organization: "ks89-github"
+      token:
+        secure: "N8OqSLxyckoeTHWo47SSxnYUWmkjikU+NifiIynyqpNjpuigbrkT/zCBjiZ1XTBWkTIl5ypo9wVoA5foFjfbUqHW3CtRYBN0V715huKwWVjKI1SnbOESzxSbN/P9u+O7lyxoIybxRY7O0beOnSwV0a5B1XLvTt+MPBfn5DVVrqwf7eixtYKuuEA9k9XDfyDDqN4zFeAYhjJWqj3egM181xVnAJD7yRlq54R2frAExg2d2i1JbaZFJbIiDXLxRc143rNuFe9HP030jmdi5GEJIH+mcNgZvB0LNYh+KOCiuxzOFOitK7i+DoZI+F59AJMc2FHX3L0SpVgmIw5/iXgqTH61JmkIvLPTAqsGM1cD7bLPSBVbomiocyLr2c8RjbTp0RjHv3VYDTpxqrvACClTPL4YM760MSsSVOphJdoOkYkl4K6J2rHzegR3R3Bp9sUTpBe5Wm5O0PpDKRm2SuwTt9kcZahjKVzpM2oNw5Xy96TDl4QaKCOtMh/oo2/xIhwPNISTpmcnAsuHozziGdtvfNZPi02yYFh5KEMsrefgGAk17Y+HtSpumYUUVAQTqpe+3HWNI6O1CPD5/zO6oyCdMeCia4wG2z+hsJeiFY4EnBlNNwrqlnZZbyyjC6Ey6v213Pko7u7UILCz+Giv0jy8UrsioccsUEv2iLJIh8wDC0w="
+jdk:
+  - oraclejdk8
 
 matrix:
   fast_finish: true
@@ -52,3 +58,4 @@ cache:
   bundler: true
   directories:
     - ./node_modules
+    - '$HOME/.sonar/cache'
