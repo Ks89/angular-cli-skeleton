@@ -7,7 +7,6 @@
 
 # angular-cli-skeleton
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/Ks89/angular-cli-skeleton.svg)](https://greenkeeper.io/)
 A simple ready to use skeleton project with angular-cli, Angular 5, Bootstrap 4 beta, ng-bootstrap, ngrx-store and so on.
 
 This project is still experimental and it will be my official skeleton project for Angular applications.
