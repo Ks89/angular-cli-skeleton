@@ -16,5 +16,5 @@ echo "npm run coveralls on $TRAVIS_OS_NAME"
 npm run coveralls
 
 # send test data to sonarcloud.io
-echo "run sonar-scanner on $TRAVIS_OS_NAME"
-sonar-scanner
+echo "run analyze:sonar:ci on $TRAVIS_OS_NAME"
+npm run analyze:sonar:ci
