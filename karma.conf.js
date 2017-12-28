@@ -44,11 +44,11 @@ function getBrowsers() {
       return ['ChromeHeadless', 'Chrome', 'Firefox'];
     }
   } else {
-    switch(os.platform()) {
+    switch (os.platform()) {
       case 'win32': // Windows
-        return ['ChromeHeadless', 'Chrome', 'Firefox'/*,'IE','Edge'*/];
+        return ['ChromeHeadless', 'Chrome', 'Firefox', 'IE'/*,'Edge'*/];
       case 'darwin': // macOS
-        return ['ChromeHeadless', 'Chrome', 'Firefox'/*, 'Safari'*/];
+        return ['ChromeHeadless', 'Chrome', 'Firefox', 'Safari'];
       default: // other (linux, freebsd, openbsd, sunos, aix)
         return ['ChromeHeadless', 'Chrome', 'Firefox'];
     }
@@ -73,7 +73,7 @@ module.exports = function (config) {
       require('karma-sonarqube-unit-reporter'),
       require('@angular/cli/plugins/karma')
     ],
-    client:{
+    client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     angularCli: {
