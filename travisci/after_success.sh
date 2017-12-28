@@ -17,4 +17,4 @@ npm run coveralls
 
 # send test data to sonarcloud.io
 echo "run analyze:sonar:ci on $TRAVIS_OS_NAME"
-npm run analyze:sonar:ci
+npm run analyze:sonar:ci -- -Dsonar.login=$SONARCLOUD
