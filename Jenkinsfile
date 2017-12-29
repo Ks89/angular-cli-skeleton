@@ -33,7 +33,7 @@ node {
     }
 
     stage('npm test') {
-        sh "npm run test:ci"
+        sh "ng test --watch false"
     }
 
     stage('npm e2e') {
