@@ -7,7 +7,7 @@ node {
         sh "npm -v"
     }
 
-    stage('checkout') {
+    stage('checkout') {jen
         checkout scm
     }
 
@@ -15,19 +15,11 @@ node {
         sh "npm install"
     }
 
-    stage('npm build dev') {
-        sh "npm run build:dev"
+    stage('unit tests') {
+        sh "ng test --watch false"
     }
 
-    stage('npm build prod') {
-        sh "npm run build:prod"
-    }
-
-    stage('npm test') {
-        sh "npm run test:ci"
-    }
-
-    stage('npm e2e') {
-        sh "npm run e2e:ci"
+    stage('protractor tests') {
+        sh "npm run e2e"
     }
 }
