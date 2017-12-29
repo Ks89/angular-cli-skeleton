@@ -91,9 +91,7 @@ module.exports = function (config) {
      * - kjhtml is used to show karma progress inside the browser
      *
      */
-    reporters: config.angularCli && config.angularCli.codeCoverage
-      ? ['mocha', 'coverage', 'coverage-istanbul', 'sonarqubeUnit']
-      : ['progress', 'kjhtml'],
+    reporters: config.angularCli && config.angularCli.codeCoverage ? ['mocha', 'coverage', 'coverage-istanbul', 'sonarqubeUnit'] : ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
