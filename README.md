@@ -64,7 +64,8 @@ Watch this GitHub's project to see news and updates and add a star if you like i
     - [Travis CI](https://travis-ci.org/)
     - [Circle CI](https://circleci.com/)
     - [AppVeyor](https://www.appveyor.com/)
-    - [SonarQube](https://www.sonarqube.org/) on [SonarCloud](https://sonarcloud.io/dashboard?id=angular-webpack-skeleton) with installation instructions
+    - [SonarQube](https://www.sonarqube.org/) on [SonarCloud](https://sonarcloud.io/dashboard?id=angular-webpack-skeleton) with installation instructions below
+    - [Jenkins 2](https://jenkins-ci.org/) with installation instructions below
 - and many more...
 
 ## News
@@ -265,6 +266,28 @@ or
 ### Bundle analyzer
 - Run either `npm run build:dev:stats` or `npm run build:prod:stats`
 - Open analyzer with `npm run analyze:bundle` to see the result
+
+### Jenkins support
+With this tutorial, you'll configure Jenkins to build your project from GitHub, where the Pipeline's script is in the remote repository.
+
+1. Install java and define all necessary env variables for your OS
+2. Download the latest version of Jenkins 2 [HERE](https://jenkins.io/download/). If you are using macOS, I suggest to use [Homebrew](https://brew.sh/index_it.html)
+3. Install Jenkins following [this instruction](https://jenkins.io/doc/book/installing/)
+4. Run it (if installed with HomeBrew, run `jenkins` in your terminal)
+5. Navigate to `http://localhost:8080` and unlock Jenkins (for more info check [HERE](https://jenkins.io/doc/book/installing/#unlocking-jenkins)) 
+6. Install all suggested plugins
+7. Create a new admin user (please, you shouldn't skip this step) as explained [HERE](https://jenkins.io/doc/book/installing/#creating-the-first-administrator-user)
+8. Navigate to `http://localhost:8080/pluginManager/available` and install `NodeJS Plugin`
+9. Restart Jenkins and log in with the new admin user created at step 7
+10. Navigate to `http://localhost:8080/configureTools/` and add a new NodeJS installation (remember to save all changes at the end) with these parameters:
+    - Name: node-8.4.0 (this name must match `tool name` in your pipeline's script. If you are a beginner, please don't change it)
+    - Install automatically: checked
+    - Version: NodeJS 8.4.0
+11. Create a new **PIPELINE** at `http://localhost:8080/view/all/newJob` called for instance `angular-cli-skeleton`
+12. Check both `GitHub project` (use this url: `https://github.com/Ks89/angular-cli-skeleton/`) and `GitHub hook trigger for GIT Scm polling`
+13. In the Pipeline section, choose `Pipeline script from SCM`, with SCM `Git` and URL `https://github.com/Ks89/angular-cli-skeleton` to get the pipeline's script from `./Jenkinsfile` via git
+14. Script Path must match the Jenkins file name in your repository (i.e. `Jenkinsfile`)
+15. Save and build
 
 ### SonarQube support
 1. Install java and define all necessary env variables for your OS

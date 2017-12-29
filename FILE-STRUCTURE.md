@@ -102,6 +102,7 @@ angular-cli-skeleton/
  ├─.travis.yml                    * travis ci config (is a CI service free for open source projects)
  ├─appveyor.yml                   * appveyor config (is a CI service free for open source projects)
  ├─karma.conf.js                  * karma config file for unit testing
+ ├─Jenkinsfile                    * Jenkins 2 config file with a pipeline's script
  ├─package.json                   * npm packages.json
  ├─package-lock.json              * lock file for npm >= 5
  ├─protractor.config.js           * protractor config file for e2e testing
