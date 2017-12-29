@@ -1,3 +1,4 @@
+
 node {
     def nodeHome = tool name: 'node-8.4.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
     env.PATH = "${nodeHome}/bin:${env.PATH}"
@@ -7,7 +8,7 @@ node {
         sh "npm -v"
     }
 
-    stage('checkout') {jen
+    stage('checkout') {
         checkout scm
     }
 
@@ -16,10 +17,10 @@ node {
     }
 
     stage('unit tests') {
-        sh "ng test --watch false"
+        sh "npm run test:ci"
     }
 
     stage('protractor tests') {
-        sh "npm run e2e"
+        sh "npm run e2e:ci"
     }
 }
