@@ -16,11 +16,35 @@ node {
         sh "npm install"
     }
 
-    stage('unit tests') {
+    stage('npm run build dev') {
+        sh "npm run build:dev"
+    }
+
+    stage('npm clean') {
+        sh "npm run clean"
+    }
+
+    stage('npm run build prod') {
+        sh "npm run build:prod"
+    }
+
+    stage('npm run build ssr') {
+        sh "npm run build:ssr"
+    }
+
+    stage('npm test') {
         sh "npm run test:ci"
     }
 
-    stage('protractor tests') {
+    stage('npm e2e') {
         sh "npm run e2e:ci"
+    }
+
+    stage('npm typedoc') {
+        sh "npm run docs:typedoc"
+    }
+
+    stage('npm compodoc') {
+        sh "npm run docs:compodoc"
     }
 }
