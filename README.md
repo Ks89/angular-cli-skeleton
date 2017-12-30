@@ -60,6 +60,9 @@ Watch this GitHub's project to see news and updates and add a star if you like i
 - Documentation
     - [TypeDoc](https://github.com/TypeStrong/typedoc)
     - [Compodoc](https://github.com/compodoc/compodoc) also with both 'watch mode' and 'watch + serve modes'
+- Docker
+    - [Docker](https://www.docker.com/) with the production build (no ssr at the moment) and [ngnix](https://nginx.org/en/)
+    - See all my public repos here [Docker Hub](https://hub.docker.com/u/ks89/)
 - Continous Integration
     - [Travis CI](https://travis-ci.org/)
     - [Circle CI](https://circleci.com/)

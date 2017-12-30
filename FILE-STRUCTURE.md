@@ -100,8 +100,10 @@ angular-cli-skeleton/
  │
  ├─.angular-cli.json              * angular-cli config file
  ├─.travis.yml                    * travis ci config (is a CI service free for open source projects)
+ ├─.dockerignore                  * Docker ignore file
  ├─appveyor.yml                   * appveyor config (is a CI service free for open source projects)
  ├─karma.conf.js                  * karma config file for unit testing
+ ├─Dockerfile                     * Docker config dile
  ├─Jenkinsfile                    * Jenkins 2 config file with a pipeline's script
  ├─package.json                   * npm packages.json
  ├─package-lock.json              * lock file for npm >= 5
