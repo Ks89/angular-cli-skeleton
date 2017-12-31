@@ -35,11 +35,11 @@ node {
     }
 
     stage('npm test') {
-        sh "npm run test:ci"
+        sh "xvfb-run npm run test:ci"
     }
 
     stage('npm e2e') {
-        sh "npm run e2e:ci"
+        sh "xvfb-run npm run e2e:ci"
     }
 
     stage('npm typedoc') {
