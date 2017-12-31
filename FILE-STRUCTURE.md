@@ -104,7 +104,8 @@ angular-cli-skeleton/
  ├─appveyor.yml                   * appveyor config (is a CI service free for open source projects)
  ├─karma.conf.js                  * karma config file for unit testing
  ├─Dockerfile                     * Docker config dile
- ├─Jenkinsfile                    * Jenkins 2 config file with a pipeline's script
+ ├─Jenkinsfile                    * Jenkins 2 config file with a pipeline's script for a Linux server
+ ├─Jenkinsfile-local-macOS        * Jenkins 2 config file with a pipeline's script for macOS (locally)
  ├─package.json                   * npm packages.json
  ├─package-lock.json              * lock file for npm >= 5
  ├─protractor.config.js           * protractor config file for e2e testing

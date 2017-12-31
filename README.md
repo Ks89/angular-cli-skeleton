@@ -273,7 +273,7 @@ or
 ### Jenkins support
 With this tutorial, you'll configure Jenkins to build your project from GitHub, where the Pipeline's script is in the remote repository.
 
-#### I want to use Jenkins on my pc
+#### I want to use Jenkins on my pc (tutorial tested on macOS)
 1. Install java and define all necessary env variables for your OS
 2. Download the latest version of Jenkins 2 [HERE](https://jenkins.io/download/). If you are using macOS, I suggest to use [Homebrew](https://brew.sh/index_it.html)
 3. Install Jenkins following [this instruction](https://jenkins.io/doc/book/installing/)
@@ -290,7 +290,7 @@ With this tutorial, you'll configure Jenkins to build your project from GitHub, 
 11. Create a new **PIPELINE** at `http://localhost:8080/view/all/newJob` called for instance `angular-cli-skeleton`
 12. Check both `GitHub project` (use this url: `https://github.com/Ks89/angular-cli-skeleton/`) and `GitHub hook trigger for GIT Scm polling`
 13. In the Pipeline section, choose `Pipeline script from SCM`, with SCM `Git` and URL `https://github.com/Ks89/angular-cli-skeleton` to get the pipeline's script from `./Jenkinsfile` via git
-14. Script Path must match the Jenkins file name in your repository (i.e. `Jenkinsfile`)
+14. Script Path must match the Jenkins file name in your repository (i.e. `Jenkinsfile-local-macOS`)
 15. Save and build
 
 PS: if you want to use Jenkins on a remote server, you should add these two env variables:
