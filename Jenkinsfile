@@ -4,6 +4,9 @@ node {
     env.PATH = "${nodeHome}/bin:${env.PATH}"
 
     stage('check tools') {
+        env.NODEJS_HOME = "${tool node-8.4.0}"
+        env.PATH="${env.NODEJS_HOME};${env.PATH}"
+        echo ${env.PATH}
         sh "node -v"
         sh "npm -v"
     }
