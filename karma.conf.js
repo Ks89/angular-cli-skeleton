@@ -50,7 +50,7 @@ function getBrowsers() {
       case 'darwin': // macOS
         return ['ChromeHeadless', 'Chrome', 'Firefox', 'Safari'];
       default: // other (linux, freebsd, openbsd, sunos, aix)
-        return [/*'ChromeHeadless',*/ 'Chrome'/*, 'Firefox'*/];
+        return ['ChromeHeadless', 'Chrome', 'Firefox'];
     }
   }
 }
