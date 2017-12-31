@@ -35,7 +35,7 @@ node {
     }
 
     stage('npm test') {
-        sh "xvfb-run npm run test:ci"
+        sh "xvfb-run npm run test:ci:jenkins"
     }
 
     stage('npm e2e') {
