@@ -1,11 +1,9 @@
 
 node {
     def nodeHome = tool name: 'node-8.4.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-    env.PATH = "${nodeHome}/bin:${env.PATH}"
+    env.PATH = "${nodeHome}:${nodeHome}/bin:${env.PATH}"
 
     stage('check tools') {
-        env.NODEJS_HOME = "${tool node-8.4.0}"
-        env.PATH="${env.NODEJS_HOME};${env.PATH}"
         echo ${env.PATH}
         sh "node -v"
         sh "npm -v"
