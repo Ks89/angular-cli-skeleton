@@ -7,6 +7,7 @@ node {
         echo env.PATH
         sh "node -v"
         sh "npm -v"
+        sh "npm i -g @angular/cli"
     }
 
     stage('checkout') {
@@ -34,7 +35,7 @@ node {
     }
 
     stage('npm test') {
-        sh "ng test --watch false"
+        sh "npm run test:ci"
     }
 
     stage('npm e2e') {
