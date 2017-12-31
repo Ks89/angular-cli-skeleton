@@ -273,6 +273,7 @@ or
 ### Jenkins support
 With this tutorial, you'll configure Jenkins to build your project from GitHub, where the Pipeline's script is in the remote repository.
 
+#### I want to use Jenkins on my pc
 1. Install java and define all necessary env variables for your OS
 2. Download the latest version of Jenkins 2 [HERE](https://jenkins.io/download/). If you are using macOS, I suggest to use [Homebrew](https://brew.sh/index_it.html)
 3. Install Jenkins following [this instruction](https://jenkins.io/doc/book/installing/)
@@ -291,6 +292,14 @@ With this tutorial, you'll configure Jenkins to build your project from GitHub, 
 13. In the Pipeline section, choose `Pipeline script from SCM`, with SCM `Git` and URL `https://github.com/Ks89/angular-cli-skeleton` to get the pipeline's script from `./Jenkinsfile` via git
 14. Script Path must match the Jenkins file name in your repository (i.e. `Jenkinsfile`)
 15. Save and build
+
+PS: if you want to use Jenkins on a remote server, you should add these two env variables:
+- CI=true
+- JENKINS=true
+
+#### I want to use Jenkins on a private server
+COMING SOON a tutorial to install and configure Jenkins in a VPS at OVH.com
+
 
 ### SonarQube support
 1. Install java and define all necessary env variables for your OS
