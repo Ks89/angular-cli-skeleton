@@ -4,7 +4,7 @@ node {
     env.PATH = "${nodeHome}:${nodeHome}/bin:${env.PATH}"
 
     stage('check tools') {
-        echo ${env.PATH}
+        echo env.PATH
         sh "node -v"
         sh "npm -v"
     }
