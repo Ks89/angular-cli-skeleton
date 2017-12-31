@@ -8,6 +8,7 @@ node {
         sh "node -v"
         sh "npm -v"
         sh "npm i -g @angular/cli"
+        export DISPLAY=:0.0
     }
 
     stage('checkout') {
