@@ -38,7 +38,7 @@ import {Store} from '@ngrx/store';
 import * as fromRoot from '../../core/reducers/hello-example';
 import * as example from '../../core/actions/hello-example';
 
-import * as io from 'socket.io-client';
+// import * as io from 'socket.io-client';
 
 /**
  * Component with features, template and so on. This is the
@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   elementsObs: Observable<any> = of(this.elements).pipe(delay(1000));
 
   socketData: string[] = [];
-  private socket;
+  // private socket;
 
   private githubSubscription: Subscription;
 
@@ -73,25 +73,25 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.pageHeader = new PageHeader('KS', 'Welcome');
     this.message = 'Welcome to my website';
 
-    this.socket = io('http://localhost:4000');
-    this.socket.on('connect', () => {
-      console.log('connect');
-    });
+    // this.socket = io('http://localhost:4000');
+    // this.socket.on('connect', () => {
+    //   console.log('connect');
+    // });
 
     // example of ngrx-store's usage
     // If you want, you can subscribe to this Observable to log 'message' saved
     // inside ngrx-store, thanks to this.store.dispatch.
     this.helloExample$ = this.store.select(fromRoot.getHelloExample);
 
-    this.socket.on('message', (data) => {
-      console.log('New message received: ' + data);
-      this.socketData.push(data);
-    });
+    // this.socket.on('message', (data) => {
+    //   console.log('New message received: ' + data);
+    //   this.socketData.push(data);
+    // });
   }
 
   sendMessage(message) {
     console.log('Sending a new message: ' + message);
-    this.socket.emit('new-message', message);
+    // this.socket.emit('new-message', message);
   }
 
   ngOnInit() {
@@ -136,6 +136,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.githubSubscription.unsubscribe();
     }
 
-    this.socket.disconnect();
+    // this.socket.disconnect();
   }
 }
