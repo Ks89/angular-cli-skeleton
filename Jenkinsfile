@@ -8,6 +8,7 @@ node {
         sh "node -v"
         sh "npm -v"
         sh "npm i -g @angular/cli"
+        sh "npm rebuild node-sass --force"
     }
 
     stage('checkout') {
