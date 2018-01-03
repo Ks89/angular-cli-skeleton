@@ -22,22 +22,34 @@
  * SOFTWARE.
  */
 
-import { ExampleService } from './example.service';
-import { GithubService } from './github.service';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth-guard.service';
-
-export { ExampleService } from './example.service';
-export { GithubService } from './github.service';
-export { AuthService } from './auth.service';
-
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
 
 /**
- * Array of core services for the app SPA
+ * Example of an Angular Service
  */
-export const CORE_SERVICES: any[] = [
-  ExampleService,
-  GithubService,
-  AuthService,
-  AuthGuard
-];
+@Injectable()
+export class AuthService {
+
+  constructor(private httpClient: HttpClient) {
+  }
+
+  login(user: any): Observable<any> {
+    return this.httpClient.post('/api/login', user);
+      //
+      // .map(response => {
+      //   console.log(response);
+      //   if (!response) {
+      //     return Observable.throw(new Error('response body is empty'));
+      //     // return handleError('response body is empty');
+      //   } else {
+      //     // TODO this.saveToken('auth', response['token']);
+      //     return response;
+      //   }
+      // }).catch((error: HttpErrorResponse) => {
+      //   // TODO this.removeToken('auth');
+      //   return Observable.throw(error.error);
+      // });
+  }
+}

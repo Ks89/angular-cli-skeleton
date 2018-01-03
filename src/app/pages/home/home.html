@@ -11,6 +11,29 @@
   <br>
 
   <div class="container-fluid">
+
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <p class="lead">Not a member? Please <a [routerLink]="['/register']">register</a> first.</p>
+        <form [formGroup]="formModel" (ngSubmit)="onLogin()" novalidate>
+          <div class="form-group">
+            <label for="username">Email address</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter username" formControlName="username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
+          </div>
+          <button type="submit" id="signInButton" class="btn btn-primary">Sign in and redirect to LAZY!</button>
+          <a [routerLink]="['/forgot']">Forgot password?</a>
+        </form>
+      </div>
+    </div>
+
+
+
+
     <div class="row">
       Custom bootstrap buttons thanks to bootstrap-loader (folder ./bootstrap).
       To override other variables check https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss

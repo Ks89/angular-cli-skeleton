@@ -27,8 +27,8 @@ import {HttpErrorResponse} from '@angular/common/http';
 
 import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
-import { of } from 'rxjs/observable/of';
-import { delay } from 'rxjs/operators';
+import {of} from 'rxjs/observable/of';
+import {delay} from 'rxjs/operators';
 
 import {PageHeader} from '../../shared/components/components';
 import {ExampleService} from '../../core/services/example.service';
@@ -37,6 +37,9 @@ import {GithubOrg, GithubService} from '../../core/services/github.service';
 import {Store} from '@ngrx/store';
 import * as fromRoot from '../../core/reducers/hello-example';
 import * as example from '../../core/actions/hello-example';
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
+import {AuthService} from "../../core/services/auth.service";
 
 // import * as io from 'socket.io-client';
 
@@ -58,6 +61,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     {field: 'el3'}
   ];
 
+  formModel: FormGroup;
+
   helloExample$: Observable<string>;
   elementsObs: Observable<any> = of(this.elements).pipe(delay(1000));
 
@@ -66,12 +71,21 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private githubSubscription: Subscription;
 
-  constructor(private exampleService: ExampleService,
+  constructor(private authService: AuthService,
+              private router: Router,
+              private exampleService: ExampleService,
               private githubService: GithubService,
               private store: Store<fromRoot.State>) {
 
     this.pageHeader = new PageHeader('KS', 'Welcome');
     this.message = 'Welcome to my website';
+
+    const fb = new FormBuilder();
+    this.formModel = fb.group({
+      'username': [null, null],
+      'password': [null, null]
+    });
+
 
     // this.socket = io('http://localhost:4000');
     // this.socket.on('connect', () => {
@@ -88,6 +102,28 @@ export class HomeComponent implements OnInit, OnDestroy {
     //   this.socketData.push(data);
     // });
   }
+
+
+
+  onLogin() {
+    this.authService.login({
+      name: this.formModel.value.username,
+      password: this.formModel.value.password
+    }).subscribe(
+      response => {
+        console.log('Response login - redirecting to lazy');
+        console.log(response);
+        this.router.navigate(['/lazy']);
+      },
+      err => {
+        console.error('login error', err);
+      },
+      () => console.log('Done')
+    );
+  }
+
+
+
 
   sendMessage(message) {
     console.log('Sending a new message: ' + message);
