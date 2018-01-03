@@ -24,7 +24,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 /**
  * Example of an Angular Service
@@ -32,11 +32,23 @@ import { of } from 'rxjs/observable/of';
 @Injectable()
 export class ExampleService {
 
+  constructor(private http: Http) {
+  }
+
   /**
    * Method to get example data synchronously.
    * @returns An Observable<string> with data inside.
    */
-  getExample(): Observable<string> {
-    return of('example');
+  getExample(): Observable<any> {
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const token = currentUser && currentUser.token;
+
+    // add authorization header with jwt token
+    const headers = new Headers({'Authorization': 'Bearer ' + token});
+    const options = new RequestOptions({headers: headers});
+
+    // get users from api
+    return this.http.get('/api/secret', options).map((response: Response) => response.json());
   }
 }

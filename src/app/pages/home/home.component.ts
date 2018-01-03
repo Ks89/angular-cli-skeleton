@@ -37,9 +37,9 @@ import {GithubOrg, GithubService} from '../../core/services/github.service';
 import {Store} from '@ngrx/store';
 import * as fromRoot from '../../core/reducers/hello-example';
 import * as example from '../../core/actions/hello-example';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {Router} from "@angular/router";
-import {AuthService} from "../../core/services/auth.service";
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
+import {AuthService} from '../../core/services/auth.service';
 
 // import * as io from 'socket.io-client';
 

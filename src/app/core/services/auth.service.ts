@@ -24,32 +24,42 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 /**
  * Example of an Angular Service
  */
 @Injectable()
 export class AuthService {
+  public token: string;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private http: Http) {
+    // set token if saved in local storage
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.token = currentUser && currentUser.token;
   }
 
+  // for more info https://plnkr.co/edit/TIPmK3?p=info
+
   login(user: any): Observable<any> {
-    return this.httpClient.post('/api/login', user);
-      //
-      // .map(response => {
-      //   console.log(response);
-      //   if (!response) {
-      //     return Observable.throw(new Error('response body is empty'));
-      //     // return handleError('response body is empty');
-      //   } else {
-      //     // TODO this.saveToken('auth', response['token']);
-      //     return response;
-      //   }
-      // }).catch((error: HttpErrorResponse) => {
-      //   // TODO this.removeToken('auth');
-      //   return Observable.throw(error.error);
-      // });
+    return this.http.post('/api/login', user)
+      .map((response: Response) => {
+        // login successful if there's a jwt token in the response
+        const token = response.json() && response.json().token;
+        if (token) {
+          // set token property
+          this.token = token;
+
+          // store username and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify({ username: 'pippo', token: token }));
+
+          // return true to indicate successful login
+          return true;
+        } else {
+          // return false to indicate failed login
+          return false;
+        }
+      });
   }
 }
