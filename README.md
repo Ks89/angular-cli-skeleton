@@ -54,6 +54,8 @@ If you like it, please add a star. It will be really apprecieted.
 - Code analysis and quality
     - [TSLint](https://github.com/palantir/tslint)
     - [Codelyzer](https://github.com/mgechev/codelyzer)
+    - [Sass-lint](https://github.com/sasstools/sass-lint)
+    - [Prettier](https://prettier.io/) triggered by [pre-commit](https://github.com/observing/pre-commit) hook 
 - Documentation
     - [TypeDoc](https://github.com/TypeStrong/typedoc)
     - [Compodoc](https://github.com/compodoc/compodoc) also with both 'watch mode' and 'watch + serve modes'
@@ -69,7 +71,7 @@ If you like it, please add a star. It will be really apprecieted.
 - and many more...
 
 ## News
-- *01/05/2018* - Beta 1 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
+- *01/06/2018* - Beta 1 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
 
 ## Changelog
 Full changelog [HERE](https://github.com/Ks89/angular-cli-skeleton/blob/master/CHANGELOG.md)
