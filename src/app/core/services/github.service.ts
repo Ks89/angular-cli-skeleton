@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017 Stefano Cappa
+ * Copyright (c) 2017-2018 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -52,7 +52,7 @@ export class GithubOrg {
     public members_url: string | void,
     public public_members_url: string | void,
     public avatar_url: string | void,
-    public description: string | void,
+    public description: string | void
   ) {}
 }
 
@@ -61,7 +61,6 @@ export class GithubOrg {
  */
 @Injectable()
 export class GithubService {
-
   constructor(private httpClient: HttpClient) {}
 
   /**
@@ -79,5 +78,4 @@ export class GithubService {
   getGithubKs89Organizations(): Observable<GithubOrg> {
     return this.httpClient.get<GithubOrg>('https://api.github.com/users/Ks89/orgs');
   }
-
 }

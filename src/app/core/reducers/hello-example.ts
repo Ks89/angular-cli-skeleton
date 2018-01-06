@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017 Stefano Cappa
+ * Copyright (c) 2017-2018 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,19 +33,19 @@ export interface State {
 }
 
 const initialState: State = {
-  message: '',
+  message: ''
 };
 
 export function reducer(state = initialState, action: example.Actions): State {
   switch (action.type) {
     case example.SAY_BYEBYE:
       return {
-        message: 'bye bye!',
+        message: 'bye bye!'
       };
 
     case example.SAY_HELLO:
       return {
-        message: 'hello!',
+        message: 'hello!'
       };
 
     default:

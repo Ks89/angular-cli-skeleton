@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017 Stefano Cappa
+ * Copyright (c) 2017-2018 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,31 +24,31 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { of } from 'rxjs/observable/of';
 
 /**
  * Example of an Angular Service
  */
 @Injectable()
 export class ExampleService {
-
-  constructor(private http: Http) {
-  }
+  constructor() {}
 
   /**
    * Method to get example data synchronously.
    * @returns An Observable<string> with data inside.
    */
   getExample(): Observable<any> {
+    return of(true);
 
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const token = currentUser && currentUser.token;
-
-    // add authorization header with jwt token
-    const headers = new Headers({'Authorization': 'Bearer ' + token});
-    const options = new RequestOptions({headers: headers});
-
-    // get users from api
-    return this.http.get('/api/secret', options).map((response: Response) => response.json());
+    // TODO I'll implement this feature (authentication) in upcoming releases
+    // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // const token = currentUser && currentUser.token;
+    //
+    // // add authorization header with jwt token
+    // const headers = new Headers({'Authorization': 'Bearer ' + token});
+    // const options = new RequestOptions({headers: headers});
+    //
+    // // get users from api
+    // return this.http.get('/api/secret', options).map((response: Response) => response.json());
   }
 }

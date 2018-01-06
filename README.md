@@ -11,14 +11,11 @@
 
 # angular-cli-skeleton
 
-A simple ready to use skeleton project with angular-cli, Angular 5, Bootstrap 4 beta, ng-bootstrap, ngrx-store and so on.
+A simple ready to use skeleton project with angular-cli (optionally also angular-universal), Angular 5, Bootstrap 4 beta, ng-bootstrap, ngrx-store and so on.
 
-This project is still experimental and it will be my official skeleton project for Angular applications.
-I need more time to add all features.
+This project my previous older skeleton project called [angular-webpack-skeleton](https://github.com/Ks89/angular-webpack-skeleton).
 
-When this project will be ready, I'll deprecate my previous official skeleton called [angular-webpack-skeleton](https://github.com/Ks89/angular-webpack-skeleton).
-
-Watch this GitHub's project to see news and updates and add a star if you like it. I'll be really happy :)
+If you like it, please add a star. It will be really apprecieted.
 
 ## Features
 - Typescript >= 2.5
@@ -28,11 +25,11 @@ Watch this GitHub's project to see news and updates and add a star if you like i
     - The new [HttpClient](https://angular.io/guide/http#httpclient) of Angular >= 4.3
     - [RxJS 5.5](https://github.com/ReactiveX/rxjs/blob/master/doc/lettable-operators.md) with lettable operators
 - [Bootstrap 4](http://getbootstrap.com/) with a custom theme (check `./src/_variables.scss`), [ng-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap)
-- [Font-awesome 4](http://fontawesome.io/)
+- [Font-awesome 4](http://fontawesome.io/) (however I'll update it to version 5 sooner)
 - [jQuery](https://jquery.com/)
 - [Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/) support to add it as a standalone app on mobile devices (see `manifest.json`)
 - [Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers/) to create an offline application (see `./src/ngsw-config.json`)
-- [socket.io](https://github.com/socketio/socket.io) (still work in progress and temporary disabled on server side)
+- [socket.io](https://github.com/socketio/socket.io) (still work in progress and TEMPORARY DISABLED on server side)
 - Reactive storage based on Redux
     - [@ngrx/store](https://github.com/ngrx/store) >= 4
     - [@ngrx/store-devtools](https://github.com/ngrx/store-devtools) >= 4
@@ -45,7 +42,7 @@ Watch this GitHub's project to see news and updates and add a star if you like i
     - [Bundle Analyzer](https://github.com/th0r/webpack-bundle-analyzer)
     - [Proxying support](https://github.com/angular/angular-cli/wiki/stories-proxy) (optional to proxy your rest services with [webpack-dev-server](https://github.com/webpack/webpack-dev-server))
     - [Server Side Rendering](https://universal.angular.io/) with [angular-universal](https://github.com/angular/universal)
-    - AppShell (still work in progress and temporary disabled)
+    - AppShell (still work in progress and TEMPORARY DISABLED)
 - Testing
     - Unit testing with [Karma](https://karma-runner.github.io) and [Jasmine](https://jasmine.github.io/)
       - Custom advanced configuration to specify different browsers on CIs (check 'getBrowsers()' in `./karma.conf.js`)
@@ -72,7 +69,7 @@ Watch this GitHub's project to see news and updates and add a star if you like i
 - and many more...
 
 ## News
-- *12/??/2017* - Beta 1 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases) - COMING SOON
+- *01/05/2018* - Beta 1 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
 
 ## Changelog
 Full changelog [HERE](https://github.com/Ks89/angular-cli-skeleton/blob/master/CHANGELOG.md)
@@ -189,8 +186,8 @@ angular-cli-skeleton/
 
 
 ## Requirenments
-- Nodejs >= 8.0.0
-- npm >= 5.2.0
+- Nodejs >= 8.0.0 (please use always the latest version)
+- npm >= 5.2.0 (please use always the latest version)
 
 
 ## Install
@@ -199,7 +196,7 @@ angular-cli-skeleton/
 - `npm install -g lite-server`
 
 ### Install local dependencies
-- `npm install`
+- `npm install` (from the folder of this project)
 
 
 ## Build
@@ -209,12 +206,12 @@ angular-cli-skeleton/
 - `cd dist`
 - `lite-server`
 
-### Build client app in 'dist' folder (production mode + AOT)
+### Build client app in 'dist' folder (production mode + AOT + build-optimizer)
 - `npm run build:prod`
 - `cd dist`
 - `lite-server`
 
-#### Build both client and server apps in 'dist' folder (production mode + AOT + angular-universal)
+#### Build both client and server apps in 'dist' folder (production mode + AOT + build-optimizer + angular-universal)
 - `npm run build:ssr`
 
 
@@ -251,7 +248,7 @@ angular-cli-skeleton/
 ## Docs
 
 ### To generate typescript's documentation with typedocs (check docs/index.html for the result)
-- `npm run docs`
+- `npm run docs:typedoc`
 
 ### To generate the really cool compodoc's documentation (check documentation/index.html for the result)
 - `npm run docs:compodoc`
@@ -346,6 +343,8 @@ COMING SOON a tutorial to install and configure Jenkins in a VPS at OVH.com
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 To deploy with a custom path, please check here: https://angular.io/guide/deployment
+
+For other questions, please feel free to open an issue.
 
 
 ## License

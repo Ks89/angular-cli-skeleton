@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017 Stefano Cappa
+ * Copyright (c) 2017-2018 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { of } from 'rxjs/observable/of';
 
 /**
  * Example of an Angular Service
@@ -34,32 +33,34 @@ import 'rxjs/add/operator/map';
 export class AuthService {
   public token: string;
 
-  constructor(private http: Http) {
-    // set token if saved in local storage
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.token = currentUser && currentUser.token;
+  constructor() {
+    // TODO I'll implement this feature in upcoming releases
+    // // set token if saved in local storage
+    // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // this.token = currentUser && currentUser.token;
   }
 
-  // for more info https://plnkr.co/edit/TIPmK3?p=info
-
   login(user: any): Observable<any> {
-    return this.http.post('/api/login', user)
-      .map((response: Response) => {
-        // login successful if there's a jwt token in the response
-        const token = response.json() && response.json().token;
-        if (token) {
-          // set token property
-          this.token = token;
+    return of(true);
 
-          // store username and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify({ username: 'pippo', token: token }));
-
-          // return true to indicate successful login
-          return true;
-        } else {
-          // return false to indicate failed login
-          return false;
-        }
-      });
+    // TODO I'll implement this feature in upcoming releases
+    // return this.http.post('/api/login', user)
+    //   .map((response: Response) => {
+    //     // login successful if there's a jwt token in the response
+    //     const token = response.json() && response.json().token;
+    //     if (token) {
+    //       // set token property
+    //       this.token = token;
+    //
+    //       // store username and jwt token in local storage to keep user logged in between page refreshes
+    //       localStorage.setItem('currentUser', JSON.stringify({ username: 'pippo', token: token }));
+    //
+    //       // return true to indicate successful login
+    //       return true;
+    //     } else {
+    //       // return false to indicate failed login
+    //       return false;
+    //     }
+    //   });
   }
 }

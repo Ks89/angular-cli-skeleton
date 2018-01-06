@@ -5,15 +5,8 @@
       "name": "app",
       "installMode": "prefetch",
       "resources": {
-        "files": [
-          "/favicon.ico",
-          "/index.html"
-        ],
-        "versionedFiles": [
-          "/*.bundle.css",
-          "/*.bundle.js",
-          "/*.chunk.js"
-        ]
+        "files": ["/favicon.ico", "/index.html"],
+        "versionedFiles": ["/*.bundle.css", "/*.bundle.js", "/*.chunk.js"]
       }
     },
     {
@@ -21,24 +14,15 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "resources": {
-        "files": [
-          "/assets/**/*.*",
-          "*.woff",
-          "*.woff2",
-          "*.ttf"
-        ],
-        "urls": [
-          "https://fonts.googleapis.com/**"
-        ]
+        "files": ["/assets/**/*.*", "*.woff", "*.woff2", "*.ttf"],
+        "urls": ["https://fonts.googleapis.com/**"]
       }
     }
   ],
   "dataGroups": [
     {
       "name": "from-api",
-      "urls": [
-        "api.github.com/**"
-      ],
+      "urls": ["api.github.com/**"],
       "cacheConfig": {
         "strategy": "freshness",
         "maxSize": 15,

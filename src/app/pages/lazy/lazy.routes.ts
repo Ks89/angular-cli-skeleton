@@ -27,6 +27,4 @@ import { LazyComponent } from './lazy.component';
 /**
  * Array of lazy loaded module's routes for the app SPA
  */
-export const routes = [
-  { path: '', component: LazyComponent }
-];
+export const routes = [{ path: '', component: LazyComponent }];

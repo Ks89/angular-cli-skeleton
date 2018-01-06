@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017 Stefano Cappa
+ * Copyright (c) 2017-2018 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,9 +32,7 @@ import { Component, Input } from '@angular/core';
 export class PageHeader {
   title: string;
   strapline: string;
-  constructor(
-    title: string,
-    strapline: string) {
+  constructor(title: string, strapline: string) {
     this.title = title;
     this.strapline = strapline;
   }

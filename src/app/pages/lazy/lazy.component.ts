@@ -50,9 +50,7 @@ export class LazyComponent implements OnInit, OnDestroy {
   private pageNumSubscription: Subscription;
   private exampleServiceSubscription: Subscription;
 
-  constructor(private exampleService: ExampleService,
-              private store: Store<fromPageNum.State>) {
-
+  constructor(private exampleService: ExampleService, private store: Store<fromPageNum.State>) {
     this.pageHeader = new PageHeader('LAZY', '');
 
     this.pageNum$ = this.store.select(fromPageNum.getPageNum);
@@ -63,20 +61,16 @@ export class LazyComponent implements OnInit, OnDestroy {
     this.pageNumSubscription = this.pageNum$.subscribe((val: number) => {
       console.log(`Page num retrieved from ngrx-store is ${val}`);
     });
-
-
-
   }
 
   ngOnInit() {
     // call a service and dispatch an action to ngrx to trigger a new event into pageNum$ Observable
-    this.exampleServiceSubscription = this.exampleService.getExample()
-      .subscribe((val: any) => {
-        console.log(`Result of getExample`, val);
+    this.exampleServiceSubscription = this.exampleService.getExample().subscribe((val: any) => {
+      console.log(`Result of getExample`, val);
 
-        // dispatch the setPageNum action with '4' as payload
-        this.store.dispatch(new PageNum.SetPageNum(4)); // I chose a constant value for this example :)
-      });
+      // dispatch the setPageNum action with '4' as payload
+      this.store.dispatch(new PageNum.SetPageNum(4)); // I chose a constant value for this example :)
+    });
   }
 
   ngOnDestroy() {

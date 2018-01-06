@@ -35,29 +35,34 @@ function isCI() {
 
 function getBrowsers() {
   if (process.env.CI) {
-    if (process.env.APPVEYOR) { // variable defined by APPVEYOR itself
+    if (process.env.APPVEYOR) {
+      // variable defined by APPVEYOR itself
       // only for AppVeyor
       return ['Chrome', 'Firefox' /*, 'IE'*/];
-    } else if (process.env.TRAVIS) { // variable defined by TRAVIS itself
+    } else if (process.env.TRAVIS) {
+      // variable defined by TRAVIS itself
       return ['ChromeHeadless', 'Chrome', 'Firefox'];
-    } else if (process.env.CIRCLECI) { // variable defined by CIRCLECI itself
+    } else if (process.env.CIRCLECI) {
+      // variable defined by CIRCLECI itself
       return ['ChromeHeadless', 'Chrome', 'Firefox'];
-    } else if (process.env.JENKINS) { // var that you must define in you server with Jenkins
+    } else if (process.env.JENKINS) {
+      // var that you must define in you server with Jenkins
       return ['ChromeHeadless', 'Firefox'];
     }
   } else {
     switch (os.platform()) {
       case 'win32': // Windows
-        return ['ChromeHeadless', 'Chrome', 'Firefox', 'IE'/*,'Edge'*/];
+        return ['ChromeHeadless', 'Chrome', 'Firefox', 'IE' /*,'Edge'*/];
       case 'darwin': // macOS
         return ['ChromeHeadless', 'Chrome', 'Firefox', 'Safari'];
-      default: // other (linux, freebsd, openbsd, sunos, aix)
+      default:
+        // other (linux, freebsd, openbsd, sunos, aix)
         return ['ChromeHeadless', 'Chrome', 'Firefox'];
     }
   }
 }
 
-module.exports = function (config) {
+module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular/cli'],
@@ -130,7 +135,7 @@ module.exports = function (config) {
           '--headless',
           '--disable-gpu',
           // Without a remote debugging port, Google Chrome exits immediately.
-          ' --remote-debugging-port=9222',
+          ' --remote-debugging-port=9222'
         ]
       }
     },

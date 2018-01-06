@@ -1,16 +1,43 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2017-2018 Stefano Cappa
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 // These are important and needed before anything else
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
 
-import {renderModuleFactory} from '@angular/platform-server';
-import {enableProdMode} from '@angular/core';
+import { renderModuleFactory } from '@angular/platform-server';
+import { enableProdMode } from '@angular/core';
 
 import * as express from 'express';
+import { join } from 'path';
+import { readFileSync } from 'fs';
+
+// TODO Socket.io integration is working for client side rendering (both dev and prod),
+// but when you switch to SSR there are some problems, so I decided to remove it
+// I'll restore these features in future releases
 // import * as socketIo from 'socket.io';
 // import * as http from 'http';
-
-import {join} from 'path';
-import {readFileSync} from 'fs';
 
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
@@ -18,9 +45,11 @@ enableProdMode();
 // Express server
 const app = express();
 
+// TODO Socket.io integration is working for client side rendering (both dev and prod),
+// but when you switch to SSR there are some problems, so I decided to remove it
+// I'll restore these features in future releases
 // const httpRef = (<any>http).Server(app);
 // const io = socketIo(httpRef);
-//
 // const io: SocketIO.Server = socketIo(app);
 
 const PORT = process.env.PORT || 4000;
@@ -30,9 +59,9 @@ const DIST_FOLDER = join(process.cwd(), 'dist');
 const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toString();
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
-const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('./dist/server/main.bundle');
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main.bundle');
 
-const {provideModuleMap} = require('@nguniversal/module-map-ngfactory-loader');
+const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');
 
 app.engine('html', (_, options, callback) => {
   renderModuleFactory(AppServerModuleNgFactory, {
@@ -40,9 +69,7 @@ app.engine('html', (_, options, callback) => {
     document: template,
     url: options.req.url,
     // DI so that we can get lazy-loading to work differently (since we need it to just instantly render it)
-    extraProviders: [
-      provideModuleMap(LAZY_MODULE_MAP)
-    ]
+    extraProviders: [provideModuleMap(LAZY_MODULE_MAP)]
   }).then(html => {
     callback(null, html);
   });
@@ -56,9 +83,12 @@ app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
 
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
-  res.render(join(DIST_FOLDER, 'browser', 'index.html'), {req});
+  res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
 });
 
+// TODO Socket.io integration is working for client side rendering (both dev and prod),
+// but when you switch to SSR there are some problems, so I decided to remove it
+// I'll restore these features in future releases
 // io.on('connect', handleIO);
 //
 // io.on('connection', function (socket) {

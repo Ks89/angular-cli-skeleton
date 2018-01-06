@@ -41,9 +41,7 @@ console.log('`Lazy` bundle loaded asynchronously');
  * This module is loaded asynchronously with a network call when the app is ready to use.
  */
 @NgModule({
-  declarations: [
-    LazyComponent
-  ],
+  declarations: [LazyComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017 Stefano Cappa
+ * Copyright (c) 2017-2018 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-import { FooterComponent } from './footer/footer.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 
 export { PageHeader } from './page-header/page-header.component';
@@ -31,8 +31,4 @@ export { PageHeader } from './page-header/page-header.component';
 /**
  * Array of exported components
  */
-export const SHARED_COMPONENTS = [
-  FooterComponent,
-  NavbarComponent,
-  PageHeaderComponent
-];
+export const SHARED_COMPONENTS = [FooterComponent, NavbarComponent, PageHeaderComponent];

@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AppShellComponent } from './app-shell/app-shell.component';
 
-const routes: Routes = [ { path: 'app-shell-path', component: AppShellComponent }];
+const routes: Routes = [{ path: 'app-shell-path', component: AppShellComponent }];
 
 @NgModule({
   imports: [

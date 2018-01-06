@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017 Stefano Cappa
+ * Copyright (c) 2017-2018 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,4 +32,4 @@ import { Component } from '@angular/core';
   selector: 'app-not-found',
   template: '<h3>Error 404: Not found</h3>'
 })
-export class NotFoundComponent { }
+export class NotFoundComponent {}

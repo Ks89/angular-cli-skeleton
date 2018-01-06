@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017 Stefano Cappa
+ * Copyright (c) 2017-2018 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,25 +22,28 @@
  * SOFTWARE.
  */
 
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {HttpErrorResponse} from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
-import {Observable} from 'rxjs/Observable';
-import {Subscription} from 'rxjs/Subscription';
-import {of} from 'rxjs/observable/of';
-import {delay} from 'rxjs/operators';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import { of } from 'rxjs/observable/of';
+import { delay } from 'rxjs/operators';
 
-import {PageHeader} from '../../shared/components/components';
-import {ExampleService} from '../../core/services/example.service';
-import {GithubOrg, GithubService} from '../../core/services/github.service';
+import { PageHeader } from '../../shared/components/components';
+import { ExampleService } from '../../core/services/example.service';
+import { GithubOrg, GithubService } from '../../core/services/github.service';
 
-import {Store} from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as fromRoot from '../../core/reducers/hello-example';
 import * as example from '../../core/actions/hello-example';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {Router} from '@angular/router';
-import {AuthService} from '../../core/services/auth.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
+// TODO Socket.io integration is working for client side rendering (both dev and prod),
+// but when you switch to SSR there are some problems, so I decided to remove it
+// I'll restore these features in future releases
 // import * as io from 'socket.io-client';
 
 /**
@@ -55,38 +58,40 @@ import {AuthService} from '../../core/services/auth.service';
 export class HomeComponent implements OnInit, OnDestroy {
   pageHeader: PageHeader;
   message: string;
-  elements: any[] = [
-    {field: 'el1'},
-    {field: 'el2'},
-    {field: 'el3'}
-  ];
+  elements: any[] = [{ field: 'el1' }, { field: 'el2' }, { field: 'el3' }];
 
   formModel: FormGroup;
 
   helloExample$: Observable<string>;
   elementsObs: Observable<any> = of(this.elements).pipe(delay(1000));
 
-  socketData: string[] = [];
+  // TODO Socket.io integration is working for client side rendering (both dev and prod),
+  // but when you switch to SSR there are some problems, so I decided to remove it
+  // I'll restore these features in future releases
+  // socketData: string[] = [];
   // private socket;
 
   private githubSubscription: Subscription;
 
-  constructor(private authService: AuthService,
-              private router: Router,
-              private exampleService: ExampleService,
-              private githubService: GithubService,
-              private store: Store<fromRoot.State>) {
-
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private exampleService: ExampleService,
+    private githubService: GithubService,
+    private store: Store<fromRoot.State>
+  ) {
     this.pageHeader = new PageHeader('KS', 'Welcome');
     this.message = 'Welcome to my website';
 
     const fb = new FormBuilder();
     this.formModel = fb.group({
-      'username': [null, null],
-      'password': [null, null]
+      username: [null, null],
+      password: [null, null]
     });
 
-
+    // TODO Socket.io integration is working for client side rendering (both dev and prod),
+    // but when you switch to SSR there are some problems, so I decided to remove it
+    // I'll restore these features in future releases
     // this.socket = io('http://localhost:4000');
     // this.socket.on('connect', () => {
     //   console.log('connect');
@@ -97,33 +102,33 @@ export class HomeComponent implements OnInit, OnDestroy {
     // inside ngrx-store, thanks to this.store.dispatch.
     this.helloExample$ = this.store.select(fromRoot.getHelloExample);
 
+    // TODO Socket.io integration is working for client side rendering (both dev and prod),
+    // but when you switch to SSR there are some problems, so I decided to remove it
+    // I'll restore these features in future releases
     // this.socket.on('message', (data) => {
     //   console.log('New message received: ' + data);
     //   this.socketData.push(data);
     // });
   }
 
-
-
   onLogin() {
-    this.authService.login({
-      name: this.formModel.value.username,
-      password: this.formModel.value.password
-    }).subscribe(
-      response => {
-        console.log('Response login - redirecting to lazy');
-        console.log(response);
-        this.router.navigate(['/lazy']);
-      },
-      err => {
-        console.error('login error', err);
-      },
-      () => console.log('Done')
-    );
+    this.authService
+      .login({
+        name: this.formModel.value.username,
+        password: this.formModel.value.password
+      })
+      .subscribe(
+        response => {
+          console.log('Response login - redirecting to lazy');
+          console.log(response);
+          this.router.navigate(['/lazy']);
+        },
+        err => {
+          console.error('login error', err);
+        },
+        () => console.log('Done')
+      );
   }
-
-
-
 
   sendMessage(message) {
     console.log('Sending a new message: ' + message);
@@ -158,7 +163,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
       }
     );
-
   }
 
   ngOnDestroy() {
@@ -172,6 +176,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.githubSubscription.unsubscribe();
     }
 
+    // TODO Socket.io integration is working for client side rendering (both dev and prod),
+    // but when you switch to SSR there are some problems, so I decided to remove it
+    // I'll restore these features in future releases
     // this.socket.disconnect();
   }
 }

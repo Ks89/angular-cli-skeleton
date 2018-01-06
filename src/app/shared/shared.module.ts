@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017 Stefano Cappa
+ * Copyright (c) 2017-2018 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,13 +40,8 @@ import { SHARED_COMPONENTS } from './components/components';
     RouterModule,
     NgbModule // without forRoot, because this is a child module
   ],
-  exports: [
-    SHARED_COMPONENTS
-  ],
-  declarations: [
-    SHARED_COMPONENTS
-  ],
+  exports: [SHARED_COMPONENTS],
+  declarations: [SHARED_COMPONENTS],
   providers: []
 })
-export class SharedModule {
-}
+export class SharedModule {}

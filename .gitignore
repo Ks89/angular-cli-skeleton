@@ -67,6 +67,9 @@ typings/
 dist
 docs
 
+# Angulardoc file
+.angulardoc.json
+
 # Sonarqube
 .scannerwork/
 /reports/

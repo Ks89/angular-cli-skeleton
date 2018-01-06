@@ -3,7 +3,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017 Stefano Cappa
+ * Copyright (c) 2017-2018 Stefano Cappa
  * Copyright (c) 2017 Brandon Roberts, Mike Ryan, Victor Savkin, Rob Wormald
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,6 +24,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 import { ActionReducerMap, compose, ActionReducer, combineReducers, Action, ActionReducerFactory } from '@ngrx/store';
 
 import * as fromHelloExample from '../core/reducers/hello-example';
@@ -42,7 +43,7 @@ export interface State {
  * and the current or initial state and return a new immutable state.
  */
 export const mainReducers: ActionReducerMap<State> = {
-  helloExample: fromHelloExample.reducer,
+  helloExample: fromHelloExample.reducer
 };
 
 /**

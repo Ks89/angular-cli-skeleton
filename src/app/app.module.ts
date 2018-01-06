@@ -21,21 +21,29 @@ import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    COMPONENTS
-  ],
+  declarations: [AppComponent, COMPONENTS],
   imports: [
     // Add .withServerTransition() to support Universal rendering.
     // The application ID can be any identifier which is unique on
     // the page.
-    BrowserModule.withServerTransition({appId: 'my-app'}),
+    BrowserModule.withServerTransition({ appId: 'my-app' }),
     BrowserAnimationsModule,
     HttpClientModule,
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+
+    // if you enabled service workers inside .angular-cli.json,
+    // I suggest to use it, only for the production build
+    // TO TEST SERVICE WORKERS IN YOUR BROWSER YOU MUST:
+    // 1. build with `npm run build:prod` (not serve:prod)
+    // 2. run with `lite-server`
+    // 3. navigate the application
+    // 4. disable network and cache from chrome dev tools (network tab)
+    // 5. you should able to navigate the app and in chrome dev tools (network tab), all
+    //    requests should come from service workers (not cache and not network)
+    // I suggest also to check application tab -> Service Workers to see if is running or not
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
     }),
@@ -65,12 +73,12 @@ import { HttpModule } from '@angular/http';
      * When the module is not imported it will get tree shaked.
      * This is a simple example, a big app should probably implement some logic
      */
-    ...environment.showDevModule ? [StoreDevtoolsModule.instrument()] : [],
+    ...(environment.showDevModule ? [StoreDevtoolsModule.instrument()] : []),
 
     CoreModule,
-    SharedModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
