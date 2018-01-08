@@ -40,6 +40,7 @@ import * as example from '../../core/actions/hello-example';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 // TODO Socket.io integration is working for client side rendering (both dev and prod),
 // but when you switch to SSR there are some problems, so I decided to remove it
@@ -53,7 +54,37 @@ import { AuthService } from '../../core/services/auth.service';
 @Component({
   selector: 'app-home-page',
   styleUrls: ['home.scss'],
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  animations: [
+    // trigger('squareState', [
+    //   state('inactive', style({transform: 'translateX(0) scale(1)'})),
+    //   state('active',   style({transform: 'translateX(0) scale(1.1)'})),
+    //   transition('inactive => active', animate('100ms ease-in')),
+    //   transition('active => inactive', animate('100ms ease-out')),
+    //   transition('void => inactive', [
+    //     style({transform: 'translateY(-100%) scale(1)'}),
+    //     animate(100)
+    //   ]),
+    //   transition('inactive => void', [
+    //     animate(100, style({transform: 'translateY(100%) scale(1)'}))
+    //   ]),
+    //   transition('void => active', [
+    //     style({transform: 'translateY(0) scale(0)'}),
+    //     animate(200)
+    //   ]),
+    //   transition('active => void', [
+    //     animate(200, style({transform: 'translateY(0) scale(0)'}))
+    //   ])
+    // ])
+    trigger('squareState', [
+      // state('inactive', style({transform: 'translateX(0) scale(1)'})),
+      // state('active',   style({transform: 'translateX(0) scale(1.1)'})),
+      state('in', style({ height: '*' })),
+      state('out', style({ height: '*' })),
+      transition('* => void', [style({ height: '*' }), animate(250, style({ height: 0 }))]),
+      transition('void => *', [style({ height: 0 }), animate(250, style({ height: 150 }))])
+    ])
+  ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   pageHeader: PageHeader;
@@ -61,6 +92,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   elements: any[] = [{ field: 'el1' }, { field: 'el2' }, { field: 'el3' }];
 
   formModel: FormGroup;
+
+  // TODO remove this
+  stateGraySquare = '';
+  showGraySquare = true;
 
   helloExample$: Observable<string>;
   elementsObs: Observable<any> = of(this.elements).pipe(delay(1000));
@@ -109,6 +144,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     //   console.log('New message received: ' + data);
     //   this.socketData.push(data);
     // });
+  }
+
+  chooseGraySquare() {
+    this.stateGraySquare = this.stateGraySquare === 'active' ? 'inactive' : 'active';
+  }
+
+  toggleGraySquare() {
+    this.showGraySquare = !this.showGraySquare;
   }
 
   onLogin() {

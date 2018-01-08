@@ -33,6 +33,9 @@
       <!--</div>-->
     <!--</div>-->
 
+    <div *ngIf="showGraySquare" [@squareState]="stateGraySquare" style="width: 150px; height: 150px; background-color: #464a4c"></div>
+    <button (click)="chooseGraySquare()">choose gray square</button>
+    <button (click)="toggleGraySquare()">toggle gray square</button>
 
     <div class="row">
       Custom bootstrap buttons thanks to './src/_variables.scss'.
