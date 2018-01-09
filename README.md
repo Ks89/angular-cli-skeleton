@@ -25,11 +25,11 @@ If you like it, please add a star. It will be really apprecieted.
     - The new [HttpClient](https://angular.io/guide/http#httpclient) of Angular >= 4.3
     - [RxJS 5.5](https://github.com/ReactiveX/rxjs/blob/master/doc/lettable-operators.md) with lettable operators
 - [Bootstrap 4](http://getbootstrap.com/) with a custom theme (check `./src/_variables.scss`), [ng-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap)
-- [Font-awesome 4](http://fontawesome.io/) (however I'll update it to version 5 sooner)
+- [Font-awesome 4](http://fontawesome.io/) *(however I'll update it to version 5 when [this issue](https://github.com/Ks89/angular-cli-skeleton/issues/21) will be closed)*
 - [jQuery](https://jquery.com/)
 - [Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/) support to add it as a standalone app on mobile devices (see `manifest.json`)
 - [Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers/) to create an offline application (see `./src/ngsw-config.json`)
-- [socket.io](https://github.com/socketio/socket.io) (still work in progress and TEMPORARY DISABLED on server side)
+- *[socket.io](https://github.com/socketio/socket.io) (still work in progress and TEMPORARY DISABLED. Check [this issue](https://github.com/Ks89/angular-cli-skeleton/issues/1)*
 - Reactive storage based on Redux
     - [@ngrx/store](https://github.com/ngrx/store) >= 4
     - [@ngrx/store-devtools](https://github.com/ngrx/store-devtools) >= 4
@@ -42,7 +42,7 @@ If you like it, please add a star. It will be really apprecieted.
     - [Bundle Analyzer](https://github.com/th0r/webpack-bundle-analyzer)
     - [Proxying support](https://github.com/angular/angular-cli/wiki/stories-proxy) (optional to proxy your rest services with [webpack-dev-server](https://github.com/webpack/webpack-dev-server))
     - [Server Side Rendering](https://universal.angular.io/) with [angular-universal](https://github.com/angular/universal)
-    - AppShell (still work in progress and TEMPORARY DISABLED)
+    - *AppShell (still work in progress and TEMPORARY DISABLED. Check [this issue](https://github.com/Ks89/angular-cli-skeleton/issues/22)*
 - Testing
     - Unit testing with [Karma](https://karma-runner.github.io) and [Jasmine](https://jasmine.github.io/)
       - Custom advanced configuration to specify different browsers on CIs (check 'getBrowsers()' in `./karma.conf.js`)
@@ -71,6 +71,7 @@ If you like it, please add a star. It will be really apprecieted.
 - and many more...
 
 ## News
+- *01/??/2018* - Beta 2 / 1.0.0 - COMING SOON
 - *01/06/2018* - Beta 1 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
 
 ## Changelog
