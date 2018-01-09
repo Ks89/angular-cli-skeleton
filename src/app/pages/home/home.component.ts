@@ -59,7 +59,7 @@ import { ToastrService } from 'ngx-toastr';
 export class HomeComponent implements OnInit, OnDestroy {
   pageHeader: PageHeader;
   message: string;
-  elements: any[] = [{field: 'el1'}, {field: 'el2'}, {field: 'el3'}];
+  elements: any[] = [{ field: 'el1' }, { field: 'el2' }, { field: 'el3' }];
 
   formModel: FormGroup;
 
@@ -74,12 +74,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private githubSubscription: Subscription;
 
-  constructor(private toastr: ToastrService,
-              private authService: AuthService,
-              private router: Router,
-              private exampleService: ExampleService,
-              private githubService: GithubService,
-              private store: Store<fromRoot.State>) {
+  constructor(
+    private toastr: ToastrService,
+    private authService: AuthService,
+    private router: Router,
+    private exampleService: ExampleService,
+    private githubService: GithubService,
+    private store: Store<fromRoot.State>
+  ) {
     this.pageHeader = new PageHeader('KS', 'Welcome');
     this.message = 'Welcome to my website';
 

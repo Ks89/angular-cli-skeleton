@@ -27,7 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
     // Add .withServerTransition() to support Universal rendering.
     // The application ID can be any identifier which is unique on
     // the page.
-    BrowserModule.withServerTransition({appId: 'my-app'}),
+    BrowserModule.withServerTransition({ appId: 'my-app' }),
     BrowserAnimationsModule,
     HttpClientModule,
     HttpModule,
