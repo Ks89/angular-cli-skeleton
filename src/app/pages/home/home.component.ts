@@ -40,6 +40,7 @@ import * as example from '../../core/actions/hello-example';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 // TODO Socket.io integration is working for client side rendering (both dev and prod),
 // but when you switch to SSR there are some problems, so I decided to remove it
@@ -58,7 +59,7 @@ import { AuthService } from '../../core/services/auth.service';
 export class HomeComponent implements OnInit, OnDestroy {
   pageHeader: PageHeader;
   message: string;
-  elements: any[] = [{ field: 'el1' }, { field: 'el2' }, { field: 'el3' }];
+  elements: any[] = [{field: 'el1'}, {field: 'el2'}, {field: 'el3'}];
 
   formModel: FormGroup;
 
@@ -73,13 +74,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private githubSubscription: Subscription;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private exampleService: ExampleService,
-    private githubService: GithubService,
-    private store: Store<fromRoot.State>
-  ) {
+  constructor(private toastr: ToastrService,
+              private authService: AuthService,
+              private router: Router,
+              private exampleService: ExampleService,
+              private githubService: GithubService,
+              private store: Store<fromRoot.State>) {
     this.pageHeader = new PageHeader('KS', 'Welcome');
     this.message = 'Welcome to my website';
 
@@ -109,6 +109,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     //   console.log('New message received: ' + data);
     //   this.socketData.push(data);
     // });
+  }
+
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!', {
+      closeButton: true
+    });
   }
 
   onLogin() {

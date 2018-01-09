@@ -19,6 +19,7 @@ import { CoreModule } from './core/core.module';
 import { COMPONENTS } from './pages/components';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent, COMPONENTS],
@@ -26,13 +27,15 @@ import { HttpModule } from '@angular/http';
     // Add .withServerTransition() to support Universal rendering.
     // The application ID can be any identifier which is unique on
     // the page.
-    BrowserModule.withServerTransition({ appId: 'my-app' }),
+    BrowserModule.withServerTransition({appId: 'my-app'}),
     BrowserAnimationsModule,
     HttpClientModule,
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+
+    ToastrModule.forRoot(), // ToastrModule added
 
     // if you enabled service workers inside .angular-cli.json,
     // I suggest to use it, only for the production build
