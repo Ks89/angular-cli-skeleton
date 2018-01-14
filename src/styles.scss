@@ -28,12 +28,42 @@
 
 @import "../node_modules/ngx-toastr/toastr";
 
-h1 {
-  color: #333;
+body {
+  font-family: $roboto-regular;
 }
 
-.gif {
-  width: 200px;
-  height: 200px;
-  background: url("./assets/giphy.gif") no-repeat;
+b {
+  font-family: $roboto-bold;
+}
+
+strong {
+  font-family: $roboto-bold;
+}
+
+i {
+  font-family: $roboto-italic;
+}
+
+small {
+  font-family: $roboto-thin;
+}
+
+h1 {
+  color: #333;
+  font-family: $roboto-bold;
+}
+
+h2 {
+  color: #333;
+  font-family: $roboto-regular;
+}
+
+h3 {
+  color: #333;
+  font-family: $roboto-light;
+}
+
+h4 {
+  color: #333;
+  font-family: $roboto-thin;
 }

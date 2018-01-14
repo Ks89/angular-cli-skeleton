@@ -82,7 +82,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private githubService: GithubService,
     private store: Store<fromRoot.State>
   ) {
-    this.pageHeader = new PageHeader('KS', 'Welcome');
+    this.pageHeader = new PageHeader('Welcome', 'to a secret profile page');
 
     // TODO Socket.io integration is working for client side rendering (both dev and prod),
     // but when you switch to SSR there are some problems, so I decided to remove it

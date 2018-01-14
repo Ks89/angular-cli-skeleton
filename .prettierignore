@@ -44,6 +44,8 @@
 **/*.ico
 **/*.svg
 **/*.tgz
+**/*.ttf
+**/*.txt
 
 **/.bithoundrc
 **/.gitignore
