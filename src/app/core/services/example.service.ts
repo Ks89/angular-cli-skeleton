@@ -23,32 +23,28 @@
  */
 
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+
+import { AuthService } from './auth.service';
+
+export interface MessageResponse {
+  message: string;
+}
 
 /**
- * Example of an Angular Service
+ * Example of a protected Angular Service
  */
 @Injectable()
 export class ExampleService {
-  constructor() {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   /**
-   * Method to get example data synchronously.
-   * @returns An Observable<string> with data inside.
+   * Method protected by authentication.
+   * @returns An Observable<MessageResponse> with a message inside.
    */
-  getExample(): Observable<any> {
-    return of(true);
-
-    // TODO I'll implement this feature (authentication) in upcoming releases
-    // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // const token = currentUser && currentUser.token;
-    //
-    // // add authorization header with jwt token
-    // const headers = new Headers({'Authorization': 'Bearer ' + token});
-    // const options = new RequestOptions({headers: headers});
-    //
-    // // get users from api
-    // return this.http.get('/api/secret', options).map((response: Response) => response.json());
+  getExample(): Observable<MessageResponse> {
+    return this.http.get<MessageResponse>('/api/secret', { headers: this.authService.getAuthHeaders() });
   }
 }

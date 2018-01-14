@@ -1,21 +1,28 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+          aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarToggler">
     <a class="navbar-brand" [routerLink]="['/']" href="#">KS</a>
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item {{isNavItemActive('/')}}">
-        <a class="nav-link" [routerLink]="['/']">Home </a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0" *ngIf="isLoggedIn()">
+      <li class="nav-item {{isNavItemActive('/')}}" *ngIf="!isLoggedIn()">
+        <a class="nav-link" [routerLink]="['/']">Home</a>
+      </li>
+      <li class="nav-item {{isNavItemActive('/profile')}}">
+        <a class="nav-link" [routerLink]="['/profile']">Profile</a>
       </li>
       <li class="nav-item {{isNavItemActive('/lazy')}}">
-        <a class="nav-link" [routerLink]="['/lazy']">LAZY-LOADING-PAGE</a>
+        <a class="nav-link" [routerLink]="['/lazy']">Lazy loaded page</a>
       </li>
       <li class="nav-item {{isNavItemActive('/sw')}}">
-        <a class="nav-link" [routerLink]="['/sw']">Service worker example</a>
+        <a class="nav-link" [routerLink]="['/sw']">Service worker</a>
       </li>
       <li class="nav-item {{isNavItemActive('/other')}}">
-        <a class="nav-link" [routerLink]="['/other']">404Page</a>
+        <a class="nav-link" [routerLink]="['/other']">404 page</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link clickable" role="button" (click)="onLogout()">Logout</a>
       </li>
     </ul>
   </div>

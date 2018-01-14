@@ -30,7 +30,7 @@ import { CORE_SERVICES } from './services/services';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
 /**
- * Core module that you can import only one time into the main module of the app SPA.
+ * Core module that you can import only one time into the main module.
  * If you try to import it again, you'll get a runtime error.
  */
 @NgModule({

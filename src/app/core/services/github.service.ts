@@ -61,14 +61,14 @@ export class GithubOrg {
  */
 @Injectable()
 export class GithubService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   /**
    * Method to get my Github profile asynchronously using Github's apis.
    * @returns A Observable<GithubUser> with data inside.
    */
   getGithubUser(): Observable<GithubUser> {
-    return this.httpClient.get<GithubUser>('https://api.github.com/users/Ks89');
+    return this.http.get<GithubUser>('https://api.github.com/users/Ks89');
   }
 
   /**
@@ -76,6 +76,6 @@ export class GithubService {
    * @returns A Observable<GithubUser> with data inside.
    */
   getGithubKs89Organizations(): Observable<GithubOrg> {
-    return this.httpClient.get<GithubOrg>('https://api.github.com/users/Ks89/orgs');
+    return this.http.get<GithubOrg>('https://api.github.com/users/Ks89/orgs');
   }
 }

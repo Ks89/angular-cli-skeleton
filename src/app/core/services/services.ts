@@ -30,8 +30,9 @@ import { AuthGuard } from './auth-guard.service';
 export { ExampleService } from './example.service';
 export { GithubService } from './github.service';
 export { AuthService } from './auth.service';
+export { AuthGuard } from './auth-guard.service';
 
 /**
- * Array of core services for the app SPA
+ * Array of core services
  */
 export const CORE_SERVICES: any[] = [ExampleService, GithubService, AuthService, AuthGuard];

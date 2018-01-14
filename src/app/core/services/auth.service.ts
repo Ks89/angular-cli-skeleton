@@ -23,44 +23,69 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-/**
- * Example of an Angular Service
- */
+import { Observable } from 'rxjs/Observable';
+import { tap } from 'rxjs/operators';
+
+export interface User {
+  username: string;
+  password: string;
+}
+
+export interface AuthResponse {
+  message?: string;
+  token?: string;
+}
+
+const TOKEN_NAME = 'token';
+
 @Injectable()
 export class AuthService {
-  public token: string;
+  token: string;
 
-  constructor() {
-    // TODO I'll implement this feature in upcoming releases
-    // // set token if saved in local storage
-    // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // this.token = currentUser && currentUser.token;
+  constructor(private http: HttpClient) {
+    // get existing token from local storage (if available/previously logged in)
+    this.token = this.getToken();
   }
 
-  login(user: any): Observable<any> {
-    return of(true);
+  isLoggedIn(tokenName: string = TOKEN_NAME): boolean {
+    return !!localStorage.getItem(tokenName);
+  }
 
-    // TODO I'll implement this feature in upcoming releases
-    // return this.http.post('/api/login', user)
-    //   .map((response: Response) => {
-    //     // login successful if there's a jwt token in the response
-    //     const token = response.json() && response.json().token;
-    //     if (token) {
-    //       // set token property
-    //       this.token = token;
-    //
-    //       // store username and jwt token in local storage to keep user logged in between page refreshes
-    //       localStorage.setItem('currentUser', JSON.stringify({ username: 'pippo', token: token }));
-    //
-    //       // return true to indicate successful login
-    //       return true;
-    //     } else {
-    //       // return false to indicate failed login
-    //       return false;
-    //     }
-    //   });
+  getToken(tokenName: string = TOKEN_NAME): string | null {
+    return localStorage.getItem(tokenName);
+  }
+
+  setToken(token: string, tokenName: string = TOKEN_NAME) {
+    localStorage.setItem(tokenName, token);
+  }
+
+  removeToken(tokenName: string = TOKEN_NAME) {
+    localStorage.removeItem(tokenName);
+  }
+
+  login(user: User): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>('/api/login', user).pipe(
+      tap((resp: AuthResponse) => {
+        // login successful if there's a jwt token in the response
+        const token = resp.token;
+        if (token) {
+          this.token = token;
+          // store token in local storage to keep user logged in
+          this.setToken(token);
+        }
+      })
+    );
+  }
+
+  logout(): Observable<AuthResponse> {
+    return this.http.get<AuthResponse>('/api/logout', { headers: this.getAuthHeaders() }).pipe(tap(() => this.removeToken()));
+  }
+
+  getAuthHeaders(): HttpHeaders {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer ' + this.getToken());
+    return headers;
   }
 }

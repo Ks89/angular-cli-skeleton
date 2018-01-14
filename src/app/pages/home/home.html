@@ -1,140 +1,20 @@
-<div>
-  <app-page-header [header]="pageHeader"></app-page-header>
+<div class="container-fluid">
 
-  <br>
-  <p><strong>Please, open your browser's console to see all features of this application!!!</strong></p>
-
-  <!-- TODO I'll enable socket.io in upcoming releases, please be patient, because there are some problems with SSR -->
-  <!--<button class="btn btn-primary col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3" (click)="sendMessage('my message')">Send</button>-->
-
-  <!--<br>-->
-  <!--{{socketData | json}}-->
-  <br>
-
-  <div class="container-fluid">
-
-
-    <!-- TODO I'll enable authentication with JWT in upcoming releases, please be patient -->
-    <!--<div class="row">-->
-      <!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">-->
-        <!--<p class="lead">Not a member? Please <a [routerLink]="['/register']">register</a> first.</p>-->
-        <!--<form [formGroup]="formModel" (ngSubmit)="onLogin()" novalidate>-->
-          <!--<div class="form-group">-->
-            <!--<label for="username">Email address</label>-->
-            <!--<input type="text" class="form-control" id="username" placeholder="Enter username" formControlName="username">-->
-          <!--</div>-->
-          <!--<div class="form-group">-->
-            <!--<label for="password">Password</label>-->
-            <!--<input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">-->
-          <!--</div>-->
-          <!--<button type="submit" id="signInButton" class="btn btn-primary">Sign in and redirect to LAZY!</button>-->
-          <!--<a [routerLink]="['/forgot']">Forgot password?</a>-->
-        <!--</form>-->
-      <!--</div>-->
-    <!--</div>-->
-
-
-    <div class="row">
-      Custom bootstrap buttons thanks to './src/_variables.scss'.
-      To override other variables check https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
+  <div class="row">
+    <div class="col-12">
+      <p class="lead">Login with username=admin and password=password</p>
+      <form [formGroup]="formModel" (ngSubmit)="onLogin()" novalidate>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" placeholder="Enter username" formControlName="username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
+        </div>
+        <button type="submit" id="signInButton" class="btn btn-primary">Sign in and redirect to your profile!</button>
+      </form>
     </div>
-    <br>
-    <div class="row">
-      <button class="btn btn-primary col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3" (click)="showSuccess()">Click here to show a toast</button>
-    </div>
-    <br>
-    <div class="row">
-      <button class="btn btn-info col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">Custom info button</button>
-    </div>
-    <br>
-    <div class="row">
-      <button class="btn btn-danger col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">Custom danger button</button>
-    </div>
-    <br>
-    <div class="row">
-      <button class="btn btn-success col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">Custom success button</button>
-    </div>
-    <br>
-    <br>
-
-    <div class="row">
-      <span>Font-awesome 4 example:   <i class="fa fa-address-book fa-3x" aria-hidden="true"></i></span>
-    </div>
-    <br>
-    <br>
-
-    <br>
-    <p>For cycle example.ts:</p>
-    <ul>
-      <li *ngFor="let element of elements">{{element.field}}</li>
-    </ul>
-    <br>
-    <p>For async cycle example:</p>
-    <ul>
-      <li *ngFor="let elementObs of elementsObs | async">{{elementObs.field}}</li>
-    </ul>
-    <br>
-    <p>If example:</p>
-    <p *ngIf="elements.length >= 0">`Elements` contains at least on element</p>
-    <br>
-
-    <h3>Example of external gif via scss</h3>
-    <div class="gif"></div>
-    <br>
-
-    <div class="row">
-      <!-- taken from https://ng-bootstrap.github.io/#/components/accordion -->
-      <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-        <ngb-panel title="Simple">
-          <ng-template ngbPanelContent>
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
-            officia
-            aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-            tempor,
-            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-            helvetica,
-            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-            Leggings
-            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
-            accusamus
-            labore sustainable VHS.
-          </ng-template>
-        </ngb-panel>
-        <ngb-panel>
-          <ng-template ngbPanelTitle>
-            <span>&#9733; <strong>Fancy</strong> title &#9733;</span>
-          </ng-template>
-          <ng-template ngbPanelContent>
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
-            officia
-            aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-            tempor,
-            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-            helvetica,
-            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-            Leggings
-            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
-            accusamus
-            labore sustainable VHS.
-          </ng-template>
-        </ngb-panel>
-        <ngb-panel title="Disabled" [disabled]="true">
-          <ng-template ngbPanelContent>
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
-            officia
-            aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
-            tempor,
-            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-            helvetica,
-            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-            Leggings
-            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
-            accusamus
-            labore sustainable VHS.
-          </ng-template>
-        </ngb-panel>
-      </ngb-accordion>
-    </div>
-
   </div>
+
 </div>
