@@ -18,7 +18,7 @@ This project my previous older skeleton project called [angular-webpack-skeleton
 If you like it, please add a star. It will be really apprecieted.
 
 ## Features
-- Typescript >= 2.5
+- Typescript >= 2.6
 - Angular 5
     - [Ahead of Time (AOT)](https://angular.io/guide/aot-compiler) enabled by default for Angular >= 5
     - [Lazy loading](https://angular.io/guide/ngmodule#lazy-loading-modules-with-the-router)
