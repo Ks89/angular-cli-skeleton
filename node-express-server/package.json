@@ -1,0 +1,31 @@
+{
+  "name": "angular-cli-skeleton-server",
+  "version": "1.0.0-beta.2",
+  "author": "Stefano Cappa",
+  "description": "Angular skeleton with angular-cli - server side in Javascript",
+  "license": "MIT",
+  "main": "server.js",
+  "homepage": "https://github.com/Ks89",
+  "private": true,
+  "repository": "https://github.com/Ks89/angular-cli-skeleton",
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": ">=5.2.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "start:watch": "nodemon server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-session": "^1.15.6",
+    "jsonwebtoken": "^7.1.9",
+    "lodash": "^4.16.4",
+    "passport": "^0.3.2",
+    "passport-jwt": "^3.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.11"
+  }
+}
