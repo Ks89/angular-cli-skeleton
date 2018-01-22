@@ -80,7 +80,7 @@
     "@angular/router": "^5.2.0",
     "@angular/service-worker": "^5.2.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.9",
-    "@ngrx/store": "^4.1.1",
+    "@ngrx/store": "^5.0.0",
     "@nguniversal/module-map-ngfactory-loader": "^5.0.0-beta.5",
     "bootstrap": "^4.0.0-beta.3",
     "core-js": "^2.4.1",
