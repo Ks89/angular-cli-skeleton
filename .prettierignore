@@ -21,6 +21,8 @@
 
 **/tslint.json
 
+**/.env
+
 **/webpack.*.js
 
 **/package.json
