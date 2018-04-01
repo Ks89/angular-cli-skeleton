@@ -154,7 +154,7 @@ app.use(
       childSrc: [`'none'`],
       //restricts the URLs which can be loaded using script interfaces. The APIs that are restricted are:
       // <a> ping, Fetch, XMLHttpRequest, WebSocket, EventSource
-      connectSrc: [`'self'`],
+      connectSrc: [`'self'`, 'api.github.com'],
       // serves as a fallback for the other CSP fetch directives. For more info check:
       // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/default-src
       defaultSrc: [`'self'`],
