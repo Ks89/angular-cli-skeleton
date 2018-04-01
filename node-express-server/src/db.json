@@ -1,0 +1,18 @@
+[
+  {
+    "credential": {
+      "id": 1,
+      "username": "admin",
+      "password": "password"
+    },
+    "somethingelse": ""
+  },
+  {
+    "credential": {
+      "id": 2,
+      "username": "admin",
+      "password": "admin"
+    },
+    "somethingelse": ""
+  }
+]

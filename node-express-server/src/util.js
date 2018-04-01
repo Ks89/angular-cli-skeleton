@@ -1,7 +1,6 @@
 'use strict';
 
 const _ = require('lodash');
-let jwt = require('jsonwebtoken');
 
 class Utils {
   constructor() {}

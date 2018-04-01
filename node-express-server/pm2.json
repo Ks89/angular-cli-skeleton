@@ -1,0 +1,16 @@
+{
+  "apps": [
+    {
+      "name": "node-express-server",
+      "script": "./bin/www",
+      "exec_mode": "cluster",
+      "instances": "max",
+      "watch": false,
+      "env_production": {
+        "NODE_ENV": "production",
+        "PORT": "80"
+      },
+      "source_map_support": true
+    }
+  ]
+}

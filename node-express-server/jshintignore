@@ -1,0 +1,12 @@
+bin
+docs
+node_modules
+.node_persist
+persist
+public
+setup
+spec
+travisci
+.circleci
+coverage
+.nyc_output
