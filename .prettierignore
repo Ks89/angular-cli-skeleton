@@ -48,6 +48,7 @@
 **/*.tgz
 **/*.ttf
 **/*.txt
+**/*.log
 
 **/.bithoundrc
 **/.gitignore

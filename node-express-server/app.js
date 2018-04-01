@@ -249,7 +249,7 @@ app.use(
 // compress all reqs using gzip
 app.use(compression());
 
-app.use('/', express.static(path.join(__dirname, 'public/')));
+app.use('/', express.static(path.join(__dirname, config.FRONT_END_PATH, '/')));
 
 logger.warn('Initializing hpp');
 // --SEC-- - http params pollution: activate http parameters pollution
