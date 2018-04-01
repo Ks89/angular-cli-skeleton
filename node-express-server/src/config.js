@@ -12,7 +12,7 @@ module.exports = {
   // this method isn't used for integration testing on server-side
   isForE2eTest: () => process.env.NODE_ENV === 'e2e',
 
-  FRONT_END_PATH: process.env.FRONT_END_PATH || '../../dist/browser',
+  FRONT_END_PATH: process.env.FRONT_END_PATH || '../dist/browser',
 
   NODE_ENV: process.env.NODE_ENV || 'development',
   CI: process.env.CI || 'yes',

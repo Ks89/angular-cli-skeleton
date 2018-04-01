@@ -88,7 +88,7 @@ passport.use(
 //    large payload attacks - Make sure this application is
 //    not vulnerable to large payload attacks
 const contentLength = require('express-content-length-validator');
-// constant (max size for all requests, also for file uploads)
+// constant (max size for all reqs, also for file uploads)
 const MAX_CONTENT_LENGTH_ACCEPTED = 100 * 1024 * 1024;
 // --SEC-- - Helmet
 const helmet = require('helmet');
@@ -184,7 +184,7 @@ app.use(
       // reportUri: '/report-violation',
       // instructs the client to require the use of Subresource Integrity for scripts or styles on the page
       // requireSriFor: ...
-      // enables a sandbox for the requested resource similar to the <iframe> sandbox attribute.
+      // enables a sandbox for the reqed resource similar to the <iframe> sandbox attribute.
       // It applies restrictions to a page's actions including preventing popups, preventing the execution
       // of plugins and scripts, and enforcing a same-origin policy.
       sandbox: ['allow-forms', 'allow-scripts', 'allow-same-origin'],
@@ -215,7 +215,7 @@ app.use(
     // To disable this browser sniffing and assume a modern browser,
     // set the browserSniff option to false.
     // The default behavior of CSP is generate headers tailored for the browser
-    // that’s requesting your page. If you have a CDN in front of your application,
+    // that’s reqing your page. If you have a CDN in front of your application,
     // the CDN may cache the wrong headers, rendering your CSP useless.
     // Make sure to eschew a CDN when using this module or set the browserSniff option to false.
     browserSniff: false
@@ -246,7 +246,7 @@ app.use(
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 
-// compress all requests using gzip
+// compress all reqs using gzip
 app.use(compression());
 
 app.use('/', express.static(path.join(__dirname, 'public/')));
@@ -295,8 +295,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/*', function(request, response) {
-  response.sendFile(__dirname + config.FRONT_END_PATH + '/index.html');
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, config.FRONT_END_PATH, 'index.html'));
 });
 
 // error handler
