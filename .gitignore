@@ -65,8 +65,8 @@ typings/
 .idea
 
 # Angular build and temp directories
-dist
-docs
+**/dist
+**/docs
 
 # Angulardoc file
 .angulardoc.json
