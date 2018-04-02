@@ -6,6 +6,9 @@
 
 [![GitHub release](https://img.shields.io/github/release/Ks89/angular-cli-skeleton.svg?style=flat-square)](https://github.com/Ks89/angular-cli-skeleton)   [![GitHub (pre-)release](https://img.shields.io/github/release/Ks89/angular-cli-skeleton/all.svg?style=flat-square)](https://github.com/Ks89/angular-cli-skeleton)
 
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/stefanocappa)
+
+*Do you like angular-cli-skeleton? Please, add a 'star' to support this library*
 
 <br>
 
@@ -46,7 +49,7 @@ If you like it, please add a star. It will be really apprecieted.
 - Testing
     - Unit testing with [Karma](https://karma-runner.github.io) and [Jasmine](https://jasmine.github.io/)
       - Custom advanced configuration to specify different browsers on CIs (check 'getBrowsers()' in `./karma.conf.js`)
-      - Multiple launcher for browsers (Chrome, Firefox, IE, Edge, Safari)
+      - Multiple launcher for browsers (Chrome, Firefox, IE, Edge, Safari). See `karma.conf.js`
       - [Chrome Headless](https://developers.google.com/web/updates/2017/04/headless-chrome) support to run unit tests (better than [PhantomJS](http://phantomjs.org/))
       - Multiple coverage reporters: `json`, `html`, `lcovonly`, `mocha`, SonarQube and also in your console 
     - End to end (E2E) testing with [Protractor](http://www.protractortest.org) and [WebDriver JS](https://github.com/SeleniumHQ/selenium/wiki/WebDriverJs)
@@ -68,11 +71,14 @@ If you like it, please add a star. It will be really apprecieted.
     - [AppVeyor](https://www.appveyor.com/)
     - [SonarQube](https://www.sonarqube.org/) on [SonarCloud](https://sonarcloud.io/dashboard?id=angular-webpack-skeleton) with installation instructions below
     - [Jenkins 2](https://jenkins-ci.org/) with installation instructions below
+- **Multiple server-side implementations** with NodeJS
+    - NodeJS + Express in **vanilla javascript** (see `./servers/node-express-js`)
+    - NodeJS + Express in **Typescript** (see `./servers/node-express-ts`)
 - and many more...
 
 ## News
-- *04/??/2018* - Beta 2 - COMING SOON
-- *01/06/2018* - Beta 1 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
+- *04/03/2018* - 1.0.0-beta.2 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
+- *01/06/2018* - 1.0.0-beta.1 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
 
 ## Changelog
 Full changelog [HERE](https://github.com/Ks89/angular-cli-skeleton/blob/master/CHANGELOG.md)
@@ -90,7 +96,8 @@ angular-cli-skeleton/
  │ └─tsconfig.e2e.ts              * config file for typescript when running e2e tests
  │
  ├─servers/                       * server-side implementations to manage authentication
- │ └─node-express-js              * NodeJS vanilla js implementation
+ │ ├─node-express-js              * NodeJS Typescript implementation
+ │ └─node-express-ts              * NodeJS vanilla js implementation
  │
  ├─src/                           * main source folder
  │ ├─app/                         * source folder of 'app' SPA
@@ -196,6 +203,14 @@ angular-cli-skeleton/
 - npm >= 5.2.0 (please use always the latest version)
 
 
+## What you can do right now?
+- build and run the front-end of this project with angular-cli, but authentication won't work (obviously, because It needs a server)
+- build this project and run it with one of the two servers in `./servers` (authentication is working!!!)
+- build and run this project with angular-universal (authentication still not supported - COMING SOON)
+
+This is a 'work in progress' project, so if you need other info, please open an issue. At the moment, documentation and README are minimalistic.
+
+
 ## Install
 
 ### Install global dependencies
@@ -204,6 +219,7 @@ angular-cli-skeleton/
 ### Install local dependencies
 1. `npm install` (from the folder of this project)
 2. `cd servers/node-express-js && npm install`
+3. `cd servers/node-express-ts && npm install`
 
 
 ## Build
@@ -244,13 +260,23 @@ angular-cli-skeleton/
 
 ## Run (WITH server-side and authentication features)
 
-### Build and run development server with authentication feature
+### Build and run development vanilla javascript server with authentication feature
 1. `npm run build:dev`
 2. `cd servers/node-express-js && npm start`
 
-### Build and run production server with authentication feature
+### Build and run production vanilla javascript server with authentication feature
 1. `npm run build:prod`
 2. `cd servers/node-express-js && npm start`
+
+or
+
+### Build and run development Typescript server with authentication feature
+1. `npm run build:dev`
+2. `cd servers/node-express-ts && npm run build && npm start`
+
+### Build and run production Typescript server with authentication feature
+1. `npm run build:prod`
+2. `cd servers/node-express-ts && npm run build && npm start`
 
 
 ## Test
@@ -392,6 +418,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 <br/>
+
+If you like my projects you can do a free donation here [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/stefanocappa)
+
 
 ## FOSSA report
 
