@@ -25,6 +25,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 import { LazyComponent } from './lazy.component';
 import { SharedModule } from '../../shared/shared.module';
@@ -34,18 +38,27 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers';
-import { mainReducers } from '../../reducers/index';
+import { mainReducers } from '../../reducers';
+import { GithubOrg, GithubService, GithubUser } from '../../core/services/github.service';
+import { ExampleService, MessageResponse } from '../../core/services/example.service';
 
 let comp: LazyComponent;
 let fixture: ComponentFixture<LazyComponent>;
 
 describe('LazyComponent', () => {
-  beforeEach( async(() => {
+  beforeEach(async(() => {
 
     TestBed.configureTestingModule({
-      imports: [ NgbModule.forRoot(), SharedModule, CoreModule,
-        StoreModule.forRoot(mainReducers, { reducerFactory: undefined }), StoreModule.forFeature('pageNum', reducers)],
-      declarations: [ LazyComponent ]
+      imports: [NgbModule.forRoot(), SharedModule, CoreModule, HttpClientModule,
+        StoreModule.forRoot(mainReducers, {reducerFactory: undefined}), StoreModule.forFeature('pageNum', reducers)],
+      declarations: [LazyComponent]
+    }).overrideComponent(LazyComponent, {
+      set: {
+        providers: [
+          {provide: ExampleService, useClass: FakeExampleService },
+          {provide: GithubService, useClass: FakeGithubService}
+        ]
+      }
     }); // not necessary with webpack .compileComponents();
 
     fixture = TestBed.createComponent(LazyComponent);
@@ -64,7 +77,7 @@ describe('LazyComponent', () => {
       const element: DebugElement = fixture.debugElement;
 
       const title: DebugElement[] = element.queryAll(By.css('h1'));
-      expect(title.length).toBe(1);
+      expect(title.length).toBe(2);
       expect(title[0].nativeElement.textContent.trim()).toBe('LAZY');
 
       const message: DebugElement[] = element.queryAll(By.css('small'));
@@ -74,3 +87,19 @@ describe('LazyComponent', () => {
     });
   });
 });
+
+class FakeExampleService {
+  getExample(): Observable<MessageResponse> {
+    return of(<MessageResponse>{});
+  }
+}
+
+class FakeGithubService {
+  getGithubUser(): Observable<GithubUser> {
+    return of(<GithubUser>{});
+  }
+
+  getGithubKs89Organizations(): Observable<GithubOrg> {
+    return of(<GithubOrg>{});
+  }
+}
