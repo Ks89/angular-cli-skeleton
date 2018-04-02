@@ -22,8 +22,9 @@
  * SOFTWARE.
  */
 
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { isPlatformBrowser } from '@angular/common';
 
 import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators';
@@ -44,25 +45,37 @@ const TOKEN_NAME = 'token';
 export class AuthService {
   token: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {
     // get existing token from local storage (if available/previously logged in)
     this.token = this.getToken();
   }
 
   isLoggedIn(tokenName: string = TOKEN_NAME): boolean {
-    return !!localStorage.getItem(tokenName);
+    if (isPlatformBrowser(this.platformId)) {
+      return !!localStorage.getItem(tokenName);
+    } else {
+      return false;
+    }
   }
 
   getToken(tokenName: string = TOKEN_NAME): string | null {
-    return localStorage.getItem(tokenName);
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem(tokenName);
+    } else {
+      return null;
+    }
   }
 
   setToken(token: string, tokenName: string = TOKEN_NAME) {
-    localStorage.setItem(tokenName, token);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(tokenName, token);
+    }
   }
 
   removeToken(tokenName: string = TOKEN_NAME) {
-    localStorage.removeItem(tokenName);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem(tokenName);
+    }
   }
 
   login(user: User): Observable<AuthResponse> {

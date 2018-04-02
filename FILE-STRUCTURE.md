@@ -3,11 +3,13 @@ Complete file structure:
 ```
 angular-cli-skeleton/
  ├─.circleci/                     * circle ci 2 config folder (is a CI service free for open source projects)
- │
  ├─e2e/                           * end-to-end tests with Protractor
  │ ├─app.e2e-spec.ts              * e2e test for the main page
  │ ├─app.po.ts                    * e2e page oject for home page
  │ └─tsconfig.e2e.ts              * config file for typescript when running e2e tests
+ │
+ ├─servers/                       * server-side implementations to manage authentication
+ │ └─node-express-js              * NodeJS vanilla js implementation
  │
  ├─src/                           * main source folder
  │ ├─app/                         * source folder of 'app' SPA

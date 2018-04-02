@@ -25,7 +25,7 @@ If you like it, please add a star. It will be really apprecieted.
     - The new [HttpClient](https://angular.io/guide/http#httpclient) of Angular >= 4.3
     - [RxJS 5.5](https://github.com/ReactiveX/rxjs/blob/master/doc/lettable-operators.md) with lettable operators
 - [Bootstrap 4](http://getbootstrap.com/) with a custom theme (check `./src/_variables.scss`), [ng-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap)
-- [FontAwesome 5](http://fontawesome.io/)
+- [FontAwesome 5](https://fontawesome.com/)
 - [jQuery](https://jquery.com/)
 - [Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/) support to add it as a standalone app on mobile devices (see `manifest.json`)
 - [Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers/) to create an offline application (see `./src/ngsw-config.json`)
@@ -71,7 +71,7 @@ If you like it, please add a star. It will be really apprecieted.
 - and many more...
 
 ## News
-- *01/??/2018* - Beta 2 / 1.0.0 - COMING SOON
+- *04/??/2018* - Beta 2 - COMING SOON
 - *01/06/2018* - Beta 1 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
 
 ## Changelog
@@ -88,6 +88,9 @@ angular-cli-skeleton/
  │ ├─app.e2e-spec.ts              * e2e test for the main page
  │ ├─app.po.ts                    * e2e page oject for home page
  │ └─tsconfig.e2e.ts              * config file for typescript when running e2e tests
+ │
+ ├─servers/                       * server-side implementations to manage authentication
+ │ └─node-express-js              * NodeJS vanilla js implementation
  │
  ├─src/                           * main source folder
  │ ├─app/                         * source folder of 'app' SPA
@@ -199,7 +202,8 @@ angular-cli-skeleton/
 - `npm install -g lite-server`
 
 ### Install local dependencies
-- `npm install` (from the folder of this project)
+1. `npm install` (from the folder of this project)
+2. `cd servers/node-express-js && npm install`
 
 
 ## Build
@@ -218,7 +222,7 @@ angular-cli-skeleton/
 - `npm run build:ssr`
 
 
-## Run
+## Run (without server-side)
 
 ### Build and run development server with HMR (development mode)
 - `npm start`
@@ -236,6 +240,17 @@ angular-cli-skeleton/
 
 ### Run client app previously built in 'dist' folder (production mode + AOT + angular-universal)
 - `npm run serve:ssr`
+
+
+## Run (WITH server-side and authentication features)
+
+### Build and run development server with authentication feature
+1. `npm run build:dev`
+2. `cd servers/node-express-js && npm start`
+
+### Build and run production server with authentication feature
+1. `npm run build:prod`
+2. `cd servers/node-express-js && npm start`
 
 
 ## Test
