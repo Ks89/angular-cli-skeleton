@@ -4,6 +4,8 @@
 - add JWT login + profile page #18
 - add Roboto font from assets #23
 - add ngx-toastr #20
+- update Font Awesome 5 #23
+- add 2 servers (vanilla js + Typescript)
 
 ## Chores
 - general refactoring
