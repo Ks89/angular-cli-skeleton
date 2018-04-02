@@ -11,7 +11,7 @@ if (process.env.NODE_ENV !== 'production') {
 // --------------------------------------------------------
 // --------------------------------------------------------
 
-const logger = require('./src/logger-winston');
+const logger = require('./src/logger');
 logger.warn(`Starting with NODE_ENV=${config.NODE_ENV}`);
 logger.warn(`config.CI is ${config.CI} and isCI is ${config.isCI()}`);
 
@@ -43,7 +43,7 @@ const passport = require('passport');
 const passportJWT = require('passport-jwt');
 const ExtractJwt = passportJWT.ExtractJwt;
 const JwtStrategy = passportJWT.Strategy;
-const passportConfig = require('./src/passport-config');
+const passportConfig = require('./src/passport');
 const jwtOptions = passportConfig.buildJwtOptions(ExtractJwt.fromAuthHeaderAsBearerToken());
 passport.use(
   new JwtStrategy(jwtOptions, (jwtPayload, done) => {

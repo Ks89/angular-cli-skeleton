@@ -1,6 +1,6 @@
 'use strict';
 
-const logger = require('../../logger-winston');
+const logger = require('../../logger');
 
 module.exports.secret = (req, res) => {
   logger.debug('REST secret');

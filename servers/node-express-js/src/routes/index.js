@@ -3,7 +3,7 @@
 let RateLimit = require('express-rate-limit');
 let bodyParser = require('body-parser');
 
-const logger = require('../logger-winston');
+const logger = require('../logger');
 const config = require('../config');
 
 const APIS = require('./apis');

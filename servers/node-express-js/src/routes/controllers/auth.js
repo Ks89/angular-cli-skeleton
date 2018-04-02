@@ -3,10 +3,10 @@
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 
-const logger = require('../../logger-winston');
+const logger = require('../../logger');
 const config = require('../../config');
 const db = require('../../db');
-const passportConfig = require('../../passport-config');
+const passportConfig = require('../../passport');
 
 const jwtOptions = passportConfig.getJwtOptions();
 

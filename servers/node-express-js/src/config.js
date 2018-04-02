@@ -1,7 +1,7 @@
 'use strict';
 
 // ATTENTION!!!
-// don't use here logger-winston because it requires config fully initialized
+// don't use here logger.js because it requires config fully initialized
 
 module.exports = {
   isCI: () => process.env.CI === 'yes' || process.env.CI === true,
