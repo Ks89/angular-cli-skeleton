@@ -11,7 +11,7 @@
 
 # angular-cli-skeleton
 
-A simple ready to use skeleton project with angular-cli (optionally also angular-universal), Angular 5, Bootstrap 4 beta, ng-bootstrap, ngrx-store and so on.
+A simple ready to use skeleton project with angular-cli (optionally also angular-universal), Angular 6, Bootstrap 4, ng-bootstrap, ngrx-store and so on.
 
 This project my previous older skeleton project called [angular-webpack-skeleton](https://github.com/Ks89/angular-webpack-skeleton).
 
@@ -25,7 +25,7 @@ If you like it, please add a star. It will be really apprecieted.
     - The new [HttpClient](https://angular.io/guide/http#httpclient) of Angular >= 4.3
     - [RxJS 5.5](https://github.com/ReactiveX/rxjs/blob/master/doc/lettable-operators.md) with lettable operators
 - [Bootstrap 4](http://getbootstrap.com/) with a custom theme (check `./src/_variables.scss`), [ng-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap)
-- [Font-awesome 4](http://fontawesome.io/) *(however I'll update it to version 5 when [this issue](https://github.com/Ks89/angular-cli-skeleton/issues/21) will be closed)*
+- [FontAwesome 5](http://fontawesome.io/)
 - [jQuery](https://jquery.com/)
 - [Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/) support to add it as a standalone app on mobile devices (see `manifest.json`)
 - [Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers/) to create an offline application (see `./src/ngsw-config.json`)
