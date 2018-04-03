@@ -1,0 +1,48 @@
+{
+  "name": "angular-cli-skeleton-server",
+  "version": "1.0.0",
+  "author": "Stefano Cappa",
+  "description": "Angular skeleton with angular-cli - server side in koajs + Javascript",
+  "license": "MIT",
+  "homepage": "https://github.com/Ks89",
+  "private": true,
+  "repository": "https://github.com/Ks89/angular-cli-skeleton",
+  "main": "src/bin/www",
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": ">=5.2.0"
+  },
+  "scripts": {
+    "start": "npm run start:dev",
+    "start:dev": "nodemon src/bin/www",
+    "start:debug": "cross-env DEBUG=* node src/bin/www",
+    "start:prod": "pm2 start pm2.json --env production",
+    "stop:prod": "pm2 stop src/bin/www",
+    "jshint": "jshint ."
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "csurf": "^1.9.0",
+    "dotenv": "^5.0.1",
+    "http-shutdown": "^1.2.0",
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-helmet": "^3.1.0",
+    "koa-jwt": "^3.3.1",
+    "koa-logger": "^3.0.1",
+    "koa-response-time": "^2.0.0",
+    "koa-router": "^7.1.1",
+    "lodash": "^4.17.5",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0"
+  },
+  "devDependencies": {
+    "cpr": "^3.0.1",
+    "cross-env": "^5.1.4",
+    "jshint": "^2.9.5",
+    "nodemon": "^1.17.3",
+    "pm2": "^2.10.2",
+    "rimraf": "^2.6.2"
+  }
+}

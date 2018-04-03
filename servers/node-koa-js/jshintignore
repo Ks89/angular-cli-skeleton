@@ -1,4 +1,4 @@
-bin
+src/bin
 docs
 node_modules
 public
