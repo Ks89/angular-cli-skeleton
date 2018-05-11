@@ -78,7 +78,7 @@
     "@angular/platform-browser-dynamic": "^5.2.9",
     "@angular/platform-server": "^5.2.9",
     "@angular/router": "^5.2.9",
-    "@angular/service-worker": "^5.2.9",
+    "@angular/service-worker": "^6.0.1",
     "@fortawesome/fontawesome": "^1.1.4",
     "@fortawesome/fontawesome-free-solid": "^5.0.8",
     "@ng-bootstrap/ng-bootstrap": "^1.1.0",
