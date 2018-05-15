@@ -9,8 +9,9 @@ angular-cli-skeleton/
  │ └─tsconfig.e2e.ts              * config file for typescript when running e2e tests
  │
  ├─servers/                       * server-side implementations to manage authentication
- │ ├─node-express-js              * NodeJS Typescript implementation
- │ └─node-express-ts              * NodeJS vanilla js implementation
+ │ ├─node-express-js              * NodeJS with ExpressJS Javascript implementation
+ │ ├─node-express-js              * NodeJS with ExpressJS Typescript implementation
+ │ └─node-koa-js                  * NodeJS with KoaJS Javascript implementation
  │
  ├─src/                           * main source folder
  │ ├─app/                         * source folder of 'app' SPA

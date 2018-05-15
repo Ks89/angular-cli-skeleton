@@ -2,8 +2,6 @@
 
 [![vulnerabilities](https://snyk.io/test/github/ks89/angular-cli-skeleton/badge.svg)](https://snyk.io/test/github/ks89/angular-cli-skeleton)   [![Greenkeeper badge](https://badges.greenkeeper.io/Ks89/angular-cli-skeleton.svg)](https://greenkeeper.io/)   [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FKs89%2Fangular-cli-skeleton.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FKs89%2Fangular-cli-skeleton?ref=badge_shield)   [![Code Climate](https://codeclimate.com/github/Ks89/angular-cli-skeleton/badges/gpa.svg)](https://codeclimate.com/github/Ks89/angular-cli-skeleton)   [![CodeClimate Coverage](https://codeclimate.com/github/Ks89/angular-cli-skeleton/badges/coverage.svg)](https://codeclimate.com/github/Ks89/angular-cli-skeleton/coverage)   [![Coveralls Coverage](https://coveralls.io/repos/github/Ks89/angular-cli-skeleton/badge.svg?branch=master)](https://coveralls.io/github/Ks89/angular-cli-skeleton?branch=master)
 
-[![bitHound Overall Score](https://www.bithound.io/github/Ks89/angular-cli-skeleton/badges/score.svg)](https://www.bithound.io/github/Ks89/angular-cli-skeleton)   [![bitHound Code](https://www.bithound.io/github/Ks89/angular-cli-skeleton/badges/code.svg)](https://www.bithound.io/github/Ks89/angular-cli-skeleton)   [![bitHound Dependencies](https://www.bithound.io/github/Ks89/angular-cli-skeleton/badges/dependencies.svg)](https://www.bithound.io/github/Ks89/angular-cli-skeleton/master/dependencies/npm)   [![bitHound Dev Dependencies](https://www.bithound.io/github/Ks89/angular-cli-skeleton/badges/devDependencies.svg)](https://www.bithound.io/github/Ks89/angular-cli-skeleton/master/dependencies/npm)
-
 [![GitHub release](https://img.shields.io/github/release/Ks89/angular-cli-skeleton.svg?style=flat-square)](https://github.com/Ks89/angular-cli-skeleton)   [![GitHub (pre-)release](https://img.shields.io/github/release/Ks89/angular-cli-skeleton/all.svg?style=flat-square)](https://github.com/Ks89/angular-cli-skeleton)
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/stefanocappa)
@@ -21,12 +19,12 @@ This project my previous older skeleton project called [angular-webpack-skeleton
 If you like it, please add a star. It will be really apprecieted.
 
 ## Features
-- Typescript >= 2.6
-- Angular 5
+- Typescript >= 2.7
+- Angular 6
     - [Ahead of Time (AOT)](https://angular.io/guide/aot-compiler) enabled by default for Angular >= 5
     - [Lazy loading](https://angular.io/guide/ngmodule#lazy-loading-modules-with-the-router)
     - The new [HttpClient](https://angular.io/guide/http#httpclient) of Angular >= 4.3
-    - [RxJS 5.5](https://github.com/ReactiveX/rxjs/blob/master/doc/lettable-operators.md) with lettable operators
+    - [RxJS 6](https://github.com/ReactiveX/rxjs/blob/master/doc/lettable-operators.md) with lettable operators and `rxjs-compat` for legacy libraries
 - [Bootstrap 4](http://getbootstrap.com/) with a custom theme (check `./src/_variables.scss`), [ng-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap)
 - [FontAwesome 5](https://fontawesome.com/)
 - [jQuery](https://jquery.com/)
@@ -72,11 +70,13 @@ If you like it, please add a star. It will be really apprecieted.
     - [SonarQube](https://www.sonarqube.org/) on [SonarCloud](https://sonarcloud.io/dashboard?id=angular-webpack-skeleton) with installation instructions below
     - [Jenkins 2](https://jenkins-ci.org/) with installation instructions below
 - **Multiple server-side implementations** with NodeJS
-    - NodeJS + Express in **vanilla javascript** (see `./servers/node-express-js`)
+    - NodeJS + Express in **Javascript** (see `./servers/node-express-js`)
     - NodeJS + Express in **Typescript** (see `./servers/node-express-ts`)
+    - NodeJS + Koa in **Javascript** (see `./servers/node-koa-js`)
 - and many more...
 
 ## News
+- *??/??/2018* - 1.0.0-beta.3 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
 - *04/03/2018* - 1.0.0-beta.2 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
 - *01/06/2018* - 1.0.0-beta.1 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
 
@@ -96,8 +96,9 @@ angular-cli-skeleton/
  │ └─tsconfig.e2e.ts              * config file for typescript when running e2e tests
  │
  ├─servers/                       * server-side implementations to manage authentication
- │ ├─node-express-js              * NodeJS Typescript implementation
- │ └─node-express-ts              * NodeJS vanilla js implementation
+ │ ├─node-express-js              * NodeJS with ExpressJS Javascript implementation
+ │ ├─node-express-js              * NodeJS with ExpressJS Typescript implementation
+ │ └─node-koa-js                  * NodeJS with KoaJS Javascript implementation
  │
  ├─src/                           * main source folder
  │ ├─app/                         * source folder of 'app' SPA
@@ -220,6 +221,7 @@ This is a 'work in progress' project, so if you need other info, please open an 
 1. `npm install` (from the folder of this project)
 2. `cd servers/node-express-js && npm install`
 3. `cd servers/node-express-ts && npm install`
+3. `cd servers/node-koa-js && npm install`
 
 
 ## Build
