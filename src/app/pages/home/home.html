@@ -5,6 +5,7 @@
   <div class="row">
     <div class="col-12">
       <p class="lead">Login with username=admin and password=password</p>
+      <p class="lead" style="color: red;">To be able to login, you must run a server with 'npm start' in /servers folder of this project!!!</p>
       <form [formGroup]="formModel" (ngSubmit)="onLogin()" novalidate>
         <div class="form-group">
           <label for="username">Username</label>

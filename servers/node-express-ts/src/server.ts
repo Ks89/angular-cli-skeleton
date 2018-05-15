@@ -28,6 +28,7 @@ import http, { Server } from 'http';
 
 import app from './app';
 import * as config from './config';
+import { AddressInfo } from 'net';
 
 /**
  * Get port from environment and store in Express.
@@ -96,7 +97,7 @@ function onError(error: any) {
  * Event listener for HTTP server "listening" event.
  */
 function onListening() {
-  const addr: { port: number; family: string; address: string } = server.address();
+  const addr: AddressInfo = <AddressInfo>server.address();
   debug(`Listening on ${addr.port}`);
   console.log(`Listening on ${addr.port}`);
 }

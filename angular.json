@@ -16,7 +16,7 @@
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
-            "assets": ["src/assets", "src/favicon.png", "src/manifest.json"],
+            "assets": ["src/assets", "src/favicon.ico", "src/manifest.json"],
             "styles": ["src/styles.scss"],
             "scripts": [
               "node_modules/jquery/dist/jquery.slim.js",
@@ -44,7 +44,7 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "serviceWorker": true,
-              "ngswConfigPath": "/src/ngsw-config.json",
+              "ngswConfigPath": "src/ngsw-config.json",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -87,7 +87,7 @@
               "node_modules/bootstrap/dist/js/bootstrap.js"
             ],
             "styles": ["src/styles.scss"],
-            "assets": ["src/assets", "src/favicon.png", "src/manifest.json"]
+            "assets": ["src/assets", "src/favicon.ico", "src/manifest.json"]
           }
         },
         "lint": {

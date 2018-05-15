@@ -21,7 +21,7 @@
     "jshint": "jshint ."
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.18.3",
     "compression": "^1.7.2",
     "cookie-parser": "^1.4.3",
     "csurf": "^1.9.0",
@@ -33,18 +33,18 @@
     "express-session": "^1.15.6",
     "helmet": "^3.12.0",
     "hpp": "^0.2.2",
-    "jsonwebtoken": "^7.4.3",
-    "lodash": "^4.17.5",
-    "passport": "^0.3.2",
-    "passport-jwt": "^3.0.1",
-    "winston": "^2.4.1"
+    "jsonwebtoken": "^8.2.1",
+    "lodash": "^4.17.10",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "winston": "^2.4.2"
   },
   "devDependencies": {
     "cpr": "^3.0.1",
-    "cross-env": "^5.1.4",
+    "cross-env": "^5.1.5",
     "jshint": "^2.9.5",
-    "nodemon": "^1.17.3",
-    "pm2": "^2.10.2",
+    "nodemon": "^1.17.4",
+    "pm2": "^2.10.3",
     "rimraf": "^2.6.2"
   }
 }

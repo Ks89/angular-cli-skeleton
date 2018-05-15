@@ -1,3 +1,10 @@
+# Beta 3
+
+## Features
+- upgrade to angular 6 and angular-cli 6
+- update all deps also in /servers applying some fixes to be able to compile again node-express-ts
+
+
 # Beta 2
 
 ## Features

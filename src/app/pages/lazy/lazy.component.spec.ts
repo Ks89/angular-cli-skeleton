@@ -25,7 +25,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -49,7 +49,7 @@ describe('LazyComponent', () => {
   beforeEach(async(() => {
 
     TestBed.configureTestingModule({
-      imports: [NgbModule.forRoot(), SharedModule, CoreModule, HttpClientModule,
+      imports: [NgbModule.forRoot(), SharedModule, CoreModule, HttpClientTestingModule,
         StoreModule.forRoot(mainReducers, {reducerFactory: undefined}), StoreModule.forFeature('pageNum', reducers)],
       declarations: [LazyComponent]
     }).overrideComponent(LazyComponent, {
@@ -90,16 +90,36 @@ describe('LazyComponent', () => {
 
 class FakeExampleService {
   getExample(): Observable<MessageResponse> {
-    return of(<MessageResponse>{});
+    return of(<MessageResponse>{message: 'ok'});
   }
 }
 
 class FakeGithubService {
   getGithubUser(): Observable<GithubUser> {
-    return of(<GithubUser>{});
+    return of(<GithubUser>{
+      login: 'a',
+      id: 1,
+      url: 'b',
+      repos_url: 'c',
+      name: 'd',
+      company: 'e',
+      location: 'f'
+    });
   }
 
   getGithubKs89Organizations(): Observable<GithubOrg> {
-    return of(<GithubOrg>{});
+    return of(<GithubOrg>{
+      login: 'a',
+      id: 1,
+      url: 'a',
+      repos_url: 'a',
+      events_url: 'a',
+      hooks_url: 'a',
+      issues_url: 'a',
+      members_url: 'a',
+      public_members_url: 'a',
+      avatar_url: 'a',
+      description: 'a'
+    });
   }
 }
