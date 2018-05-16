@@ -1,4 +1,4 @@
-# Beta 3
+# Beta 3 (work in progress)
 
 ## Features
 - upgrade to angular 6 and angular-cli 6
