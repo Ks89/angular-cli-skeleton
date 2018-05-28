@@ -10,6 +10,9 @@
 
 <br>
 
+### This project is not dead, I'm simply waiting for IVY render (RENDER 3) + runtime i18n support. When Google will release this (I hope this summer as first public beta), I'll update the repo with many new features. So I suggest to star and watch this project, if you are interested
+
+
 # angular-cli-skeleton
 
 A simple ready to use skeleton project with angular-cli (optionally also angular-universal), Angular 6, Bootstrap 4, ng-bootstrap, ngrx-store and so on.
