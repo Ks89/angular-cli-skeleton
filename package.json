@@ -139,7 +139,7 @@
     "sass-lint": "^1.12.1",
     "ts-node": "^6.0.3",
     "tslint": "^5.9.1",
-    "typedoc": "^0.11.1",
+    "typedoc": "^0.12.0",
     "typescript": "~2.7.2",
     "webdriver-manager": "^12.0.6",
     "webpack-bundle-analyzer": "^2.11.1"
