@@ -10,7 +10,7 @@
 
 <br>
 
-### This project is not dead, I'm simply waiting for IVY render (RENDER 3) + runtime i18n support. When Google will release this (I hope this summer as first public beta), I'll update the repo with many new features. So I suggest to star and watch this project, if you are interested
+### This project is not dead, I'm simply waiting for IVY render (RENDER 3) + runtime i18n support. When Google will release this, I'll update the repo with many new features. So I suggest to star and watch this project, if you are interested. Angular 7 is out, but unfortunately IVY is still not available, so I'll wait again :(
 
 
 # angular-cli-skeleton
