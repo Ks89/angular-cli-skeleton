@@ -112,7 +112,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/jquery": "^3.3.1",
     "@types/node": "^10.0.10",
-    "@types/socket.io": "^1.4.33",
+    "@types/socket.io": "^2.1.0",
     "@types/socket.io-client": "^1.4.32",
     "codelyzer": "^4.2.1",
     "coveralls": "^3.0.0",
