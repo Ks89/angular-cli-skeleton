@@ -1,4 +1,1 @@
-export const ROUTES = [
-  '/',
-  '/lazy'
-];
+export const ROUTES = ['/', '/lazy'];

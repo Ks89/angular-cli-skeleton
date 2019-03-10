@@ -23,22 +23,10 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/theme"
-              ]
+              "includePaths": ["src/theme"]
             },
-            "assets": [
-              "src/favicon.png",
-              "src/assets",
-              "src/browserconfig.xml",
-              "src/manifest.json",
-              "src/robots.txt",
-              "src/404.html",
-              "src/500.html"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.png", "src/assets", "src/browserconfig.xml", "src/manifest.json", "src/robots.txt", "src/404.html", "src/500.html"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -117,31 +105,16 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": [],
-            "assets": [
-              "src/favicon.png",
-              "src/assets",
-              "src/browserconfig.xml",
-              "src/manifest.json",
-              "src/robots.txt",
-              "src/404.html",
-              "src/500.html"
-            ]
+            "assets": ["src/favicon.png", "src/assets", "src/browserconfig.xml", "src/manifest.json", "src/robots.txt", "src/404.html", "src/500.html"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         },
         "server": {
@@ -151,9 +124,7 @@
             "main": "src/main.server.ts",
             "tsConfig": "src/tsconfig.server.json",
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/theme"
-              ]
+              "includePaths": ["src/theme"]
             }
           },
           "configurations": {
@@ -197,9 +168,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

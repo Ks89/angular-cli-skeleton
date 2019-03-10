@@ -39,7 +39,7 @@ const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule);
 
 if (environment.hmr) {
   // @ts-ignore
-  if (module[ 'hot' ]) {
+  if (module['hot']) {
     // @ts-ignore
     hmrBootstrap(module, bootstrap);
   } else {

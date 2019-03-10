@@ -79,4 +79,7 @@ export function logger(reducer: ActionReducer<State>) {
  * By default, @ngrx/store uses combineReducers with the reducer map to compose the root meta-reducer.
  * To add more meta-mainReducers, provide a custom reducer factory.
  */
-export const developmentReducerFactory: ActionReducerFactory<State, Action> = compose(logger, combineReducers);
+export const developmentReducerFactory: ActionReducerFactory<State, Action> = compose(
+  logger,
+  combineReducers
+);

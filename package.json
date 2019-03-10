@@ -65,7 +65,8 @@
     "coveralls": "coveralls < coverage/lcov.info",
     "codeclimate": "codeclimate-test-reporter < coverage/lcov.info",
     "prettier": "prettier --list-different --write \"**/*.*\"",
-    "prettier:nowrite": "prettier --list-different \"**/*.*\""
+    "prettier:nowrite": "prettier --list-different \"**/*.*\"",
+    "postinstall": "ivy-ngcc"
   },
   "pre-commit": [
     "prettier"
