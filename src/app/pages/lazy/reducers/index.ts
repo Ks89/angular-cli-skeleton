@@ -40,6 +40,12 @@ export const reducers = {
 
 export const selectPageNumState = createFeatureSelector<PageNumState>('pageNum');
 
-export const selectPageNumValState = createSelector(selectPageNumState, (state: PageNumState) => state.pageNum);
+export const selectPageNumValState = createSelector(
+  selectPageNumState,
+  (state: PageNumState) => state.pageNum
+);
 
-export const getPageNum = createSelector(selectPageNumValState, fromPageNum.getPageNum);
+export const getPageNum = createSelector(
+  selectPageNumValState,
+  fromPageNum.getPageNum
+);

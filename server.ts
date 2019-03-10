@@ -34,7 +34,6 @@ import * as compression from 'compression';
 import { join } from 'path';
 import { readFileSync } from 'fs';
 
-
 const domino = require('domino');
 
 // Faster server renders w/ Prod mode (dev mode never needed)
@@ -57,9 +56,8 @@ global['document'] = win.document;
 global['CSS'] = null;
 
 // WORKAROUND until SSR will support all third-party libraries
-global['Mousetrap'] = function () {
-  this.reset = function () {
-  };
+global['Mousetrap'] = function() {
+  this.reset = function() {};
 };
 
 const PORT = process.env.PORT || 3000;
@@ -79,9 +77,7 @@ app.engine('html', (_, options, callback) => {
     document: template,
     url: options.req.url,
     // DI so that we can get lazy-loading to work differently (since we need it to just instantly render it)
-    extraProviders: [
-      provideModuleMap(LAZY_MODULE_MAP)
-    ]
+    extraProviders: [provideModuleMap(LAZY_MODULE_MAP)]
   }).then(html => {
     callback(null, html);
   });
@@ -93,7 +89,7 @@ app.set('views', DIST_FOLDER);
 app.get('*.*', express.static(DIST_FOLDER));
 app.get('*', (req, res) => {
   global['navigator'] = req['headers']['user-agent'];
-  res.render('index', {req});
+  res.render('index', { req });
 });
 
 app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));

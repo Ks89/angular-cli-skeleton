@@ -56,9 +56,8 @@ Object.defineProperty(win.document.body.style, 'transform', {
 global['document'] = win.document;
 global['CSS'] = null;
 // WORKAROUND until SSR will support all third-party libraries
-global['Mousetrap'] = function () {
-  this.reset = function () {
-  };
+global['Mousetrap'] = function() {
+  this.reset = function() {};
 };
 
 const BROWSER_FOLDER = join(process.cwd(), 'angular-cli-skeletons');
@@ -81,12 +80,12 @@ ROUTES.forEach(route => {
 
   // Writes rendered HTML to index.html, replacing the file if it already exists.
   previousRender = previousRender
-    .then(_ => renderModuleFactory(AppServerModuleNgFactory, {
-      document: index,
-      url: route,
-      extraProviders: [
-        provideModuleMap(LAZY_MODULE_MAP)
-      ]
-    }))
+    .then(_ =>
+      renderModuleFactory(AppServerModuleNgFactory, {
+        document: index,
+        url: route,
+        extraProviders: [provideModuleMap(LAZY_MODULE_MAP)]
+      })
+    )
     .then(html => writeFileSync(join(fullPath, 'index.html'), html));
 });
