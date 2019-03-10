@@ -22,11 +22,35 @@
  * SOFTWARE.
  */
 
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+
+import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+
+declare let ga: Function;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {}
+export class AppComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+
+    this.subscription = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      ga('set', 'page', event.urlAfterRedirects);
+      ga('send', 'pageview');
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+}

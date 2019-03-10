@@ -27,8 +27,7 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable, of } from 'rxjs/';
 
 import { LazyComponent } from './lazy.component';
 import { SharedModule } from '../../shared/shared.module';

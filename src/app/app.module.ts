@@ -4,18 +4,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { RouterModule } from '@angular/router';
 
+import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { mainReducers } from './reducers';
 
-// ************************ font-awesome 5 ************************
-import { faExternalLinkAlt, faPlus, faTimes, faDownload } from '@fortawesome/fontawesome-free-solid';
-import * as fontawesome from '@fortawesome/fontawesome';
-fontawesome.library.add(faExternalLinkAlt, faPlus, faTimes, faDownload);
-// ****************************************************************
+// ************************ optional font-awesome 5 ************************
+// to install use both `npm i --save @fortawesome/fontawesome-svg-core` and `npm i --save @fortawesome/free-solid-svg-icons`
+import { library, dom } from '@fortawesome/fontawesome-svg-core';
+import { faExternalLinkAlt, faPlus, faTimes, faDownload } from '@fortawesome/free-solid-svg-icons';
+library.add(faExternalLinkAlt, faPlus, faTimes, faDownload);
+dom.watch(); // Kicks off the process of finding <i> tags and replacing with <svg>
+// *************************************************************************
 
 import { environment } from '../environments/environment';
 
@@ -24,7 +28,6 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { COMPONENTS } from './pages/components';
 import { AppComponent } from './app.component';
-import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent, COMPONENTS],
@@ -39,6 +42,7 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     AppRoutingModule,
 
+    NgbModule.forRoot(), // forRoot ensures the providers are only created once
     ToastrModule.forRoot(), // ToastrModule added
 
     // if you enabled service workers inside .angular-cli.json,
@@ -51,11 +55,7 @@ import { ToastrModule } from 'ngx-toastr';
     // 5. you should able to navigate the app and in chrome dev tools (network tab), all
     //    requests should come from service workers (not cache and not network)
     // I suggest also to check application tab -> Service Workers to see if is running or not
-    ServiceWorkerModule.register('/ngsw-worker.js', {
-      enabled: environment.production
-    }),
-
-    NgbModule.forRoot(), // forRoot ensures the providers are only created once
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
 
     /**
      * StoreModule.forRoot is imported once in the root module, accepting a reducer
@@ -83,7 +83,8 @@ import { ToastrModule } from 'ngx-toastr';
     ...(environment.showDevModule ? [StoreDevtoolsModule.instrument()] : []),
 
     CoreModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

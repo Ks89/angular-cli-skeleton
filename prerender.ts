@@ -22,27 +22,27 @@
  * SOFTWARE.
  */
 
-// These are important and needed before anything else
+// Load zone.js for the server.
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
 
 import { renderModuleFactory } from '@angular/platform-server';
 import { enableProdMode } from '@angular/core';
 
-import * as express from 'express';
-import * as compression from 'compression';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { readFileSync } from 'fs';
 
+// Import module map for lazy loading
+import { ROUTES } from './static.paths';
 
 const domino = require('domino');
 
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
 
-// Our index.html we'll use as our template
-const template = readFileSync(join(process.cwd(), 'dist', 'angular-cli-skeleton', 'index.html')).toString();
-const win = domino.createWindow(template);
+// Load the index.html file containing referances to your application bundle.
+const index = readFileSync(join('angular-cli-skeleton', 'index.html'), 'utf8');
+const win = domino.createWindow(index);
 
 global['window'] = win;
 Object.defineProperty(win.document.body.style, 'transform', {
@@ -55,45 +55,38 @@ Object.defineProperty(win.document.body.style, 'transform', {
 });
 global['document'] = win.document;
 global['CSS'] = null;
-
 // WORKAROUND until SSR will support all third-party libraries
 global['Mousetrap'] = function () {
   this.reset = function () {
   };
 };
 
-const PORT = process.env.PORT || 3000;
-const DIST_FOLDER = join(process.cwd(), 'dist', 'angular-cli-skeleton');
+const BROWSER_FOLDER = join(process.cwd(), 'angular-cli-skeletons');
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/angular-cli-skeleton-server/main');
 
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
-const app = express();
-app.use(compression());
+let previousRender = Promise.resolve();
 
-app.engine('html', (_, options, callback) => {
-  renderModuleFactory(AppServerModuleNgFactory, {
-    // Our index.html
-    document: template,
-    url: options.req.url,
-    // DI so that we can get lazy-loading to work differently (since we need it to just instantly render it)
-    extraProviders: [
-      provideModuleMap(LAZY_MODULE_MAP)
-    ]
-  }).then(html => {
-    callback(null, html);
-  });
+// Iterate each route path
+ROUTES.forEach(route => {
+  const fullPath = join(BROWSER_FOLDER, route);
+
+  // Make sure the directory structure is there
+  if (!existsSync(fullPath)) {
+    mkdirSync(fullPath);
+  }
+
+  // Writes rendered HTML to index.html, replacing the file if it already exists.
+  previousRender = previousRender
+    .then(_ => renderModuleFactory(AppServerModuleNgFactory, {
+      document: index,
+      url: route,
+      extraProviders: [
+        provideModuleMap(LAZY_MODULE_MAP)
+      ]
+    }))
+    .then(html => writeFileSync(join(fullPath, 'index.html'), html));
 });
-
-app.set('view engine', 'html');
-app.set('views', DIST_FOLDER);
-
-app.get('*.*', express.static(DIST_FOLDER));
-app.get('*', (req, res) => {
-  global['navigator'] = req['headers']['user-agent'];
-  res.render('index', {req});
-});
-
-app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));

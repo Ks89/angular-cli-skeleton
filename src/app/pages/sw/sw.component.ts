@@ -24,7 +24,7 @@
 
 import { Component, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { PageHeader } from '../../shared/components/components';
 import { GithubService, GithubUser } from '../../core/services/github.service';
