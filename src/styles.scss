@@ -22,47 +22,44 @@
 
 
 // You can add global styles to this file, and also import other style files
+@import "theme";
 @import "variables";
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 @import "../node_modules/ngx-toastr/toastr";
 
+html {
+  // taken from https://gist.github.com/hsleonis/55712b0eafc9b25f1944
+  // to improve font rendering
+  // Adjust font size
+  font-size: 100%;
+  // Font variant
+  font-variant-ligatures: none;
+  -webkit-font-variant-ligatures: none;
+  // Smoothing
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+}
+
 body {
-  font-family: $roboto-regular;
-}
-
-b {
-  font-family: $roboto-bold;
-}
-
-strong {
-  font-family: $roboto-bold;
-}
-
-i {
-  font-family: $roboto-italic;
-}
-
-small {
-  font-family: $roboto-thin;
+  font-family: 'Montserrat', sans-serif;
 }
 
 h1 {
   color: #333;
-  font-family: $roboto-bold;
 }
 
 h2 {
   color: #333;
-  font-family: $roboto-regular;
 }
 
 h3 {
   color: #333;
-  font-family: $roboto-light;
 }
 
 h4 {
   color: #333;
-  font-family: $roboto-thin;
 }

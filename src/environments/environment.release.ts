@@ -22,13 +22,8 @@
  * SOFTWARE.
  */
 
-const config = require('./protractor.conf').config;
-
-config.capabilities = {
-  browserName: 'chrome',
-  chromeOptions: {
-    args: ['--no-sandbox']
-  }
+export const environment = {
+  production: true,
+  showDevModule: false,
+  hmr: false
 };
-
-exports.config = config;

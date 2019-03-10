@@ -22,43 +22,6 @@
 
 $icon-font-path: "../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
 
-// Roboto fonts from assets folder
-@font-face {
-  font-family: Roboto-Bold;
-  src: url("/assets/fonts/Roboto-Bold.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: Roboto-Italic;
-  src: url("/assets/fonts/Roboto-Italic.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: Roboto-Light;
-  src: url("/assets/fonts/Roboto-Light.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: Roboto-Regular;
-  src: url("/assets/fonts/Roboto-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: Roboto-Thin;
-  src: url("/assets/fonts/Roboto-Thin.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-$roboto-bold: "Roboto-Bold", serif;
-$roboto-italic: "Roboto-Italic", serif;
-$roboto-light: "Roboto-Light", serif;
-$roboto-regular: "Roboto-Regular", serif;
-$roboto-thin: "Roboto-Thin", serif;
-
 // Start with assigning color names to specific hex values.
 $white:  #fff !default;
 $black:  #000 !default;

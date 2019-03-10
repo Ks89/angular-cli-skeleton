@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 
+import 'zone.js/dist/zone';
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
@@ -37,7 +38,9 @@ if (environment.production) {
 const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule);
 
 if (environment.hmr) {
-  if (module['hot']) {
+  // @ts-ignore
+  if (module[ 'hot' ]) {
+    // @ts-ignore
     hmrBootstrap(module, bootstrap);
   } else {
     console.error('HMR is not enabled for webpack-dev-server!');

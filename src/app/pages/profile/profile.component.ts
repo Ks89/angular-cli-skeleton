@@ -26,9 +26,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { of } from 'rxjs/observable/of';
+import { Observable, Subscription, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 import { ToastrService } from 'ngx-toastr';

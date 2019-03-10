@@ -1,4 +1,8 @@
-# Beta 3 (work in progress)
+# 1.0.0
+ first stable release
+ 
+ 
+# Beta 3 (work in progress, but never released)
 
 ## Features
 - upgrade to angular 6 and angular-cli 6

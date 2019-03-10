@@ -22,29 +22,17 @@
  * SOFTWARE.
  */
 
-// Protractor configuration file, see link for more information
-// https://github.com/angular/protractor/blob/master/lib/config.ts
+// search all occurrences in all code, also html, because it's everywhere
+$color-primary: #101010;
+$color-secondary: #9e9e9e;
+$color-white: #FFF;
+$color-black: #000;
+$color-light-black: #343A40;
+$color-code: #c100e0;
+$color-url: #0060b7;
 
-const { SpecReporter } = require('jasmine-spec-reporter');
-
-exports.config = {
-  allScriptsTimeout: 11000,
-  specs: ['./e2e/**/*.e2e-spec.ts'],
-  capabilities: {
-    browserName: 'chrome'
-  },
-  directConnect: true,
-  baseUrl: 'http://localhost:4200/',
-  framework: 'jasmine',
-  jasmineNodeOpts: {
-    showColors: true,
-    defaultTimeoutInterval: 30000,
-    print: function() {}
-  },
-  onPrepare() {
-    require('ts-node').register({
-      project: 'e2e/tsconfig.e2e.json'
-    });
-    jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
-  }
-};
+//$font-huge: 24px;
+$font-big: 18px;
+$font-middle: 14px;
+$font-small: 12px;
+$font-very-small: 10px;

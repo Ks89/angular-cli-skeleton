@@ -23,8 +23,7 @@
  */
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable, Subscription } from 'rxjs';
 
 import { PageHeader } from '../../shared/components/components';
 import { ExampleService } from '../../core/services/example.service';

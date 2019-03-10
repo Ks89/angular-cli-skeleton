@@ -3,7 +3,7 @@
 files:
   include: 'sass/**/*.s+(a|c)ss'
   ignore:
-    - 'angular-modal-gallery/**/*.*'
+    - 'angular-cli-skeleton/**/*.*'
     - 'coverage/**/*.*'
     - 'dist/**/*.*'
 
