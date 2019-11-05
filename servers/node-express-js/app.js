@@ -15,7 +15,7 @@ const logger = require('./src/logger');
 logger.warn(`Starting with NODE_ENV=${config.NODE_ENV}`);
 logger.warn(`config.CI is ${config.CI} and isCI is ${config.isCI()}`);
 
-const _ = require('lodash');
+const { findIndex } = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
@@ -30,6 +30,17 @@ const db = require('./src/db');
 // ----------------------------security packages-----------------------------
 // --------------------------------------------------------------------------
 // All security features are prefixed with `--SEC--`
+// --SEC-- - github hengkiardo/express-enforces-ssl
+// Enforces HTTPS connections on any incoming requests.
+// In case of a non-encrypted HTTP request, express-enforces-ssl automatically
+// redirects to an HTTPS address using a 301 permanent redirect.
+// const expressEnforcesSsl = require('express-enforces-ssl');
+// --SEC--- Brute Force Protection
+// Brute forcing is the systematically enumerating of all possible candidates a solution and checking
+// whether each candidate satisfies the problem's statement. In web applications a login endpoint
+// can be the perfect candidate for this.
+const RateLimit = require('express-rate-limit');
+const SlowDown = require('express-slow-down');
 // --SEC-- - github helmetjs/expect-ct [NOT helmet]
 //    The Expect-CT HTTP header tells browsers to expect Certificate Transparency
 const expectCt = require('expect-ct');
@@ -67,7 +78,7 @@ passport.use(
         return done(null, false);
       }
 
-      const user = db.db[_.findIndex(db.db, o => o && o.credential && o.credential.id === jwtPayload.id)];
+      const user = db.db[findIndex(db.db, o => o && o.credential && o.credential.id === jwtPayload.id)];
       const isValidUsername = jwtPayload.id === user.credential.id;
 
       if (user && isValidUsername && db.getTokens().length <= 1) {
@@ -95,30 +106,56 @@ const helmet = require('helmet');
 
 const app = express();
 
+// redirect all HTTP requests to HTTPS
+// if (config.isProd()) {
+//   app.use((req, res, next) => {
+//     if (!req.secure) {
+//       return res.redirect(`https://${req.get('host')}${req.url}`);
+//     }
+//     next();
+//   });
+// }
+
+// if (config.isProd()) {
+//   logger.verbose('Initializing express-enforce-ssl');
+//   // --SEC-- - github hengkiardo/express-enforces-ssl
+//   // enforces HTTPS connections on any incoming requests.
+//   app.enable('trust proxy');
+//   app.use(expressEnforcesSsl());
+// }
+
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 // --------------------------------------------------------------------------
 logger.warn('Initializing helmet');
-// --SEC-- - [helmet] enable helmet
-// this automatically add 9 of 11 security features
-/*
- -dnsPrefetchControl controls browser DNS prefetching
- -frameguard to prevent clickjacking
- -hidePoweredBy to remove the X-Powered-By header
- -hpkp for HTTP Public Key Pinning
- -hsts for HTTP Strict Transport Security
- -ieNoOpen sets X-Download-Options for IE8+
- -noSniff to keep clients from sniffing the MIME type
- -xssFilter adds some small XSS protections
- */
-// The other features NOT included by default are:
-/*
- -contentSecurityPolicy for setting Content Security Policy
- -noCache to disable client-side caching => I don't want this for better performances
- -referrerPolicy to hide the Referer header
- */
+
+// --SEC-- - add Feature-Policy header
+// taken from https://github.com/helmetjs/helmet/issues/173
+app.use(
+  helmet.featurePolicy({
+    features: {
+      geolocation: [`'none'`],
+      midi: [`'none'`],
+      camera: [`'none'`],
+      // usb: [`'none'`], // STILL NOT SUPPERTED BY HELMET
+      magnetometer: [`'none'`],
+      fullscreen: [`'self'`],
+      // animations: [`'self'`], // STILL NOT SUPPERTED BY HELMET
+      payment: [`'none'`],
+      // 'picture-in-picture': [`'none'`], // STILL NOT SUPPERTED BY HELMET
+      // accelerometer: [`'none'`], // STILL NOT SUPPERTED BY HELMET
+      // vr: [`'none'`],
+      syncXhr: [`'none'`]
+    }
+  })
+);
+
 app.use(helmet());
+
+// --SEC-- - crossdomain: X-Permitted-Cross-Domain-Policies
+// prevents Adobe Flash and Adobe Acrobat from loading content on your site.
+app.use(helmet.permittedCrossDomainPolicies());
 
 // --SEC-- - hidePoweredBy: X-Powered-By forced to a fake value to
 // hide the default 'express' value [helmet]
@@ -154,12 +191,12 @@ app.use(
       childSrc: [`'none'`],
       //restricts the URLs which can be loaded using script interfaces. The APIs that are restricted are:
       // <a> ping, Fetch, XMLHttpRequest, WebSocket, EventSource
-      connectSrc: [`'self'`, 'api.github.com'],
+      connectSrc: [`'self'`, 'api.github.com', `https://*.google.com/`, `https://*.googleusercontent.com/`, `https://*.gstatic.com/`],
       // serves as a fallback for the other CSP fetch directives. For more info check:
       // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/default-src
       defaultSrc: [`'self'`],
       // valid sources for fonts loaded using @font-face
-      fontSrc: [`'self'`],
+      fontSrc: [`'self'`, `https://*.gstatic.com/`],
       // restricts the URLs which can be used as the target of a form submissions from a given context
       formAction: [`'self'`],
       // specifies valid parents that may embed a page using <frame>, <iframe>, <object>, <embed>, or <applet>
@@ -169,7 +206,7 @@ app.use(
       // specifies valid sources of images and favicons
       imgSrc: [`'self'`, 'data:'],
       // specifies which manifest can be applied to the resource.
-      manifestSrc: [`'none'`],
+      manifestSrc: [`'self'`],
       // specifies valid sources for loading media using the <audio> and <video> elements
       mediaSrc: [`'none'`],
       // specifies valid sources for the <object>, <embed>, and <applet> elements
@@ -187,7 +224,7 @@ app.use(
       // enables a sandbox for the reqed resource similar to the <iframe> sandbox attribute.
       // It applies restrictions to a page's actions including preventing popups, preventing the execution
       // of plugins and scripts, and enforcing a same-origin policy.
-      sandbox: ['allow-forms', 'allow-scripts', 'allow-same-origin'],
+      sandbox: ['allow-forms', 'allow-scripts', 'allow-same-origin', 'allow-popups'],
       // specifies valid sources for JavaScript. This includes not only URLs loaded directly into <script>
       scriptSrc: [`'self'`],
       // specifies valid sources for sources for stylesheets.
@@ -201,7 +238,7 @@ app.use(
     },
     // This module will detect common mistakes in your directives and throw errors
     // if it finds any. To disable this, enable "loose mode".
-    loose: true,
+    loose: false,
     // Set to true if you only want browsers to report errors, not block them
     reportOnly: false,
     // Set to true if you want to blindly set all headers: Content-Security-Policy,
@@ -265,57 +302,65 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-logger.warn('Initializing REST apis and CSRF');
+// Initialize bodyParser BEFORE CSRF!!!!!
+logger.verbose('Initializing bodyParser');
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
+app.use(cookieParser(config.COOKIE_SECRET));
+
+// CSRF must be added AFTER bodyParser and cookieParser, but BEFORE all APIS to protect
+// logger.verbose('Initializing CSRF protection');
+// app.use(
+//   csrf({
+//     cookie: {
+//       // http://expressjs.com/en/4x/api.html#req.cookies
+//       key: '_csrf',
+//       path: '/',
+//       httpOnly: true,
+//       secure: false, // if you enable https you should set this to true
+//       signed: false, // investigate if csurf support signed cookies (probably not)
+//       sameSite: 'strict', // https://www.owaspsafar.org/index.php/SameSite
+//       maxAge: config.SESSION_TIMEOUT_MS
+//     }
+//   })
+// );
+// app.use((req, res, next) => {
+//   const csrfTokenToSendToFrontEnd = req.csrfToken();
+//   res.cookie('XSRF-TOKEN', csrfTokenToSendToFrontEnd);
+//   return next();
+// });
+
+logger.warn('Initializing REST apis');
 
 // APIs for all route protected with CSRF
 const APIS = require('./src/routes/apis');
 const routesApi = require('./src/routes/index')(express, passport);
 app.use(APIS.BASE_API_PATH, routesApi);
 
-// we need this because 'cookie' is true in csrf
-app.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-);
-app.use(cookieParser());
-app.use(
-  csrf({
-    cookie: true,
-    // value: (req) => {
-    //   return req.headers['x-xsrf-token'];
-    // },
-    key: 'X-XSRF-TOKEN', // must match the name defined in HttpClientModule on client side
-    path: '/'
-  })
-);
-
-app.use((req, res, next) => {
-  res.cookie('_csrf', req.csrfToken());
-  next();
-});
-
-app.get('/*', function(req, res) {
+app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, config.FRONT_END_PATH, 'index.html'));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  if (err.code !== 'EBADCSRFTOKEN') {
-    return next(err);
-  }
-
-  // handle CSRF token errors here
-  res.status(403);
-  res.send('form tampered with');
-});
+// app.use((err, req, res, next) => {
+//   if (err.code !== 'EBADCSRFTOKEN') {
+//     return next(err);
+//   }
+//   // handle CSRF token errors here
+//   res.status(403).json({
+//     message: 'form tampered with'
+//   });
+// });
 
 // catch 404 and forward to error handler
 // taken from https://github.com/expressjs/express/blob/master/examples/error-pages/index.js
 app.use((req, res) => {
   res.status(404).json({
-    message: 'Not found',
-    error: {}
+    message: 'Not found'
   });
 });
 
@@ -335,8 +380,7 @@ if (!config.isProd()) {
 // no stacktraces leaked to user
 app.use((err, req, res) => {
   res.status(err.status || 500).json({
-    message: err.message, // if you want to hide this, use a text like 'Unknown error'
-    error: {}
+    message: 'Unknown server error'
   });
 });
 
