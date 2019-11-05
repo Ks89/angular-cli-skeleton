@@ -1,10 +1,10 @@
 {
   "name": "angular-cli-skeleton",
-  "short_name": "Ks89",
-  "start_url": "/",
-  "display": "standalone",
+  "short_name": "ks89",
+  "theme_color": "#000000",
   "background_color": "#fff",
-  "description": "github.com/Ks89",
+  "display": "standalone",
+  "start_url": "index.html",
   "icons": [
     {
       "src": "/assets/favicon.png",

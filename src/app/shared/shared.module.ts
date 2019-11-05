@@ -35,11 +35,7 @@ import { SHARED_COMPONENTS } from './components/components';
  * It contains navbar, page-header and so on.
  */
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    NgbModule
-  ],
+  imports: [CommonModule, RouterModule, NgbModule],
   exports: [SHARED_COMPONENTS],
   declarations: [SHARED_COMPONENTS],
   providers: []
