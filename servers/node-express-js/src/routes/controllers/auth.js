@@ -1,7 +1,7 @@
 'use strict';
 
 const jwt = require('jsonwebtoken');
-const _ = require('lodash');
+const { findIndex } = require('lodash');
 
 const logger = require('../../logger');
 const config = require('../../config');
@@ -61,7 +61,7 @@ module.exports.login = (req, res) => {
   const password = req.body.password;
 
   // usually this would be a database call:
-  let user = db.db[_.findIndex(db.db, o => o && o.credential && o.credential.username === username && o.credential.password === password)];
+  let user = db.db[findIndex(db.db, o => o && o.credential && o.credential.username === username && o.credential.password === password)];
 
   if (!user || !user.credential) {
     logger.error('REST auth login - cannot get credential object from db');

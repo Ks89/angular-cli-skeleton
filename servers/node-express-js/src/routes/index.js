@@ -1,7 +1,7 @@
 'use strict';
 
-let RateLimit = require('express-rate-limit');
-let bodyParser = require('body-parser');
+const RateLimit = require('express-rate-limit');
+const SlowDown = require('express-slow-down');
 
 const logger = require('../logger');
 const config = require('../config');
@@ -24,10 +24,18 @@ logger.warn('[SECURITY] Initializing ratelimit');
 const apiLimiter = new RateLimit({
   windowMs: config.RATELIMITER_WINDOW_MS, // window in ms to check
   max: config.RATELIMITER_MAX, // limit each IP to `max` requests per windowMs
-  delayAfter: config.RATELIMITER_DELAY_AFTER, // begin slowing down responses after `delayAfter` requests
-  delayMs: config.RATELIMITER_DELAY_MS, // slow down subsequent responses by `delayMs` seconds per request
   message: config.RATELIMITER_MESSAGE // message to show with a HTTP 429 status
 });
+const apiSlowDown = new SlowDown({
+  windowMs: config.RATELIMITER_WINDOW_MS, // window in ms to check
+  delayAfter: config.RATELIMITER_DELAY_AFTER, // begin slowing down responses after `delayAfter` requests
+  delayMs: config.RATELIMITER_DELAY_MS // slow down subsequent responses by `delayMs` seconds per request
+});
+
+if (config.isTest()) {
+  apiLimiter = (req, res, next) => next();
+  apiSlowDown = (req, res, next) => next();
+}
 
 module.exports = function(express, passport) {
   const router = express.Router();
@@ -36,15 +44,16 @@ module.exports = function(express, passport) {
   //----------------------------------------public-------------------------------------------
   //-----------------------------------------------------------------------------------------
   // auth login
-  router.post(APIS.POST_LOGIN, [bodyParser.json(), apiLimiter, ctrlAuth.login]);
+  router.post(APIS.POST_LOGIN, [apiLimiter, apiSlowDown, ctrlAuth.login]);
   // keep alive
-  router.get(APIS.GET_KEEP_ALIVE, [apiLimiter, ctrlKeepAlive.keepAlive]);
+  router.get(APIS.GET_KEEP_ALIVE, [apiLimiter, apiSlowDown, ctrlKeepAlive.keepAlive]);
   //-----------------------------------------------------------------------------------------
   //------------------------------------authenticated----------------------------------------
   //-----------------------------------------------------------------------------------------
   // secret
   router.get(APIS.GET_SECRET, [
     apiLimiter,
+    apiSlowDown,
     passport.authenticate('jwt', {
       session: true
     }),
@@ -53,6 +62,7 @@ module.exports = function(express, passport) {
   // auth logout
   router.get(APIS.GET_LOGOUT, [
     apiLimiter,
+    apiSlowDown,
     passport.authenticate('jwt', {
       session: true
     }),

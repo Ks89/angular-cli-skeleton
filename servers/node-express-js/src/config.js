@@ -12,17 +12,19 @@ module.exports = {
   // this method isn't used for integration testing on server-side
   isForE2eTest: () => process.env.NODE_ENV === 'e2e',
 
-  FRONT_END_PATH: process.env.FRONT_END_PATH || '../../dist/browser',
+  FRONT_END_PATH: process.env.FRONT_END_PATH || '../../dist/angular-cli-skeleton',
 
   NODE_ENV: process.env.NODE_ENV || 'development',
   CI: process.env.CI || 'yes',
   PORT: process.env.PORT || process.env.NODE_ENV === 'production' ? 80 : 3000,
 
-  LOG_PATH: process.env.LOG_PATH || process.env.NODE_ENV === 'production' ? 'nodeserver.log' : 'nodeserver.log',
+  LOG_FOLDER: process.env.LOG_FOLDER || 'logs',
 
   // Jwt config for apis server <-> client
   JWT_SECRET: process.env.JWT_SECRET || 'secret key bla bla',
   SESSION_TIMEOUT_MS: process.env.SESSION_TIMEOUT_MS || 3600000, // by default valid for 8 hours
+
+  COOKIE_SECRET: process.env.COOKIE_SECRET, // secret password for cookies
 
   // re-assign all process.env variables to be used in this app and defined with dotenv to constants
   // In this way I can see all variables defined with donenv and used in this app
