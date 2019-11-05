@@ -1,12 +1,19 @@
 Complete file structure:
 
+
+TODO still requires an update
+
+
 ```
 angular-cli-skeleton/
  ├─.circleci/                     * circle ci 2 config folder (is a CI service free for open source projects)
  ├─e2e/                           * end-to-end tests with Protractor
- │ ├─app.e2e-spec.ts              * e2e test for the main page
- │ ├─app.po.ts                    * e2e page oject for home page
- │ └─tsconfig.e2e.ts              * config file for typescript when running e2e tests
+ │ ├─src                          * end-to-end test files
+ │ │ ├─app.e2e-spec.ts              * e2e test for the main page
+ │ │ └─app.po.ts                    * e2e page oject for home page
+ │ ├─protractor.config.js         * protractor config file for e2e testing
+ │ ├─protractor-ci.config.js      * protractor config file for e2e testing in Continous Integration
+ │ └─tsconfig.ts                  * config file for typescript when running e2e tests
  │
  ├─servers/                       * server-side implementations to manage authentication
  │ ├─node-express-js              * NodeJS with ExpressJS Javascript implementation
@@ -71,12 +78,6 @@ angular-cli-skeleton/
  │ │ ├─app.server.module.ts       * root module of the application (server-side)
  │ │ └─app-routing.module.ts      * routes module of the app SPA
  │ │
- │ ├─styles/                      * root styles (CSS/SCSS) for the entire application (all SPAs)
- │ │ ├─headings.css               * css file (to show that you can use both css and scss)
- │ │ ├─loading.scss               * SCSS loading spinner
- │ │ ├─styles.scss                * main SCSS that imports all other SCSS in this directory (loading ad variables)
- │ │ └─variables.scss             * SCSS variables
- │ │
  │ ├─assets/                      * images, icons and other stuff
  │ │
  │ ├─environments/                * folder loaded by angular cli depending on dev, prod...
@@ -90,14 +91,11 @@ angular-cli-skeleton/
  │ ├─index.html                   * index file of this application
  │ ├─main.server.ts               * main file to boot this applcation on server-side with angular-universal
  │ ├─main.ts                      * main file to boot this applcation on browser-side (client)
- │ ├─manifest.json                * web manifest
+ │ ├─manifest.webmanifest         * web manifest
  │ ├─ngsw-config.json             * config file for service workers
  │ ├─polyfills.ts                 * polyfills used by Angular to support older browsers
  │ ├─styles.scss                  * main scss file to define global styles
  │ ├─test.ts                      * test config file to load .spec.ts files
- │ ├─tsconfig.app.json            * typescript's config file for the application (browser-side)
- │ ├─tsconfig.server.json         * typescript's config file for the application (server-side)
- │ ├─tsconfig.spec.json           * typescript's config file for unit testing
  │ └─typings.d.ts                 * typescript's custom types
  │
  ├─travisci/                      * scripts for travis ci (is a CI service free for open source projects)
@@ -116,12 +114,13 @@ angular-cli-skeleton/
  ├─Jenkinsfile-local-macOS        * jenkins 2 config file with a pipeline's script for macOS (locally)
  ├─package.json                   * npm packages.json
  ├─package-lock.json              * lock file for npm >= 5
- ├─protractor.config.js           * protractor config file for e2e testing
- ├─protractor-ci.config.js        * protractor config file for e2e testing in Continous Integration
  ├─proxy.conf.json                * proxy configuration for angular-cli when using 'npm start'
  ├─server.ts                      * NodeJs server to enable Server Side Rendering
  ├─sonar-project.properties       * config file for SonarQube
- ├─tsconfig.json                  * typescript's config file
+ ├─tsconfig.app.json              * typescript's config file for the application (browser-side)
+ ├─tsconfig.json                  * generasl typescript's config file
+ ├─tsconfig.server.json           * typescript's config file for the application (server-side)
+ ├─tsconfig.spec.json             * typescript's config file for unit testing
  ├─tslit.json                     * TSLint config file
  └─webpack.server.conf.js         * webpack config file to build server-side (angular-universal)
 ```

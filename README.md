@@ -12,28 +12,29 @@
 
 # angular-cli-skeleton
 
-A simple ready to use skeleton project with angular-cli (optionally also angular-universal), Angular 6, Bootstrap 4, ng-bootstrap, ngrx-store and so on.
+A simple ready to use skeleton project with angular-cli (optionally also angular-universal), Angular 9, Bootstrap 4, ng-bootstrap, ngrx-store and so on.
 
 This project my previous older skeleton project called [angular-webpack-skeleton](https://github.com/Ks89/angular-webpack-skeleton).
 
 If you like it, please add a star. It will be really apprecieted.
 
 ## Features
-- Typescript >= 2.7
-- Angular 6
+- Typescript >= 3.6
+- Angular 9
+    - [IVY](https://blog.angularindepth.com/all-you-need-to-know-about-ivy-the-new-angular-engine-9cde471f42cf) enabled by default for Angular >= 9
     - [Ahead of Time (AOT)](https://angular.io/guide/aot-compiler) enabled by default for Angular >= 5
     - [Lazy loading](https://angular.io/guide/ngmodule#lazy-loading-modules-with-the-router)
     - The new [HttpClient](https://angular.io/guide/http#httpclient) of Angular >= 4.3
-    - [RxJS 6](https://github.com/ReactiveX/rxjs/blob/master/doc/lettable-operators.md) with lettable operators and `rxjs-compat` for legacy libraries
+    - [RxJS 6](https://github.com/ReactiveX/rxjs/blob/master/doc/lettable-operators.md) with lettable operators
 - [Bootstrap 4](http://getbootstrap.com/) with a custom theme (check `./src/_variables.scss`), [ng-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap)
 - [FontAwesome 5](https://fontawesome.com/)
 - [jQuery](https://jquery.com/)
-- [Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/) support to add it as a standalone app on mobile devices (see `manifest.json`)
+- [Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/) support to add it as a standalone app on mobile devices (see `manifest.webmanifest`)
 - [Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers/) to create an offline application (see `./src/ngsw-config.json`)
 - *[socket.io](https://github.com/socketio/socket.io) (still work in progress and TEMPORARY DISABLED. Check [this issue](https://github.com/Ks89/angular-cli-skeleton/issues/1)*
 - Reactive storage based on Redux
-    - [@ngrx/store](https://github.com/ngrx/store) >= 4
-    - [@ngrx/store-devtools](https://github.com/ngrx/store-devtools) >= 4
+    - [@ngrx/store](https://github.com/ngrx/store) >= 8
+    - [@ngrx/store-devtools](https://github.com/ngrx/store-devtools) >= 8
 - angular-cli
     - different profiles: 'development', 'development with HMR', 'production', 'production with SSR'
     - [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/)
@@ -47,7 +48,7 @@ If you like it, please add a star. It will be really apprecieted.
 - Testing
     - Unit testing with [Karma](https://karma-runner.github.io) and [Jasmine](https://jasmine.github.io/)
       - Custom advanced configuration to specify different browsers on CIs (check 'getBrowsers()' in `./karma.conf.js`)
-      - Multiple launcher for browsers (Chrome, Firefox, IE, Edge, Safari). See `karma.conf.js`
+      - Multiple launcher for browsers (Chrome and ChromeHeadless). See `karma.conf.js`
       - [Chrome Headless](https://developers.google.com/web/updates/2017/04/headless-chrome) support to run unit tests (better than [PhantomJS](http://phantomjs.org/))
       - Multiple coverage reporters: `json`, `html`, `lcovonly`, `mocha`, SonarQube and also in your console 
     - End to end (E2E) testing with [Protractor](http://www.protractortest.org) and [WebDriver JS](https://github.com/SeleniumHQ/selenium/wiki/WebDriverJs)
@@ -56,7 +57,7 @@ If you like it, please add a star. It will be really apprecieted.
     - [TSLint](https://github.com/palantir/tslint)
     - [Codelyzer](https://github.com/mgechev/codelyzer)
     - [Sass-lint](https://github.com/sasstools/sass-lint)
-    - [Prettier](https://prettier.io/) triggered by [pre-commit](https://github.com/observing/pre-commit) hook 
+    - [Prettier](https://prettier.io/) triggered by [husky](https://github.com/typicode/husky) and [pretty-quick](https://github.com/azz/pretty-quick)
 - Documentation
     - [TypeDoc](https://github.com/TypeStrong/typedoc)
     - [Compodoc](https://github.com/compodoc/compodoc) also with both 'watch mode' and 'watch + serve modes'
@@ -76,7 +77,7 @@ If you like it, please add a star. It will be really apprecieted.
 - and many more...
 
 ## News
-- *??/??/2018* - 1.0.0-beta.3 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
+- *??/11/2019* - 1.0.0 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
 - *04/03/2018* - 1.0.0-beta.2 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
 - *01/06/2018* - 1.0.0-beta.1 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
 
@@ -200,8 +201,8 @@ angular-cli-skeleton/
 
 
 ## Requirenments
-- Nodejs >= 8.0.0 (please use always the latest version)
-- npm >= 5.2.0 (please use always the latest version)
+- Nodejs >= 12.0.0 (please use always the latest version)
+- npm >= 6.9.0 (please use always the latest version)
 
 
 ## What you can do right now?
