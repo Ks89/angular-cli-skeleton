@@ -3,7 +3,6 @@
 files:
   include: 'sass/**/*.s+(a|c)ss'
   ignore:
-    - 'angular-cli-skeleton/**/*.*'
     - 'coverage/**/*.*'
     - 'dist/**/*.*'
 
@@ -18,7 +17,7 @@ rules:
     - 1
     -
       exclude:
-      - breakpoint
+        - breakpoint
 
   # Line Spacing
   one-declaration-per-line: 1

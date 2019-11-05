@@ -38,7 +38,7 @@ import { SHARED_COMPONENTS } from './components/components';
   imports: [
     CommonModule,
     RouterModule,
-    NgbModule // without forRoot, because this is a child module
+    NgbModule
   ],
   exports: [SHARED_COMPONENTS],
   declarations: [SHARED_COMPONENTS],

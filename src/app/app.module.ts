@@ -42,7 +42,7 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     AppRoutingModule,
 
-    NgbModule.forRoot(), // forRoot ensures the providers are only created once
+    NgbModule,
     ToastrModule.forRoot(), // ToastrModule added
 
     // if you enabled service workers inside .angular-cli.json,

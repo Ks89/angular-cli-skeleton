@@ -45,7 +45,7 @@ console.log('`Lazy` bundle loaded asynchronously');
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    NgbModule.forRoot(), // forRoot ensures the providers are only created once (lazy modules are like root modules)
+    NgbModule,
     SharedModule,
 
     // add ngrx to this lazy loaded module
