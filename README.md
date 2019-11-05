@@ -397,7 +397,7 @@ For other questions, please feel free to open an issue.
 
 **MIT License**
 
-Copyright (c) 2017-2018 **Stefano Cappa**
+Copyright (c) 2017-2019 **Stefano Cappa**
 
 **This license is valid to all my files in this repo**
 

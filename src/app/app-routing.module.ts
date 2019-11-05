@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'lazy', loadChildren: './pages/lazy/lazy.module#LazyModule', canActivate: [AuthGuard] },
+  { path: 'lazy', loadChildren: () => import('./pages/lazy/lazy.module').then(m => m.LazyModule), canActivate: [AuthGuard] },
   { path: 'sw', component: ServiceWorkerComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent }
 ];

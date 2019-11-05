@@ -48,7 +48,7 @@ describe('LazyComponent', () => {
   beforeEach(async(() => {
 
     TestBed.configureTestingModule({
-      imports: [NgbModule.forRoot(), SharedModule, CoreModule, HttpClientTestingModule,
+      imports: [NgbModule, SharedModule, CoreModule, HttpClientTestingModule,
         StoreModule.forRoot(mainReducers, {reducerFactory: undefined}), StoreModule.forFeature('pageNum', reducers)],
       declarations: [LazyComponent]
     }).overrideComponent(LazyComponent, {
