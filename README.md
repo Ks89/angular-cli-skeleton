@@ -10,9 +10,6 @@
 
 <br>
 
-### This project is not dead, I'm simply waiting for IVY render (RENDER 3) + runtime i18n support. When Google will release this, I'll update the repo with many new features. So I suggest to star and watch this project, if you are interested. Angular 7 is out, but unfortunately IVY is still not available, so I'll wait again :(
-
-
 # angular-cli-skeleton
 
 A simple ready to use skeleton project with angular-cli (optionally also angular-universal), Angular 9, Bootstrap 4, ng-bootstrap, ngrx-store and so on.
@@ -53,7 +50,7 @@ If you like it, please add a star. It will be really apprecieted.
       - Custom advanced configuration to specify different browsers on CIs (check 'getBrowsers()' in `./karma.conf.js`)
       - Multiple launcher for browsers (Chrome and ChromeHeadless). See `karma.conf.js`
       - [Chrome Headless](https://developers.google.com/web/updates/2017/04/headless-chrome) support to run unit tests (better than [PhantomJS](http://phantomjs.org/))
-      - Multiple coverage reporters: `json`, `html`, `lcovonly`, `mocha`, SonarQube and also in your console 
+      - Multiple coverage reporters: `json`, `html`, `lcovonly`, `mocha`, SonarQube and also in your console
     - End to end (E2E) testing with [Protractor](http://www.protractortest.org) and [WebDriver JS](https://github.com/SeleniumHQ/selenium/wiki/WebDriverJs)
     - Code coverage with [IstanbulJs](https://github.com/istanbuljs/istanbuljs)
 - Code analysis and quality
@@ -325,7 +322,7 @@ With this tutorial, you'll configure Jenkins to build your project from GitHub, 
 2. Download the latest version of Jenkins 2 [HERE](https://jenkins.io/download/). If you are using macOS, I suggest to use [Homebrew](https://brew.sh/index_it.html)
 3. Install Jenkins following [this instruction](https://jenkins.io/doc/book/installing/)
 4. Run it (if installed with HomeBrew, run `jenkins` in your terminal)
-5. Navigate to `http://localhost:8080` and unlock Jenkins (for more info check [HERE](https://jenkins.io/doc/book/installing/#unlocking-jenkins)) 
+5. Navigate to `http://localhost:8080` and unlock Jenkins (for more info check [HERE](https://jenkins.io/doc/book/installing/#unlocking-jenkins))
 6. Install all suggested plugins
 7. Create a new admin user (please, you shouldn't skip this step) as explained [HERE](https://jenkins.io/doc/book/installing/#creating-the-first-administrator-user)
 8. Navigate to `http://localhost:8080/pluginManager/available` and install `NodeJS Plugin`
