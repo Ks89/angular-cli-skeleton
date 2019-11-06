@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017-2018 Stefano Cappa
+ * Copyright (c) 2017-2019 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,9 +30,10 @@ import { Observable, Subscription, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 import { ToastrService } from 'ngx-toastr';
-import { Store } from '@ngrx/store';
-import * as fromRoot from '../../core/reducers/hello-example';
-import * as example from '../../core/actions/hello-example';
+
+import { Store, select } from '@ngrx/store';
+import { sayByeBye, sayHello } from '../../core/actions/hello-example.actions';
+import * as fromRoot from '../../reducers';
 
 import { ExampleService, MessageResponse } from '../../core/services/example.service';
 import { GithubOrg, GithubService } from '../../core/services/github.service';
@@ -93,7 +94,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     // example of ngrx-store's usage
     // If you want, you can subscribe to this Observable to log 'message' saved
     // inside ngrx-store, thanks to this.store.dispatch.
-    this.helloExample$ = this.store.select(fromRoot.getHelloExample);
+    this.helloExample$ = this.store.pipe(select(fromRoot.selectHelloMessage));
 
     // TODO Socket.io integration is working for client side rendering (both dev and prod),
     // but when you switch to SSR there are some problems, so I decided to remove it
@@ -112,7 +113,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit() {
     console.log('Init called - say hello!');
     // dispatch an action to send the 'hello' message
-    this.store.dispatch(new example.SayHelloAction());
+    this.store.dispatch(sayHello());
 
     // call a REST service with fixed data
     this.exampleSubscription = this.exampleService.getExample().subscribe((resp: MessageResponse) => {
@@ -144,7 +145,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     console.log('Destroy called - say bye bye!');
 
     // dispatch an action to send the 'bye bye' message
-    this.store.dispatch(new example.SayByeByeAction());
+    this.store.dispatch(sayByeBye());
 
     // unsubscribe to all Subscriptions to prevent memory leaks and wrong behaviour
     if (this.githubSubscription) {

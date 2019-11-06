@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017-2018 Stefano Cappa
+ * Copyright (c) 2017-2019 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,9 +24,13 @@
 
 /* tslint:disable:max-classes-per-file */
 
-// This file is used into ../../app.module.ts
+// This file is used into ../../reducers/index.ts
 
-import * as example from '../actions/hello-example';
+import { Action, createReducer, on } from '@ngrx/store';
+
+import * as HelloExampleActions from '../actions/hello-example.actions';
+
+export const helloKey = 'helloExample';
 
 export interface State {
   message: string;
@@ -36,21 +40,17 @@ const initialState: State = {
   message: ''
 };
 
-export function reducer(state = initialState, action: example.Actions): State {
-  switch (action.type) {
-    case example.SAY_BYEBYE:
-      return {
-        message: 'bye bye!'
-      };
+const helloExampleReducer = createReducer(
+  initialState,
+  on(HelloExampleActions.sayHello, state => ({
+    message: 'bye bye!'
+  })),
+  on(HelloExampleActions.sayByeBye, state => ({
+    message: 'hello!'
+  }))
+);
 
-    case example.SAY_HELLO:
-      return {
-        message: 'hello!'
-      };
-
-    default:
-      return state;
-  }
+// required to support AOT
+export function reducer(state: State | undefined, action: Action) {
+  return helloExampleReducer(state, action);
 }
-
-export const getHelloExample = (state: State) => state.message;

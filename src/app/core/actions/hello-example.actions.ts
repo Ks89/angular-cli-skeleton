@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017-2018 Stefano Cappa
+ * Copyright (c) 2017-2019 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,27 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-import * as pageNum from '../actions/page-num';
 
-export interface State {
-  pageNum: number;
-}
+/* tslint:disable:max-classes-per-file */
 
-export const initialState: State = {
-  pageNum: 0
-};
+// This file is used into ../../reducers/index.ts
 
-export function reducer(state = initialState, action: pageNum.Actions): State {
-  switch (action.type) {
-    case pageNum.GET_PAGE:
-      return state;
-    case pageNum.SET_PAGE:
-      return {
-        pageNum: action.payload
-      };
-    default:
-      return state;
-  }
-}
+import { createAction, props } from '@ngrx/store';
 
-export const getPageNum = (state: State) => state.pageNum;
+export const SAY_HELLO = '[Example] Say Hello';
+export const SAY_BYEBYE = '[Example] Say ByeBye';
+
+export const sayHello = createAction(SAY_HELLO);
+export const sayByeBye = createAction(SAY_BYEBYE);

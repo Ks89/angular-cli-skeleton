@@ -11,7 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { mainReducers } from './reducers';
+import { ROOT_REDUCERS, metaReducers } from './reducers';
 
 // ************************ optional font-awesome 5 ************************
 // to install use both `npm i --save @fortawesome/fontawesome-svg-core` and `npm i --save @fortawesome/free-solid-svg-icons`
@@ -60,30 +60,20 @@ import { AppComponent } from './app.component';
     // I suggest also to check application tab -> Service Workers to see if is running or not
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
 
-    /**
-     * StoreModule.forRoot is imported once in the root module, accepting a reducer
-     * function or object map of reducer functions. If passed an object of
-     * mainReducers, combineReducers will be run creating your application
-     * meta-reducer. This returns all providers for an @ngrx/store
-     * based application.
-     * TODO: find a way to add also developmentReducerFactory without breaking AOT
-     */
-    StoreModule.forRoot(mainReducers),
-
-    /**
-     * Store devtools instrument the store retaining past versions of state
-     * and recalculating new states. This enables powerful time-travel
-     * debugging.
-     * To use the debugger, install the Redux Devtools extension for either
-     * Chrome or Firefox
-     * See: https://github.com/zalmoxisus/redux-devtools-extension
-     */
-    /**
-     * This section will import the `StoreDevtoolsModule` only in certain build types.
-     * When the module is not imported it will get tree shaked.
-     * This is a simple example, a big app should probably implement some logic
-     */
-    ...(environment.showDevModule ? [StoreDevtoolsModule.instrument()] : []),
+    // third party (ngrx)
+    StoreModule.forRoot(ROOT_REDUCERS, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictStateSerializability: true,
+        strictActionSerializability: true
+      }
+    }),
+    StoreDevtoolsModule.instrument({
+      name: 'Ks89 example App',
+      logOnly: environment.production
+    }),
 
     CoreModule,
     SharedModule,

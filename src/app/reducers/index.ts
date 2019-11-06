@@ -3,7 +3,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017-2018 Stefano Cappa
+ * Copyright (c) 2017-2019 Stefano Cappa
  * Copyright (c) 2017 Brandon Roberts, Mike Ryan, Victor Savkin, Rob Wormald
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,16 +25,19 @@
  * SOFTWARE.
  */
 
-import { ActionReducerMap, compose, ActionReducer, combineReducers, Action, ActionReducerFactory } from '@ngrx/store';
+import { createSelector, createFeatureSelector, ActionReducer, MetaReducer, Action, ActionReducerMap } from '@ngrx/store';
+import { environment } from '../../environments/environment';
 
-import * as fromHelloExample from '../core/reducers/hello-example';
+import * as fromHelloExample from '../core/reducers/hello-example.reducers';
+
+import { InjectionToken } from '@angular/core';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
  * our top level state interface is just a map of keys to inner state types.
  */
 export interface State {
-  helloExample: fromHelloExample.State;
+  [fromHelloExample.helloKey]: fromHelloExample.State;
 }
 
 /**
@@ -42,44 +45,31 @@ export interface State {
  * These reducer functions are called with each dispatched action
  * and the current or initial state and return a new immutable state.
  */
-export const mainReducers: ActionReducerMap<State> = {
-  helloExample: fromHelloExample.reducer
-};
+export const ROOT_REDUCERS = new InjectionToken<ActionReducerMap<State, Action>>('Root reducers token', {
+  factory: () => ({
+    [fromHelloExample.helloKey]: fromHelloExample.reducer
+  })
+});
 
-/**
- * Logger function to log state and actions in console
- * @param {ActionReducer<State>} reducer
- * @returns {(state: State, action: any) => State}
- */
-export function logger(reducer: ActionReducer<State>) {
-  return function(state: State, action: any) {
-    console.log('state', state);
+// console.log all actions
+export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
+  return (state, action) => {
+    const result = reducer(state, action);
+    console.groupCollapsed(action.type);
+    console.log('prev state', state);
     console.log('action', action);
-    return reducer(state, action);
+    console.log('next state', result);
+    console.groupEnd();
+    return result;
   };
 }
 
 /**
- * The compose function is one of our most handy tools. In basic terms, you give
- * it any number of functions and it returns a function. This new function
- * takes a value and chains it through every composed function, returning
- * the output.
- *
- * More: https://drboolean.gitbooks.io/mostly-adequate-guide/content/ch5.html
+ * By default, @ngrx/store uses combineReducers with the reducer map to compose
+ * the root meta-reducer. To add more meta-reducers, provide an array of meta-reducers
+ * that will be composed to form the root meta-reducer.
  */
-/**
- * combineReducers is another useful metareducer that takes a map of reducer
- * functions and creates a new reducer that gathers the values
- * of each reducer and stores them using the reducer's key. Think of it
- * almost like a database, where every reducer is a table in the db.
- *
- * More: https://egghead.io/lessons/javascript-redux-implementing-combinereducers-from-scratch
- */
-/**
- * By default, @ngrx/store uses combineReducers with the reducer map to compose the root meta-reducer.
- * To add more meta-mainReducers, provide a custom reducer factory.
- */
-export const developmentReducerFactory: ActionReducerFactory<State, Action> = compose(
-  logger,
-  combineReducers
-);
+export const metaReducers: MetaReducer<State>[] = !environment.production ? [logger] : [];
+
+export const selectHelloExampleState = createFeatureSelector<fromHelloExample.State>(fromHelloExample.helloKey);
+export const selectHelloMessage = createSelector(selectHelloExampleState, (state: fromHelloExample.State) => state.message);

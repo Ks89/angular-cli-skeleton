@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017-2018 Stefano Cappa
+ * Copyright (c) 2017-2019 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromRoot from '../../../reducers';
-import * as fromPageNum from './page-num';
+import * as fromPageNum from './page-num.reducers';
 
 export interface PageNumState {
   pageNum: fromPageNum.State;
@@ -40,12 +40,8 @@ export const reducers = {
 
 export const selectPageNumState = createFeatureSelector<PageNumState>('pageNum');
 
-export const selectPageNumValState = createSelector(
-  selectPageNumState,
-  (state: PageNumState) => state.pageNum
-);
+export const selectPageNumValState = createSelector(selectPageNumState, (state: PageNumState) => state.pageNum);
 
-export const getPageNum = createSelector(
-  selectPageNumValState,
-  fromPageNum.getPageNum
-);
+export const getNum = (state: fromPageNum.State) => state.pageNum;
+
+export const getPageNum = createSelector(selectPageNumValState, getNum);

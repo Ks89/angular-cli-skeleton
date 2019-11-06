@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017-2018 Stefano Cappa
+ * Copyright (c) 2017-2019 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,9 +28,9 @@ import { Observable, Subscription } from 'rxjs';
 import { PageHeader } from '../../shared/components/components';
 import { ExampleService } from '../../core/services/example.service';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as fromPageNum from './reducers';
-import * as PageNum from './actions/page-num';
+import { setPageNum } from './actions/page-num.actions';
 
 console.log('`Lazy` component loaded asynchronously');
 
@@ -52,7 +52,7 @@ export class LazyComponent implements OnInit, OnDestroy {
   constructor(private exampleService: ExampleService, private store: Store<fromPageNum.State>) {
     this.pageHeader = new PageHeader('LAZY', '');
 
-    this.pageNum$ = this.store.select(fromPageNum.getPageNum);
+    this.pageNum$ = this.store.pipe(select(fromPageNum.getPageNum));
 
     // example of ngrx-store's usage
     // subscribe to pageNum (a number, for instance the current page of a table with pagination)
@@ -68,7 +68,7 @@ export class LazyComponent implements OnInit, OnDestroy {
       console.log(`Result of getExample`, val);
 
       // dispatch the setPageNum action with '4' as payload
-      this.store.dispatch(new PageNum.SetPageNum(4)); // I chose a constant value for this example :)
+      this.store.dispatch(setPageNum({ payload: 4 })); // I chose a constant value for this example :)
     });
   }
 

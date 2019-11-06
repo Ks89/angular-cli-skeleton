@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017-2018 Stefano Cappa
+ * Copyright (c) 2017-2019 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,21 +22,31 @@
  * SOFTWARE.
  */
 
-/* tslint:disable:max-classes-per-file */
+// This file is used into ../../reducers/index.ts
 
-// This file is used into ../../app.module.ts
+import { Action, createReducer, on } from '@ngrx/store';
 
-import { Action } from '@ngrx/store';
+import * as PageNumActions from '../actions/page-num.actions';
 
-export const SAY_HELLO = '[Example] Say Hello';
-export const SAY_BYEBYE = '[Example] Say ByeBye';
+export const pageNumKey = 'pageNum';
 
-export class SayHelloAction implements Action {
-  readonly type = SAY_HELLO;
+export interface State {
+  pageNum: number;
 }
 
-export class SayByeByeAction implements Action {
-  readonly type = SAY_BYEBYE;
-}
+const initialState: State = {
+  pageNum: 0
+};
 
-export type Actions = SayHelloAction | SayByeByeAction;
+const pageNumReducer = createReducer(
+  initialState,
+  on(PageNumActions.getPageNum, state => state),
+  on(PageNumActions.setPageNum, (state, { payload }) => ({
+    pageNum: payload
+  }))
+);
+
+// required to support AOT
+export function reducer(state: State | undefined, action: Action) {
+  return pageNumReducer(state, action);
+}

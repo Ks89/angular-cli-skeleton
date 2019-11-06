@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2017-2018 Stefano Cappa
+ * Copyright (c) 2017-2019 Stefano Cappa
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,21 +24,12 @@
 
 /* tslint:disable:max-classes-per-file */
 
-import { Action } from '@ngrx/store';
+// This file is used into ../../reducers/index.ts
+
+import { createAction, props } from '@ngrx/store';
 
 export const GET_PAGE = '[PageNum] Get Page';
 export const SET_PAGE = '[PageNum] Set Page';
 
-export class GetPageNum implements Action {
-  readonly type = GET_PAGE;
-
-  constructor(public payload: number) {}
-}
-
-export class SetPageNum implements Action {
-  readonly type = SET_PAGE;
-
-  constructor(public payload: number) {}
-}
-
-export type Actions = GetPageNum | SetPageNum;
+export const getPageNum = createAction(GET_PAGE);
+export const setPageNum = createAction(SET_PAGE, props<{ payload }>());
