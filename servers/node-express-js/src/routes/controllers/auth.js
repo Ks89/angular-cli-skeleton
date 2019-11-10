@@ -162,7 +162,7 @@ module.exports.logout = (req, res) => {
 
 function getJwtToSign(dataToAdd) {
   const expiry = new Date();
-  expiry.setTime(expiry.getTime() + config.SESSION_TIMEOUT_MS);
+  expiry.setTime(expiry.getTime() + parseInt(config.SESSION_TIMEOUT_MS));
   return {
     // ATTENTION!!!
     // All these info are public

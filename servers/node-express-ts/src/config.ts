@@ -76,7 +76,7 @@ export const LOG_FOLDER: string = process.env.LOG_FOLDER;
 
 // Jwt config for apis server <-> client
 export const JWT_SECRET: string = process.env.JWT_SECRET;
-export const SESSION_TIMEOUT_MS: number | string = process.env.SESSION_TIMEOUT_MS; // by default valid for 8 hours
+export const SESSION_TIMEOUT_MS: string = process.env.SESSION_TIMEOUT_MS || '3600000';
 
 export const COOKIE_SECRET: string = process.env.COOKIE_SECRET; // secret password for cookies
 
@@ -90,8 +90,8 @@ export const HELMET_REFERRER_POLICY: string = process.env.HELMET_REFERRER_POLICY
 export const HELMET_EXPECT_CT_REPORT_URI: string = process.env.HELMET_EXPECT_CT_REPORT_URI;
 
 // rate limiter for all APIs
-export const RATELIMITER_WINDOW_MS: number | string = process.env.RATELIMITER_WINDOW_MS; // by default 15 minutes
+export const RATELIMITER_WINDOW_MS: number | string = process.env.RATELIMITER_WINDOW_MS;
 export const RATELIMITER_MAX: number | string = process.env.RATELIMITER_MAX;
 export const RATELIMITER_DELAY_AFTER: number | string = process.env.RATELIMITER_DELAY_AFTER;
-export const RATELIMITER_DELAY_MS: number | string = process.env.RATELIMITER_DELAY_MS; // by default 3 seconds
+export const RATELIMITER_DELAY_MS: number | string = process.env.RATELIMITER_DELAY_MS;
 export const RATELIMITER_MESSAGE: string = process.env.RATELIMITER_MESSAGE;

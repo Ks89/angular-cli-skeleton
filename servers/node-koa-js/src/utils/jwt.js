@@ -10,7 +10,7 @@ function generateJWTforUser(user = {}) {
 
 function getJwtToSign(dataToAdd) {
   const expiry = new Date();
-  expiry.setTime(expiry.getTime() + SESSION_TIMEOUT_MS);
+  expiry.setTime(expiry.getTime() + parseInt(SESSION_TIMEOUT_MS));
   return {
     // ATTENTION!!!
     // All these info are public

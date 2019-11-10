@@ -42,6 +42,6 @@ module.exports = {
 
   async logout(ctx) {
     ctx.state.jwt = undefined;
-    // ctx.body = {message: 'Logout successfull'};
+    ctx.body = { message: 'Logout successfull' };
   }
 };

@@ -75,7 +75,7 @@ module.exports = {
 
   // Jwt config for apis server <-> client
   JWT_SECRET: process.env.JWT_SECRET,
-  SESSION_TIMEOUT_MS: process.env.SESSION_TIMEOUT_MS, // by default valid for 8 hours
+  SESSION_TIMEOUT_MS: process.env.SESSION_TIMEOUT_MS || '3600000',
 
   COOKIE_SECRET: process.env.COOKIE_SECRET, // secret password for cookies
 
