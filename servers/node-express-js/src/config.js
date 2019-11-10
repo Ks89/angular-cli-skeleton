@@ -1,21 +1,43 @@
+// MIT License
+//
+// Copyright (c) 2017-2019 Stefano Cappa
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
 'use strict';
 
 const path = require('path');
 
-const useDotenv = process.env.CI !== 'yes' && process.env.CI !== true;
-console.log(`Use dotenv condition is: ${useDotenv}`);
+const notInCI = process.env.CI !== 'yes' && process.env.CI !== true;
+console.log(`Use dotenv condition is: ${notInCI}, because I cannot use dotenv with CI, so I have to skip it`);
 
-if (useDotenv === true) {
+if (notInCI === true) {
   console.log('Initializing dotenv (requires .env/.env_prod file)');
   let dotenvName = null;
   switch (process.env.NODE_ENV) {
     case 'development':
-      console.log('dotenv read: .env_dev');
-      dotenvName = '.env_dev';
+      console.log('dotenv read: .env');
+      dotenvName = '.env';
       break;
     case 'test':
-      console.log('dotenv read: .env_dev (you are running with NODE_ENV=test)');
-      dotenvName = '.env_dev';
+      console.log('dotenv read: .env (you are running with NODE_ENV=test)');
+      dotenvName = '.env';
       break;
     default:
     case 'production':
@@ -41,8 +63,10 @@ if (useDotenv === true) {
 module.exports = {
   isProd: () => process.env.NODE_ENV === 'production',
   isTest: () => process.env.NODE_ENV === 'test',
+  isCI: () => process.env.CI === 'yes' || process.env.CI === true,
 
   NODE_ENV: process.env.NODE_ENV || 'development',
+  CI: process.env.CI || 'yes',
 
   FRONT_END_PATH: process.env.FRONT_END_PATH,
   PORT: process.env.PORT || process.env.NODE_ENV === 'production' ? 80 : 3000,
