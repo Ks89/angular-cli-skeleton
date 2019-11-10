@@ -73,11 +73,11 @@ const logger = createLogger({
       handleExceptions: true
     })
   ],
-  level: !process.env.NODE_ENV ? 'error' : 'silly',
+  level: !process.env.NODE_ENV ? 'silly' : 'error',
   exitOnError: false
 });
 
-if (process.env.NODE_ENV !== 'production' && !config.isCI()) {
+if (process.env.NODE_ENV !== 'production') {
   logger.add(
     new transports.Console({
       handleExceptions: true,

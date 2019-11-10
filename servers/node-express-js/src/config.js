@@ -4,18 +4,12 @@
 // don't use here logger.js because it requires config fully initialized
 
 module.exports = {
-  isCI: () => process.env.CI === 'yes' || process.env.CI === true,
   isProd: () => process.env.NODE_ENV === 'production',
   isTest: () => process.env.NODE_ENV === 'test',
 
-  // used to run this server as back-end for integration testing on client-side
-  // this method isn't used for integration testing on server-side
-  isForE2eTest: () => process.env.NODE_ENV === 'e2e',
-
-  FRONT_END_PATH: process.env.FRONT_END_PATH || '../../dist/angular-cli-skeleton',
+  FRONT_END_PATH: process.env.FRONT_END_PATH || '../../dist/client',
 
   NODE_ENV: process.env.NODE_ENV || 'development',
-  CI: process.env.CI || 'yes',
   PORT: process.env.PORT || process.env.NODE_ENV === 'production' ? 80 : 3000,
 
   LOG_FOLDER: process.env.LOG_FOLDER || 'logs',

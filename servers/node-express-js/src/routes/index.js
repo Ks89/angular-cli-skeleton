@@ -3,6 +3,7 @@
 const RateLimit = require('express-rate-limit');
 const SlowDown = require('express-slow-down');
 
+const bodyParser = require('body-parser');
 const logger = require('../logger');
 const config = require('../config');
 
@@ -44,7 +45,7 @@ module.exports = function(express, passport) {
   //----------------------------------------public-------------------------------------------
   //-----------------------------------------------------------------------------------------
   // auth login
-  router.post(APIS.POST_LOGIN, [apiLimiter, apiSlowDown, ctrlAuth.login]);
+  router.post(APIS.POST_LOGIN, [bodyParser.json(), apiLimiter, apiSlowDown, ctrlAuth.login]);
   // keep alive
   router.get(APIS.GET_KEEP_ALIVE, [apiLimiter, apiSlowDown, ctrlKeepAlive.keepAlive]);
   //-----------------------------------------------------------------------------------------

@@ -13,7 +13,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 const logger = require('./src/logger');
 logger.warn(`Starting with NODE_ENV=${config.NODE_ENV}`);
-logger.warn(`config.CI is ${config.CI} and isCI is ${config.isCI()}`);
 
 const { findIndex } = require('lodash');
 const express = require('express');
@@ -30,25 +29,7 @@ const db = require('./src/db');
 // ----------------------------security packages-----------------------------
 // --------------------------------------------------------------------------
 // All security features are prefixed with `--SEC--`
-// --SEC-- - github hengkiardo/express-enforces-ssl
-// Enforces HTTPS connections on any incoming requests.
-// In case of a non-encrypted HTTP request, express-enforces-ssl automatically
-// redirects to an HTTPS address using a 301 permanent redirect.
-// const expressEnforcesSsl = require('express-enforces-ssl');
-// --SEC--- Brute Force Protection
-// Brute forcing is the systematically enumerating of all possible candidates a solution and checking
-// whether each candidate satisfies the problem's statement. In web applications a login endpoint
-// can be the perfect candidate for this.
-const RateLimit = require('express-rate-limit');
-const SlowDown = require('express-slow-down');
-// --SEC-- - github helmetjs/expect-ct [NOT helmet]
-//    The Expect-CT HTTP header tells browsers to expect Certificate Transparency
-const expectCt = require('expect-ct');
-// --SEC-- - github analog-nico/hpp [NOT helmet]
-//    [http params pollution] security package to prevent http params pollution
-const hpp = require('hpp');
-// --SEC-- - [CSRF] github.com/expressjs/csurf [NOT helmet]
-const csrf = require('csurf');
+
 // --SEC-- - authentication with JWT
 const passport = require('passport');
 const passportJWT = require('passport-jwt');
@@ -95,6 +76,14 @@ passport.use(
   })
 );
 
+// --SEC-- - github helmetjs/expect-ct [NOT helmet]
+//    The Expect-CT HTTP header tells browsers to expect Certificate Transparency
+const expectCt = require('expect-ct');
+// --SEC-- - github analog-nico/hpp [NOT helmet]
+//    [http params pollution] security package to prevent http params pollution
+const hpp = require('hpp');
+// --SEC-- - [CSRF] github.com/expressjs/csurf [NOT helmet]
+const csrf = require('csurf');
 // --SEC-- - github ericmdantas/express-content-length-validator [NOT helmet]
 //    large payload attacks - Make sure this application is
 //    not vulnerable to large payload attacks
@@ -117,18 +106,12 @@ const app = express();
 // }
 
 // if (config.isProd()) {
-//   logger.verbose('Initializing express-enforce-ssl');
+//   logger.warn('Initializing express-enforce-ssl');
 //   // --SEC-- - github hengkiardo/express-enforces-ssl
 //   // enforces HTTPS connections on any incoming requests.
 //   app.enable('trust proxy');
 //   app.use(expressEnforcesSsl());
 // }
-
-// --------------------------------------------------------------------------
-// --------------------------------------------------------------------------
-// --------------------------------------------------------------------------
-// --------------------------------------------------------------------------
-logger.warn('Initializing helmet');
 
 // --SEC-- - add Feature-Policy header
 // taken from https://github.com/helmetjs/helmet/issues/173
@@ -228,7 +211,7 @@ app.use(
       // specifies valid sources for JavaScript. This includes not only URLs loaded directly into <script>
       scriptSrc: [`'self'`],
       // specifies valid sources for sources for stylesheets.
-      styleSrc: [`'self'`, `'unsafe-inline'`]
+      styleSrc: [`'self'`, `'unsafe-inline'`, `https://*.googleapis.com`]
       // instructs user agents to treat all of a site's insecure URLs (those served over HTTP) as though
       // they have been replaced with secure URLs (those served over HTTPS). This directive is intended
       // for web sites with large numbers of insecure legacy URLs that need to be rewritten.
@@ -286,13 +269,6 @@ app.use(
 // compress all reqs using gzip
 app.use(compression());
 
-app.use('/', express.static(path.join(__dirname, config.FRONT_END_PATH, '/')));
-
-logger.warn('Initializing hpp');
-// --SEC-- - http params pollution: activate http parameters pollution
-// use this ALWAYS AFTER app.use(bodyParser.urlencoded()) [NOT helmet]
-app.use(hpp());
-
 logger.warn('Initializing passportjs');
 app.use(passport.initialize());
 passport.serializeUser(function(user, done) {
@@ -303,8 +279,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 // Initialize bodyParser BEFORE CSRF!!!!!
-logger.verbose('Initializing bodyParser');
-app.use(bodyParser.json());
+logger.warn('Initializing bodyParser');
 app.use(
   bodyParser.urlencoded({
     extended: false
@@ -312,49 +287,57 @@ app.use(
 );
 app.use(cookieParser(config.COOKIE_SECRET));
 
-// CSRF must be added AFTER bodyParser and cookieParser, but BEFORE all APIS to protect
-// logger.verbose('Initializing CSRF protection');
-// app.use(
-//   csrf({
-//     cookie: {
-//       // http://expressjs.com/en/4x/api.html#req.cookies
-//       key: '_csrf',
-//       path: '/',
-//       httpOnly: true,
-//       secure: false, // if you enable https you should set this to true
-//       signed: false, // investigate if csurf support signed cookies (probably not)
-//       sameSite: 'strict', // https://www.owaspsafar.org/index.php/SameSite
-//       maxAge: config.SESSION_TIMEOUT_MS
-//     }
-//   })
-// );
-// app.use((req, res, next) => {
-//   const csrfTokenToSendToFrontEnd = req.csrfToken();
-//   res.cookie('XSRF-TOKEN', csrfTokenToSendToFrontEnd);
-//   return next();
-// });
+// logger.warn('Initializing hpp (ALWAYS AFTER bodyParser)');
+// // --SEC-- - http params pollution: activate http parameters pollution
+// // use this ALWAYS AFTER app.use(bodyParser.urlencoded()) [NOT helmet]
+app.use(hpp());
 
-logger.warn('Initializing REST apis');
+// CSRF must be added AFTER bodyParser and cookieParser, but BEFORE all APIS to protect
+logger.warn('Initializing CSRF protection');
+app.use(
+  csrf({
+    cookie: {
+      // http://expressjs.com/en/4x/api.html#req.cookies
+      key: '_csrf',
+      path: '/',
+      httpOnly: true,
+      secure: false, // if you enable https you should set this to true
+      signed: false, // investigate if csurf support signed cookies (probably not)
+      sameSite: 'strict', // https://www.owaspsafar.org/index.php/SameSite
+      maxAge: config.SESSION_TIMEOUT_MS
+    }
+  })
+);
+app.use((req, res, next) => {
+  const csrfTokenToSendToFrontEnd = req.csrfToken();
+  res.cookie('XSRF-TOKEN', csrfTokenToSendToFrontEnd);
+  return next();
+});
 
 // APIs for all route protected with CSRF
+logger.warn('Initializing REST apis');
 const APIS = require('./src/routes/apis');
 const routesApi = require('./src/routes/index')(express, passport);
 app.use(APIS.BASE_API_PATH, routesApi);
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, config.FRONT_END_PATH, 'index.html'));
+app.all('/api/*', (req, res) => {
+  logger.error('path API not exist');
+  res.status(404).send();
 });
 
+logger.warn('Initializing express static');
+app.use('/', express.static(path.join(__dirname, config.FRONT_END_PATH)));
+
 // error handler
-// app.use((err, req, res, next) => {
-//   if (err.code !== 'EBADCSRFTOKEN') {
-//     return next(err);
-//   }
-//   // handle CSRF token errors here
-//   res.status(403).json({
-//     message: 'form tampered with'
-//   });
-// });
+app.use((err, req, res, next) => {
+  if (err.code !== 'EBADCSRFTOKEN') {
+    return next(err);
+  }
+  // handle CSRF token errors here
+  res.status(403).json({
+    message: 'form tampered with'
+  });
+});
 
 // catch 404 and forward to error handler
 // taken from https://github.com/expressjs/express/blob/master/examples/error-pages/index.js
