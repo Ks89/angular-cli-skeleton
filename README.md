@@ -46,12 +46,12 @@ If you like it, please add a star. It will be really appreciated.
     - *AppShell (still work in progress and TEMPORARY DISABLED. Check [this issue](https://github.com/Ks89/angular-cli-skeleton/issues/22)*
 - Testing
     - Unit testing with [Karma](https://karma-runner.github.io) and [Jasmine](https://jasmine.github.io/)
-      - *Custom advanced configuration to specify different browsers on CIs (check 'getBrowsers()' in `./karma.conf.js`) (TEMPORARY DISABLED)*
+      - Custom advanced configuration to specify different browsers on CIs (check 'getBrowsers()' in `./karma.conf.js`)
       - Multiple launcher for browsers (Chrome and ChromeHeadless). See `karma.conf.js`
       - [Chrome Headless](https://developers.google.com/web/updates/2017/04/headless-chrome) support to run unit tests (better than [PhantomJS](http://phantomjs.org/))
-      - *Multiple coverage reporters: `json`, `html`, `lcovonly`, `mocha` and also in your console (TEMPORARY DISABLED)*
+      - Multiple coverage reporters: `json`, `html`, `lcovonly`, `mocha` and also in your console
     - End to end (E2E) testing with [Protractor](http://www.protractortest.org) and [WebDriver JS](https://github.com/SeleniumHQ/selenium/wiki/WebDriverJs)
-    - *Code coverage with [IstanbulJs](https://github.com/istanbuljs/istanbuljs) (TEMPORARY DISABLED)*
+    - Code coverage with [IstanbulJs](https://github.com/istanbuljs/istanbuljs)
 - Code analysis and quality
     - [TSLint](https://github.com/palantir/tslint)
     - [Codelyzer](https://github.com/mgechev/codelyzer)
