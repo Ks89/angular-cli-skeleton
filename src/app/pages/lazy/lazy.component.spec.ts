@@ -37,7 +37,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers';
-import { mainReducers } from '../../reducers';
+import { metaReducers } from '../../reducers';
 import { GithubOrg, GithubService, GithubUser } from '../../core/services/github.service';
 import { ExampleService, MessageResponse } from '../../core/services/example.service';
 
@@ -49,7 +49,7 @@ describe('LazyComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [NgbModule, SharedModule, CoreModule, HttpClientTestingModule,
-        StoreModule.forRoot(mainReducers, {reducerFactory: undefined}), StoreModule.forFeature('pageNum', reducers)],
+        StoreModule.forRoot(metaReducers, {reducerFactory: undefined}), StoreModule.forFeature('pageNum', reducers)],
       declarations: [LazyComponent]
     }).overrideComponent(LazyComponent, {
       set: {

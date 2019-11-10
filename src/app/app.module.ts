@@ -13,13 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS, metaReducers } from './reducers';
 
-// ************************ optional font-awesome 5 ************************
-// to install use both `npm i --save @fortawesome/fontawesome-svg-core` and `npm i --save @fortawesome/free-solid-svg-icons`
-import { library, dom } from '@fortawesome/fontawesome-svg-core';
-import { faExternalLinkAlt, faPlus, faTimes, faDownload } from '@fortawesome/free-solid-svg-icons';
-library.add(faExternalLinkAlt, faPlus, faTimes, faDownload);
-dom.watch(); // Kicks off the process of finding <i> tags and replacing with <svg>
-// *************************************************************************
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { environment } from '../environments/environment';
 
@@ -39,7 +33,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
 
     HttpClientModule,
-    HttpClientXsrfModule.withOptions(),
+    HttpClientXsrfModule,
 
     FormsModule,
     ReactiveFormsModule,
@@ -47,6 +41,8 @@ import { AppComponent } from './app.component';
 
     NgbModule,
     ToastrModule.forRoot(), // ToastrModule added
+
+    FontAwesomeModule,
 
     // if you enabled service workers inside .angular-cli.json,
     // I suggest to use it, only for the production build

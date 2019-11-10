@@ -41,7 +41,7 @@ const domino = require('domino');
 enableProdMode();
 
 // Load the index.html file containing referances to your application bundle.
-const index = readFileSync(join('angular-cli-skeleton', 'index.html'), 'utf8');
+const index = readFileSync(join('client', 'index.html'), 'utf8');
 const win = domino.createWindow(index);
 
 global['window'] = win;
@@ -60,10 +60,10 @@ global['Mousetrap'] = function() {
   this.reset = function() {};
 };
 
-const BROWSER_FOLDER = join(process.cwd(), 'angular-cli-skeletons');
+const BROWSER_FOLDER = join(process.cwd(), 'client');
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/angular-cli-skeleton-server/main');
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/client-server/main');
 
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 

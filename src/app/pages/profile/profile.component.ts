@@ -30,6 +30,7 @@ import { Observable, Subscription, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 import { ToastrService } from 'ngx-toastr';
+import { faAddressBook } from '@fortawesome/free-solid-svg-icons';
 
 import { Store, select } from '@ngrx/store';
 import { sayByeBye, sayHello } from '../../core/actions/hello-example.actions';
@@ -63,6 +64,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   helloExample$: Observable<string>;
   elementsObs: Observable<any> = of(this.elements).pipe(delay(1000));
+
+  faAddressBook = faAddressBook;
 
   // TODO Socket.io integration is working for client side rendering (both dev and prod),
   // but when you switch to SSR there are some problems, so I decided to remove it
