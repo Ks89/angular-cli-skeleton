@@ -1,13 +1,16 @@
 language: node_js
 node_js:
-  - "8"
+  - "10"
 
 os:
   - linux
-#  - osx
-dist: trusty # to use Ubuntu 14.04
-#osx_image: xcode8.3 # to use macOS Sierra 10.12
-sudo: false
+dist: trusty
+
+# temporary fix to prevent an issue related to chrome headless. I should restore this to false as soon as possible.
+# also I should remove these 2 commands from before_script
+# 1. sudo chown root /opt/google/chrome/chrome-sandbox
+# 2. sudo chmod 4755 /opt/google/chrome/chrome-sandbox
+sudo: true
 
 git:
   depth: 3
@@ -50,12 +53,15 @@ script:
   - bash travisci/script.sh
 after_success:
   - source travisci/after_success.sh
-#after_script:
-#  - bash travisci/after_script.sh
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 cache:
   apt: true
   bundler: true
   directories:
     - ./node_modules
+    - ./servers/node-express-js/node_modules
+    - ./servers/node-express-ts/node_modules
+    - ./servers/node-koa-js/node_modules
     - '$HOME/.sonar/cache'

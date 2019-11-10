@@ -25,6 +25,9 @@ jobs:
           key: my-project-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - "node_modules"
+            # - "servers/node-express-js/node_modules"
+            # - "servers/node-express-ts/node_modules"
+            # - "servers/node-koa-js/node_modules"
       - run:
           name: run-build-dev
           command: npm run build:dev
@@ -58,10 +61,7 @@ jobs:
           command: xvfb-run -a npm run e2e:ci
       - run:
           name: run-docs
-          command: npm run docs:typedoc
-      - run:
-          name: run-compodoc
-          command: npm run docs:compodoc
+          command: npm run docs
       - run:
           name: run-codeclimate
           command: npm run codeclimate

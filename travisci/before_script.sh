@@ -2,6 +2,10 @@
 
 echo "Before script - OS is $TRAVIS_OS_NAME"
 
+echo "Apply this temporary fix https://github.com/travis-ci/travis-ci/issues/9024"
+sudo chown root /opt/google/chrome/chrome-sandbox
+sudo chmod 4755 /opt/google/chrome/chrome-sandbox
+
 # update webdriver (like npm run webdriver:update)
 node ./node_modules/protractor/bin/webdriver-manager update
 # rebuild again node-sass
@@ -22,3 +26,10 @@ else
     echo "Installing chrome on $TRAVIS_OS_NAME"
     brew cask install google-chrome
 fi
+
+
+# codeclimate test reporter
+echo "Preparing codeclimate test reporter - OS is $TRAVIS_OS_NAME"
+curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+chmod +x ./cc-test-reporter
+./cc-test-reporter before-build
