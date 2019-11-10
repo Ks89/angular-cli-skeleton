@@ -6,10 +6,12 @@ const Koa = require('koa');
 
 const app = new Koa();
 
+const koaStatic = require('koa-static');
 const responseTime = require('koa-response-time');
 const helmet = require('koa-helmet');
 const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
+const httpShutdown = require('http-shutdown');
 
 const jwt = require('./middlewares/jwt');
 // const error = require('middleware/error-middleware');
@@ -30,7 +32,9 @@ app.use(bodyParser({ enableTypes: ['json'] }));
 app.use(routes.routes());
 app.use(routes.allowedMethods());
 
-app.server = require('http-shutdown')(http.createServer(app.callback()));
+app.use(koaStatic(config.FRONT_END_PATH));
+
+app.server = httpShutdown(http.createServer(app.callback()));
 
 app.shutDown = function shutDown() {
   let err;
