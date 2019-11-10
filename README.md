@@ -28,8 +28,8 @@ If you like it, please add a star. It will be really appreciated.
     - [RxJS 6](https://github.com/ReactiveX/rxjs/blob/master/doc/lettable-operators.md) with lettable operators
 - [Bootstrap 4](http://getbootstrap.com/) with a custom theme (check `./src/_variables.scss`), [ng-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap)
 - [FontAwesome 5](https://fontawesome.com/)
-- *[Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/) support to add it as a standalone app on mobile devices (see `manifest.webmanifest`) (TEMPORARY DISABLED)*
-- *[Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers/) to create an offline application (see `./src/ngsw-config.json`)(TEMPORARY DISABLED)*
+- [Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/) support to add it as a standalone app on mobile devices (see `manifest.webmanifest`)
+- [Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers/) to create an offline application (see `./src/ngsw-config.json`)
 - *[socket.io](https://github.com/socketio/socket.io) (still work in progress and TEMPORARY DISABLED. Check [this issue](https://github.com/Ks89/angular-cli-skeleton/issues/1)*
 - Reactive storage based on Redux
     - [@ngrx/store](https://github.com/ngrx/store) >= 8
@@ -42,7 +42,7 @@ If you like it, please add a star. It will be really appreciated.
     - [build-optimizer](https://www.npmjs.com/package/@angular-devkit/build-optimizer) for production builds
     - [Bundle Analyzer](https://github.com/th0r/webpack-bundle-analyzer)
     - [Proxying support](https://github.com/angular/angular-cli/wiki/stories-proxy) (optional to proxy your rest services with [webpack-dev-server](https://github.com/webpack/webpack-dev-server))
-    - *[Server Side Rendering](https://universal.angular.io/) with [angular-universal](https://github.com/angular/universal) (TEMPORARY DISABLED)*
+    - *[Server Side Rendering](https://universal.angular.io/) with [angular-universal](https://github.com/angular/universal) (TEMPORARY DISABLED - remember to enable SSR on CIs)*
     - *AppShell (still work in progress and TEMPORARY DISABLED. Check [this issue](https://github.com/Ks89/angular-cli-skeleton/issues/22)*
 - Testing
     - Unit testing with [Karma](https://karma-runner.github.io) and [Jasmine](https://jasmine.github.io/)
@@ -64,9 +64,9 @@ If you like it, please add a star. It will be really appreciated.
     - *[Docker](https://www.docker.com/) with the production build (no ssr at the moment) and [ngnix](https://nginx.org/en/) (TEMPORARY DISABLED)*
     - See all my public repos here [Docker Hub](https://hub.docker.com/u/ks89/)
 - Continous Integration
-    - *[Travis CI](https://travis-ci.org/) (TEMPORARY DISABLED)*
-    - *[Circle CI](https://circleci.com/) (TEMPORARY DISABLED)*
-    - *[AppVeyor](https://www.appveyor.com/) (TEMPORARY DISABLED)*
+    - [Travis CI](https://travis-ci.org/)
+    - [Circle CI](https://circleci.com/)
+    - [AppVeyor](https://www.appveyor.com/)
 - **Multiple server-side implementations** with NodeJS
     - NodeJS + Express in **Javascript** (see `./servers/node-express-js`)
     - NodeJS + Express in **Typescript** (see `./servers/node-express-ts`)

@@ -37,9 +37,12 @@ jobs:
       - run:
           name: run-build-prod
           command: npm run build:prod
-      - run:
-          name: run-build-prod-ssr
-          command: npm run build:ssr
+      # - run:
+      #     name: run-build-prod-ssr
+      #     command: npm run build:ssr
+      # - run:
+      #     name: run-build-prod-prerender
+      #     command: npm run build:prerender
       - run:
           name: run-test
           #xvfb-run is used to run npm run to run a command using a virtual screen, which is needed by Chrome.

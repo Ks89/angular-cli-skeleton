@@ -142,7 +142,7 @@ build_script:
   - echo "npm run production build on $TRAVIS_OS_NAME"
   - npm run build:prod
   # run production build with server side rendering
-  - npm run build:ssr
+  # - npm run build:ssr
 
 #---------------------------------#
 #       tests configuration       #
