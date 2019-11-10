@@ -105,18 +105,15 @@ angular-cli-skeleton/
  ├─.dockerignore                  * docker ignore file
  ├─.editorconfig                  * standard editor config file
  ├─.prettierignore                * prettier ignore file
- ├─.prettierrc.json               * prettier config json file 
+ ├─.prettierrc.json               * prettier config json file
  ├─.sass-lint.yml                 * sass-lint config file
  ├─appveyor.yml                   * appveyor config (is a CI service free for open source projects)
  ├─karma.conf.js                  * karma config file for unit testing
  ├─Dockerfile                     * docker config dile
- ├─Jenkinsfile                    * jenkins 2 config file with a pipeline's script for a Linux server
- ├─Jenkinsfile-local-macOS        * jenkins 2 config file with a pipeline's script for macOS (locally)
  ├─package.json                   * npm packages.json
  ├─package-lock.json              * lock file for npm >= 5
  ├─proxy.conf.json                * proxy configuration for angular-cli when using 'npm start'
  ├─server.ts                      * NodeJs server to enable Server Side Rendering
- ├─sonar-project.properties       * config file for SonarQube
  ├─tsconfig.app.json              * typescript's config file for the application (browser-side)
  ├─tsconfig.json                  * generasl typescript's config file
  ├─tsconfig.server.json           * typescript's config file for the application (server-side)

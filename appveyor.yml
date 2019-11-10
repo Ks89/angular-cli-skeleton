@@ -29,8 +29,6 @@ skip_commits:
     - .circleci/*
     - travisci/*
     - .travis.yml
-    - Jenkinsfile
-    - Jenkinsfile-local-macOS
     - .bithoundrc
     - .codeclimate.yml
     - .editorconfig
@@ -38,7 +36,6 @@ skip_commits:
     - .prettierrc.json
     - .sass-lint.yml
     - .snyk
-    - sonar-project.properties
 
 
 # Including commits affecting specific files (GitHub only). More details here: /docs/appveyor-yml

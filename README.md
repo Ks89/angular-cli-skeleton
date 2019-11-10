@@ -16,7 +16,7 @@ A simple ready to use skeleton project with angular-cli (optionally also angular
 
 This project my previous older skeleton project called [angular-webpack-skeleton](https://github.com/Ks89/angular-webpack-skeleton).
 
-If you like it, please add a star. It will be really apprecieted.
+If you like it, please add a star. It will be really appreciated.
 
 ## Features
 - Typescript >= 3.6
@@ -28,31 +28,30 @@ If you like it, please add a star. It will be really apprecieted.
     - [RxJS 6](https://github.com/ReactiveX/rxjs/blob/master/doc/lettable-operators.md) with lettable operators
 - [Bootstrap 4](http://getbootstrap.com/) with a custom theme (check `./src/_variables.scss`), [ng-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap)
 - [FontAwesome 5](https://fontawesome.com/)
-- [jQuery](https://jquery.com/)
-- [Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/) support to add it as a standalone app on mobile devices (see `manifest.webmanifest`)
-- [Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers/) to create an offline application (see `./src/ngsw-config.json`)
+- *[Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/) support to add it as a standalone app on mobile devices (see `manifest.webmanifest`) (TEMPORARY DISABLED)*
+- *[Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers/) to create an offline application (see `./src/ngsw-config.json`)(TEMPORARY DISABLED)*
 - *[socket.io](https://github.com/socketio/socket.io) (still work in progress and TEMPORARY DISABLED. Check [this issue](https://github.com/Ks89/angular-cli-skeleton/issues/1)*
 - Reactive storage based on Redux
     - [@ngrx/store](https://github.com/ngrx/store) >= 8
     - [@ngrx/store-devtools](https://github.com/ngrx/store-devtools) >= 8
 - angular-cli
-    - different profiles: 'development', 'development with HMR', 'production', 'production with SSR'
+    - different profiles: 'development', 'development with HMR', 'production' and *'production with SSR' (TEMPORARY DISABLED)*
     - [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/)
     - [Tree shaking](https://webpack.js.org/guides/tree-shaking/)
     - [SASS support](https://github.com/webpack-contrib/sass-loader)
-    - [UglifyJs](https://github.com/webpack-contrib/uglifyjs-webpack-plugin) and [build-optimizer](https://www.npmjs.com/package/@angular-devkit/build-optimizer) for production builds
+    - [build-optimizer](https://www.npmjs.com/package/@angular-devkit/build-optimizer) for production builds
     - [Bundle Analyzer](https://github.com/th0r/webpack-bundle-analyzer)
     - [Proxying support](https://github.com/angular/angular-cli/wiki/stories-proxy) (optional to proxy your rest services with [webpack-dev-server](https://github.com/webpack/webpack-dev-server))
-    - [Server Side Rendering](https://universal.angular.io/) with [angular-universal](https://github.com/angular/universal)
+    - *[Server Side Rendering](https://universal.angular.io/) with [angular-universal](https://github.com/angular/universal) (TEMPORARY DISABLED)*
     - *AppShell (still work in progress and TEMPORARY DISABLED. Check [this issue](https://github.com/Ks89/angular-cli-skeleton/issues/22)*
 - Testing
     - Unit testing with [Karma](https://karma-runner.github.io) and [Jasmine](https://jasmine.github.io/)
-      - Custom advanced configuration to specify different browsers on CIs (check 'getBrowsers()' in `./karma.conf.js`)
+      - *Custom advanced configuration to specify different browsers on CIs (check 'getBrowsers()' in `./karma.conf.js`) (TEMPORARY DISABLED)*
       - Multiple launcher for browsers (Chrome and ChromeHeadless). See `karma.conf.js`
       - [Chrome Headless](https://developers.google.com/web/updates/2017/04/headless-chrome) support to run unit tests (better than [PhantomJS](http://phantomjs.org/))
-      - Multiple coverage reporters: `json`, `html`, `lcovonly`, `mocha`, SonarQube and also in your console
+      - *Multiple coverage reporters: `json`, `html`, `lcovonly`, `mocha` and also in your console (TEMPORARY DISABLED)*
     - End to end (E2E) testing with [Protractor](http://www.protractortest.org) and [WebDriver JS](https://github.com/SeleniumHQ/selenium/wiki/WebDriverJs)
-    - Code coverage with [IstanbulJs](https://github.com/istanbuljs/istanbuljs)
+    - *Code coverage with [IstanbulJs](https://github.com/istanbuljs/istanbuljs) (TEMPORARY DISABLED)*
 - Code analysis and quality
     - [TSLint](https://github.com/palantir/tslint)
     - [Codelyzer](https://github.com/mgechev/codelyzer)
@@ -62,14 +61,12 @@ If you like it, please add a star. It will be really apprecieted.
     - [TypeDoc](https://github.com/TypeStrong/typedoc)
     - [Compodoc](https://github.com/compodoc/compodoc) also with both 'watch mode' and 'watch + serve modes'
 - Docker
-    - [Docker](https://www.docker.com/) with the production build (no ssr at the moment) and [ngnix](https://nginx.org/en/)
+    - *[Docker](https://www.docker.com/) with the production build (no ssr at the moment) and [ngnix](https://nginx.org/en/) (TEMPORARY DISABLED)*
     - See all my public repos here [Docker Hub](https://hub.docker.com/u/ks89/)
 - Continous Integration
-    - [Travis CI](https://travis-ci.org/)
-    - [Circle CI](https://circleci.com/)
-    - [AppVeyor](https://www.appveyor.com/)
-    - [SonarQube](https://www.sonarqube.org/) on [SonarCloud](https://sonarcloud.io/dashboard?id=angular-webpack-skeleton) with installation instructions below
-    - [Jenkins 2](https://jenkins-ci.org/) with installation instructions below
+    - *[Travis CI](https://travis-ci.org/) (TEMPORARY DISABLED)*
+    - *[Circle CI](https://circleci.com/) (TEMPORARY DISABLED)*
+    - *[AppVeyor](https://www.appveyor.com/) (TEMPORARY DISABLED)*
 - **Multiple server-side implementations** with NodeJS
     - NodeJS + Express in **Javascript** (see `./servers/node-express-js`)
     - NodeJS + Express in **Typescript** (see `./servers/node-express-ts`)
@@ -313,77 +310,6 @@ or
 ### Bundle analyzer
 - Run either `npm run build:dev:stats` or `npm run build:prod:stats`
 - Open analyzer with `npm run analyze:bundle` to see the result
-
-### Jenkins support
-With this tutorial, you'll configure Jenkins to build your project from GitHub, where the Pipeline's script is in the remote repository.
-
-#### I want to use Jenkins on my pc (tutorial tested on macOS)
-1. Install java and define all necessary env variables for your OS
-2. Download the latest version of Jenkins 2 [HERE](https://jenkins.io/download/). If you are using macOS, I suggest to use [Homebrew](https://brew.sh/index_it.html)
-3. Install Jenkins following [this instruction](https://jenkins.io/doc/book/installing/)
-4. Run it (if installed with HomeBrew, run `jenkins` in your terminal)
-5. Navigate to `http://localhost:8080` and unlock Jenkins (for more info check [HERE](https://jenkins.io/doc/book/installing/#unlocking-jenkins))
-6. Install all suggested plugins
-7. Create a new admin user (please, you shouldn't skip this step) as explained [HERE](https://jenkins.io/doc/book/installing/#creating-the-first-administrator-user)
-8. Navigate to `http://localhost:8080/pluginManager/available` and install `NodeJS Plugin`
-9. Restart Jenkins and log in with the new admin user created at step 7
-10. Navigate to `http://localhost:8080/configureTools/` and add a new NodeJS installation (remember to save all changes at the end) with these parameters:
-    - Name: node-8.4.0 (this name must match `tool name` in your pipeline's script. If you are a beginner, please don't change it)
-    - Install automatically: checked
-    - Version: NodeJS 8.4.0
-11. Create a new **PIPELINE** at `http://localhost:8080/view/all/newJob` called for instance `angular-cli-skeleton`
-12. Check both `GitHub project` (use this url: `https://github.com/Ks89/angular-cli-skeleton/`) and `GitHub hook trigger for GIT Scm polling`
-13. In the Pipeline section, choose `Pipeline script from SCM`, with SCM `Git` and URL `https://github.com/Ks89/angular-cli-skeleton` to get the pipeline's script from `./Jenkinsfile` via git
-14. Script Path must match the Jenkins file name in your repository (i.e. `Jenkinsfile-local-macOS`)
-15. Save and build
-
-PS: if you want to use Jenkins on a remote server, you should add these two env variables:
-- CI=true
-- JENKINS=true
-
-#### I want to use Jenkins on a private server
-COMING SOON a tutorial to install and configure Jenkins in a VPS at OVH.com
-
-
-### SonarQube support
-1. Install java and define all necessary env variables for your OS
-2. Download and install SonarQube on your pc/mac [HERE](https://docs.sonarqube.org/display/SONAR/Installing+the+Server#InstallingtheServer-installingWebServerInstallingtheWebServer)
-3. Start SonarQube running the right script (make sure to run it with execution privileges) in `INSTALL_FOLDER/bin/YOUR_OS/SCRIPT_NAME start` (for instance on macOS I'm using `./INSTALL_FOLDER/bin/macosx-universal-64/sonar.sh start`)
-4. Navigate with your browser to `http://localhost:9000` to see if everything is working
-5. If you need to login ad administrator to SonarQube use (user: `admin`, password: `admin`)
-6. Install the right TypeScript plugin [HERE](https://github.com/Pablissimo/SonarTsPlugin/releases) downloading the latest jar binary
-7. Copy that .jar into `INSTALL_FOLDER/extensions/plugins` (in necessary remove the other TypeScript plugin in this folder)
-8. Restart SonarQube running `INSTALL_FOLDER/bin/YOUR_OS/SCRIPT_NAME stop` and `INSTALL_FOLDER/bin/YOUR_OS/SCRIPT_NAME start`
-9. Login as admin at `http://localhost:9000`
-10. At `http://localhost:9000` find the TypeScript tab (in the sidebar), paste in the TsLint path (for instance, on macOS I'm using my global installation of TsLint `/usr/local/lib/node_modules/tslint/bin/tslint`). If you are a Windows user use `C:\Users\[Username]\AppData\Roaming\npm\node_modules\tslint\bin\tslint`
-
-#### Run SonarQube analysis and send results to sonarcloud.io (free for open-source projects)
-1. Download and install sonar-scanner on your pc/mac [HERE](https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner#AnalyzingwithSonarQubeScanner-Installation)
-2. Define a new unique `project key`. I used the name of the repo `angular-cli-skeleton` for this project
-3. Create an account of [sonarcloud](https://sonarcloud.io/)
-4. Go to [account security](https://sonarcloud.io/account/security) to generate a new token with your `project key`: `angular-cli-skeleton`
-5. Clean all your useless folders running `npm run clean` inside the root of your project
-6. Modify this script with your info and run it from the root of your project
-    ```sonar-scanner \
-          -Dsonar.projectKey=your_project_key_that_must_be_unique \
-          -Dsonar.sources=. \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.organization=your_organization_key \
-          -Dsonar.login=abcdef0123456789
-    ```
-    For instance, I used this:
-    ```
-    sonar-scanner \
-        -Dsonar.projectKey=angular-cli-skeleton \
-        -Dsonar.sources=. \
-        -Dsonar.host.url=https://sonarcloud.io \
-        -Dsonar.organization=ks89-github \
-        -Dsonar.login=SONARCLOUDIO_SECRET_TOKEN
-    ```
-7. Navigate to `https://sonarcloud.io/dashboard?id=YOUR_PROJECT_NAME (The path of this project is `https://sonarcloud.io/dashboard?id=angular-cli-skeleton`)
-8. If everything is ok, then I suggest to modify both 'analyze:sonar' and 'analyze:sonar:ci' scripts into `package.json` based on step 6, omitting `-Dsonar.login=`, because this is a secret key and you shouldn't commit it
-9. Now try to run sonar analysis with 'npm run analyze:sonar -- -Dsonar.login=SONARCLOUDIO_SECRET_TOKEN'
-
 
 ## Further help
 
