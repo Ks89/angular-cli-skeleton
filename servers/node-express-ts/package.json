@@ -36,7 +36,7 @@
     "helmet": "^3.12.0",
     "hpp": "^0.2.2",
     "jsonwebtoken": "^8.2.1",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.13",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "winston": "^2.4.2"
