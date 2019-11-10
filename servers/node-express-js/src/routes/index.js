@@ -22,12 +22,12 @@ logger.warn('[SECURITY] Initializing ratelimit');
 // some kind of rate-limiting
 // only if you're behind a reverse proxy (Heroku, Bluemix, AWS if you use an ELB, custom Nginx setup, etc)
 // app.enable('trust proxy');
-const apiLimiter = new RateLimit({
+let apiLimiter = new RateLimit({
   windowMs: config.RATELIMITER_WINDOW_MS, // window in ms to check
   max: config.RATELIMITER_MAX, // limit each IP to `max` requests per windowMs
   message: config.RATELIMITER_MESSAGE // message to show with a HTTP 429 status
 });
-const apiSlowDown = new SlowDown({
+let apiSlowDown = new SlowDown({
   windowMs: config.RATELIMITER_WINDOW_MS, // window in ms to check
   delayAfter: config.RATELIMITER_DELAY_AFTER, // begin slowing down responses after `delayAfter` requests
   delayMs: config.RATELIMITER_DELAY_MS // slow down subsequent responses by `delayMs` seconds per request

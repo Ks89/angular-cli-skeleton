@@ -17,7 +17,6 @@ logger.warn(`Starting with NODE_ENV=${config.NODE_ENV}`);
 const { findIndex } = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
 const path = require('path');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');

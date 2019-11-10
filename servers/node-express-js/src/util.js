@@ -106,18 +106,6 @@ function _isNotValidArray(p) {
   return _.isArrayBuffer(p) || _.isTypedArray(p);
 }
 
-function _isNotValidNumber(p) {
-  return !_.isNumber(p) || _.isNaN(p);
-}
-
-function _isNotStringArrayObject(p) {
-  return !_isStringOrArrayOrObject(p);
-}
-
-function _isStringOrArrayOrObject(p) {
-  return _.isString(p) || _.isArray(p) || _.isObject(p);
-}
-
 function _isSet(p) {
   return _.isSet(p) || _.isWeakSet(p);
 }

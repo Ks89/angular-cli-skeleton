@@ -1,5 +1,40 @@
 'use strict';
 
+const path = require('path');
+
+const useDotenv = process.env.CI !== 'yes' && process.env.CI !== true;
+console.log(`Use dotenv condition is: ${useDotenv}`);
+
+if (useDotenv === true) {
+  console.log('Initializing dotenv (requires .env/.env_prod file)');
+  let dotenvName = null;
+  switch (process.env.NODE_ENV) {
+    case 'development':
+      console.log('dotenv read: .env_dev');
+      dotenvName = '.env_dev';
+      break;
+    case 'test':
+      console.log('dotenv read: .env_dev (you are running with NODE_ENV=test)');
+      dotenvName = '.env_dev';
+      break;
+    default:
+    case 'production':
+      console.log('dotenv read: .env_prod');
+      dotenvName = '.env_prod';
+      break;
+  }
+
+  const dotenvAbsolutePath = path.join(__dirname, '../' + dotenvName);
+
+  const dotenv = require('dotenv').config({
+    path: dotenvAbsolutePath
+  });
+  if (dotenv.error) {
+    throw dotenv.error;
+  }
+  console.log(`dotenv parsed with NODE_ENV=${process.env.NODE_ENV}`, dotenv.parsed);
+}
+
 // ATTENTION!!!
 // don't use here logger.js because it requires config fully initialized
 
@@ -7,32 +42,32 @@ module.exports = {
   isProd: () => process.env.NODE_ENV === 'production',
   isTest: () => process.env.NODE_ENV === 'test',
 
-  FRONT_END_PATH: process.env.FRONT_END_PATH || '../../dist/client',
-
   NODE_ENV: process.env.NODE_ENV || 'development',
+
+  FRONT_END_PATH: process.env.FRONT_END_PATH,
   PORT: process.env.PORT || process.env.NODE_ENV === 'production' ? 80 : 3000,
 
-  LOG_FOLDER: process.env.LOG_FOLDER || 'logs',
+  LOG_FOLDER: process.env.LOG_FOLDER,
 
   // Jwt config for apis server <-> client
-  JWT_SECRET: process.env.JWT_SECRET || 'secret key bla bla',
-  SESSION_TIMEOUT_MS: process.env.SESSION_TIMEOUT_MS || 3600000, // by default valid for 8 hours
+  JWT_SECRET: process.env.JWT_SECRET,
+  SESSION_TIMEOUT_MS: process.env.SESSION_TIMEOUT_MS, // by default valid for 8 hours
 
   COOKIE_SECRET: process.env.COOKIE_SECRET, // secret password for cookies
 
   // re-assign all process.env variables to be used in this app and defined with dotenv to constants
   // In this way I can see all variables defined with donenv and used in this app
   // In CI I can't use dotenv => I provide default values for all these constants
-  LARGE_PAYLOAD_MESSAGE: process.env.LARGE_PAYLOAD_MESSAGE || 'payload too large!',
-  EXPRESS_SESSION_SECRET: process.env.EXPRESS_SESSION_SECRET || 'keyboard cat',
-  HELMET_HIDE_POWERED_BY: process.env.HELMET_HIDE_POWERED_BY || 'ks89',
-  HELMET_REFERRER_POLICY: process.env.HELMET_REFERRER_POLICY || 'no-referrer',
-  HELMET_EXPECT_CT_REPORT_URI: process.env.HELMET_EXPECT_CT_REPORT_URI || 'https://angularcliexample.com/expect-ct-report',
+  LARGE_PAYLOAD_MESSAGE: process.env.LARGE_PAYLOAD_MESSAGE,
+  EXPRESS_SESSION_SECRET: process.env.EXPRESS_SESSION_SECRET,
+  HELMET_HIDE_POWERED_BY: process.env.HELMET_HIDE_POWERED_BY,
+  HELMET_REFERRER_POLICY: process.env.HELMET_REFERRER_POLICY,
+  HELMET_EXPECT_CT_REPORT_URI: process.env.HELMET_EXPECT_CT_REPORT_URI,
 
   // rate limiter for all APIs
-  RATELIMITER_WINDOW_MS: process.env.RATELIMITER_WINDOW_MS || 60 * 60 * 1000, // by default 15 minutes
-  RATELIMITER_MAX: process.env.RATELIMITER_MAX || 1000,
-  RATELIMITER_DELAY_AFTER: process.env.RATELIMITER_DELAY_AFTER || 800,
-  RATELIMITER_DELAY_MS: process.env.RATELIMITER_DELAY_MS || 3 * 1000, // by default 3 seconds
-  RATELIMITER_MESSAGE: process.env.RATELIMITER_MESSAGE || 'Too many requests from this IP, please try again after 60 minutes'
+  RATELIMITER_WINDOW_MS: process.env.RATELIMITER_WINDOW_MS,
+  RATELIMITER_MAX: process.env.RATELIMITER_MAX,
+  RATELIMITER_DELAY_AFTER: process.env.RATELIMITER_DELAY_AFTER,
+  RATELIMITER_DELAY_MS: process.env.RATELIMITER_DELAY_MS,
+  RATELIMITER_MESSAGE: process.env.RATELIMITER_MESSAGE
 };
