@@ -32,7 +32,7 @@ If you like it, please add a star. It will be really appreciated.
 - [Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers/) to create an offline application (see `./src/ngsw-config.json`)
 - *[socket.io](https://github.com/socketio/socket.io) (still work in progress and TEMPORARY DISABLED. Check [this issue](https://github.com/Ks89/angular-cli-skeleton/issues/1)*
 - Reactive storage based on Redux
-    - [@ngrx/store](https://github.com/ngrx/store) >= 8
+    - [@ngrx/store](https://github.com/ngrx/store) >= 8 with the new 'create...' apis
     - [@ngrx/store-devtools](https://github.com/ngrx/store-devtools) >= 8
 - angular-cli
     - different profiles: 'development', 'development with HMR', 'production' and *'production with SSR' (TEMPORARY DISABLED)*
