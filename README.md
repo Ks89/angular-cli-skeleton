@@ -25,7 +25,7 @@ If you like it, please add a star. It will be really appreciated.
     - [Ahead of Time (AOT)](https://angular.io/guide/aot-compiler) enabled by default for Angular >= 5
     - [Lazy loading](https://angular.io/guide/ngmodule#lazy-loading-modules-with-the-router)
     - The new [HttpClient](https://angular.io/guide/http#httpclient) of Angular >= 4.3
-    - [RxJS 6](https://github.com/ReactiveX/rxjs/blob/master/doc/lettable-operators.md) with lettable operators
+    - [RxJS 6](https://github.com/ReactiveX/rxjs/blob/master/doc/pipeable-operators.md) with pipeable operators
 - [Bootstrap 4](http://getbootstrap.com/) with a custom theme (check `./src/_variables.scss`), [ng-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap)
 - [FontAwesome 5](https://fontawesome.com/)
 - [Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/) support to add it as a standalone app on mobile devices (see `manifest.webmanifest`)
