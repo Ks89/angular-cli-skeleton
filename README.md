@@ -74,7 +74,7 @@ If you like it, please add a star. It will be really appreciated.
 - and many more...
 
 ## News
-- *??/11/2019* - 1.0.0 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
+- *??/11/2019* - COMING SOON!!! - 1.0.0 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
 - *04/03/2018* - 1.0.0-beta.2 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
 - *01/06/2018* - 1.0.0-beta.1 - Check [HERE](https://github.com/Ks89/angular-cli-skeleton/releases)
 
@@ -205,7 +205,7 @@ angular-cli-skeleton/
 ## What you can do right now?
 - build and run the front-end of this project with angular-cli, but authentication won't work (obviously, because It needs a server)
 - build this project and run it with one of the two servers in `./servers` (authentication is working!!!)
-- build and run this project with angular-universal (authentication still not supported - COMING SOON)
+- build and run this project with angular-universal (authentication not supported yet - COMING SOON)
 
 This is a 'work in progress' project, so if you need other info, please open an issue. At the moment, documentation and README are minimalistic.
 
@@ -291,15 +291,8 @@ or
 
 ## Docs
 
-### To generate typescript's documentation with typedocs (check docs/index.html for the result)
-- `npm run docs:typedoc`
-
-### To generate the really cool compodoc's documentation (check documentation/index.html for the result)
-- `npm run docs:compodoc`
-
-or
-
-- `npm run docs:compodoc:serve` to navigate the resulting documentation in your browser
+### To generate documentation with typedocs and compodoc (check docs folder index.html files for the result)
+- `npm run docs`
 
 
 ## Others
@@ -318,6 +311,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 To deploy with a custom path, please check here: https://angular.io/guide/deployment
 
 For other questions, please feel free to open an issue.
+
+I'm open to contributions and pull requests.
 
 
 ## License

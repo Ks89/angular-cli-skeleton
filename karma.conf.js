@@ -1,6 +1,40 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
+const os = require('os');
+
+console.log(`Starting Karma with isCI=${!!isCI()}`);
+
+function isCI() {
+  return process.env.CI || process.env.APPVEYOR || process.env.TRAVIS || process.env.CIRCLECI;
+}
+
+function getBrowsers() {
+  if (process.env.CI) {
+    if (process.env.APPVEYOR) {
+      // variable defined by APPVEYOR itself
+      // only for AppVeyor
+      return ['Chrome' /*, 'Firefox', 'IE'*/];
+    } else if (process.env.TRAVIS) {
+      // variable defined by TRAVIS itself
+      return ['ChromeHeadless', 'Chrome' /*, 'Firefox'*/];
+    } else if (process.env.CIRCLECI) {
+      // variable defined by CIRCLECI itself
+      return ['ChromeHeadless', 'Chrome' /*, 'Firefox'*/];
+    }
+  } else {
+    switch (os.platform()) {
+      case 'win32': // Windows
+        return ['ChromeHeadless', 'Chrome' /*, 'Firefox', 'IE','Edge'*/];
+      case 'darwin': // macOS
+        return ['ChromeHeadless', 'Chrome' /*, 'Firefox'*/ /*, 'Safari'*/];
+      default:
+        // other (linux, freebsd, openbsd, sunos, aix)
+        return ['ChromeHeadless', 'Chrome' /*, 'Firefox'*/];
+    }
+  }
+}
+
 module.exports = function(config) {
   config.set({
     basePath: '',
@@ -17,9 +51,6 @@ module.exports = function(config) {
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    angularCli: {
-      environment: 'dev'
-    },
 
     /*
      * when angular-cli's coverage is enabled
@@ -32,12 +63,12 @@ module.exports = function(config) {
      * - kjhtml is used to show karma progress inside the browser
      *
      */
-    reporters: config.angularCli && config.angularCli.codeCoverage ? ['mocha', 'coverage', 'coverage-istanbul'] : ['progress', 'kjhtml'],
+    reporters: ['mocha', 'coverage', 'coverage-istanbul'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['ChromeHeadless', 'Chrome'],
+    browsers: getBrowsers(),
     singleRun: false,
 
     // required by coverage-istanbul

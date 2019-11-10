@@ -1,7 +1,9 @@
 # 1.0.0
- first stable release
- 
- 
+
+## Features
+- first stable release based on Angular 9 with Ivy
+
+
 # Beta 3 (work in progress, but never released)
 
 ## Features
