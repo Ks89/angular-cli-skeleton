@@ -1,6 +1,6 @@
 // MIT License
 //
-// Copyright (c) 2017-2018 Stefano Cappa
+// Copyright (c) 2017-2019 Stefano Cappa
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,10 +21,20 @@
 // SOFTWARE.
 
 import * as config from './config';
+import { existsSync, mkdirSync } from 'fs';
+import { join } from 'path';
 
 import winston from 'winston';
 import { Logger } from 'winston';
 // winston.emitErrs = true;
+
+const logsDir: string = join(__dirname, config.LOG_FOLDER);
+console.log('logsDir', logsDir);
+
+if (!existsSync(logsDir)) {
+  // Create the logsDir directory if it does not exist
+  mkdirSync(logsDir);
+}
 
 function getFormatter(options: any) {
   // Return string will be passed to logger.
@@ -44,7 +54,7 @@ export let logger = new Logger({
       level: process.env.NODE_ENV === 'production' ? 'error' : 'debug',
       maxsize: 10000000,
       maxFiles: 2,
-      filename: config.LOG_PATH,
+      filename: logsDir + '/log.log',
       handleExceptions: true,
       json: false,
       colorize: false,

@@ -1,6 +1,6 @@
 // MIT License
 //
-// Copyright (c) 2017-2018 Stefano Cappa
+// Copyright (c) 2017-2019 Stefano Cappa
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 // ------------------Init env variables--------------------
 // --------------------------------------------------------
 const config = require('./config');
-if (process.env.NODE_ENV !== 'production') {
+if (!config.isProd()) {
   console.log('config file loaded', config);
 }
 // --------------------------------------------------------
@@ -32,6 +32,9 @@ if (process.env.NODE_ENV !== 'production') {
 // --------------------------------------------------------
 
 import { logger } from './logger';
+logger.warn(`Starting with NODE_ENV=${config.NODE_ENV}`);
+logger.warn(`config.CI is ${config.CI} and isCI is ${config.isCI()}`);
+
 import * as _ from 'lodash';
 import express, { NextFunction, Request, Response, Express } from 'express';
 import bodyParser from 'body-parser';
@@ -41,28 +44,16 @@ import cookieParser from 'cookie-parser';
 
 import { Utils } from './util';
 import { db, Db, getTokens, removeTokens } from './db';
-// --SEC-- - github analog-nico/hpp [NOT helmet]
-//    [http params pollution] security package to prevent http params pollution
-import hpp from 'hpp';
-// --SEC-- - [CSRF] github.com/expressjs/csurf [NOT helmet]
-import csrf, { CookieOptions } from 'csurf';
-// --SEC-- - authentication with JWT
-import passport from 'passport';
-import { ExtractJwt, Strategy, StrategyOptions } from 'passport-jwt';
-import * as passportConfig from './passport';
-// --SEC-- - Helmet
-import helmet, { IHelmetContentSecurityPolicyDirectives } from 'helmet';
-
-logger.warn(`Starting with NODE_ENV=${config.NODE_ENV}`);
-logger.warn(`config.CI is ${config.CI} and isCI is ${config.isCI()}`);
 
 // --------------------------------------------------------------------------
 // ----------------------------security packages-----------------------------
 // --------------------------------------------------------------------------
 // All security features are prefixed with `--SEC--`
-// --SEC-- - github helmetjs/expect-ct [NOT helmet]
-//    The Expect-CT HTTP header tells browsers to expect Certificate Transparency
-const expectCt = require('expect-ct');
+
+// --SEC-- - authentication with JWT
+import passport from 'passport';
+import { ExtractJwt, Strategy, StrategyOptions } from 'passport-jwt';
+import * as passportConfig from './passport';
 const jwtOptions: StrategyOptions = passportConfig.buildJwtOptions(ExtractJwt.fromAuthHeaderAsBearerToken());
 passport.use(
   new Strategy(jwtOptions, (jwtPayload, done) => {
@@ -103,39 +94,69 @@ passport.use(
   })
 );
 
+// --SEC-- - github helmetjs/expect-ct [NOT helmet]
+//    The Expect-CT HTTP header tells browsers to expect Certificate Transparency
+const expectCt = require('expect-ct');
+// --SEC-- - github analog-nico/hpp [NOT helmet]
+//    [http params pollution] security package to prevent http params pollution
+import hpp from 'hpp';
+// --SEC-- - [CSRF] github.com/expressjs/csurf [NOT helmet]
+import csrf, { CookieOptions } from 'csurf';
 // --SEC-- - github ericmdantas/express-content-length-validator [NOT helmet]
 //    large payload attacks - Make sure this application is
 //    not vulnerable to large payload attacks
 const contentLength = require('express-content-length-validator');
 // constant (max size for all reqs, also for file uploads)
 const MAX_CONTENT_LENGTH_ACCEPTED = 100 * 1024 * 1024;
+// --SEC-- - Helmet
+import helmet, { IHelmetContentSecurityPolicyDirectives } from 'helmet';
 
 const app = express();
 
-// --------------------------------------------------------------------------
-// --------------------------------------------------------------------------
-// --------------------------------------------------------------------------
-// --------------------------------------------------------------------------
-logger.warn('Initializing helmet');
-// --SEC-- - [helmet] enable helmet
-// this automatically add 9 of 11 security features
-/*
- -dnsPrefetchControl controls browser DNS prefetching
- -frameguard to prevent clickjacking
- -hidePoweredBy to remove the X-Powered-By header
- -hpkp for HTTP Public Key Pinning
- -hsts for HTTP Strict Transport Security
- -ieNoOpen sets X-Download-Options for IE8+
- -noSniff to keep clients from sniffing the MIME type
- -xssFilter adds some small XSS protections
- */
-// The other features NOT included by default are:
-/*
- -contentSecurityPolicy for setting Content Security Policy
- -noCache to disable client-side caching => I don't want this for better performances
- -referrerPolicy to hide the Referer header
- */
+// redirect all HTTP requests to HTTPS
+// if (config.isProd()) {
+//   app.use((req, res, next) => {
+//     if (!req.secure) {
+//       return res.redirect(`https://${req.get('host')}${req.url}`);
+//     }
+//     next();
+//   });
+// }
+
+// if (config.isProd()) {
+//   logger.warn('Initializing express-enforce-ssl');
+//   // --SEC-- - github hengkiardo/express-enforces-ssl
+//   // enforces HTTPS connections on any incoming requests.
+//   app.enable('trust proxy');
+//   app.use(expressEnforcesSsl());
+// }
+
+// --SEC-- - add Feature-Policy header
+// taken from https://github.com/helmetjs/helmet/issues/173
+app.use(
+  helmet.featurePolicy({
+    features: {
+      geolocation: [`'none'`],
+      midi: [`'none'`],
+      camera: [`'none'`],
+      // usb: [`'none'`], // STILL NOT SUPPERTED BY HELMET
+      magnetometer: [`'none'`],
+      fullscreen: [`'self'`],
+      // animations: [`'self'`], // STILL NOT SUPPERTED BY HELMET
+      payment: [`'none'`],
+      // 'picture-in-picture': [`'none'`], // STILL NOT SUPPERTED BY HELMET
+      // accelerometer: [`'none'`], // STILL NOT SUPPERTED BY HELMET
+      // vr: [`'none'`],
+      syncXhr: [`'none'`]
+    }
+  })
+);
+
 app.use(helmet());
+
+// --SEC-- - crossdomain: X-Permitted-Cross-Domain-Policies
+// prevents Adobe Flash and Adobe Acrobat from loading content on your site.
+app.use(helmet.permittedCrossDomainPolicies());
 
 // --SEC-- - hidePoweredBy: X-Powered-By forced to a fake value to
 // hide the default 'express' value [helmet]
@@ -171,12 +192,12 @@ app.use(
       childSrc: [`'none'`],
       // restricts the URLs which can be loaded using script interfaces. The APIs that are restricted are:
       // <a> ping, Fetch, XMLHttpRequest, WebSocket, EventSource
-      connectSrc: [`'self'`, 'api.github.com'],
+      connectSrc: [`'self'`, 'api.github.com', `https://*.google.com/`, `https://*.googleusercontent.com/`, `https://*.gstatic.com/`],
       // serves as a fallback for the other CSP fetch directives. For more info check:
       // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/default-src
       defaultSrc: [`'self'`],
       // valid sources for fonts loaded using @font-face
-      fontSrc: [`'self'`],
+      fontSrc: [`'self'`, `https://*.gstatic.com/`],
       // restricts the URLs which can be used as the target of a form submissions from a given context
       formAction: [`'self'`],
       // specifies valid parents that may embed a page using <frame>, <iframe>, <object>, <embed>, or <applet>
@@ -186,7 +207,7 @@ app.use(
       // specifies valid sources of images and favicons
       imgSrc: [`'self'`, 'data:'],
       // specifies which manifest can be applied to the resource.
-      manifestSrc: [`'none'`],
+      manifestSrc: [`'self'`],
       // specifies valid sources for loading media using the <audio> and <video> elements
       mediaSrc: [`'none'`],
       // specifies valid sources for the <object>, <embed>, and <applet> elements
@@ -204,11 +225,11 @@ app.use(
       // enables a sandbox for the reqed resource similar to the <iframe> sandbox attribute.
       // It applies restrictions to a page's actions including preventing popups, preventing the execution
       // of plugins and scripts, and enforcing a same-origin policy.
-      sandbox: ['allow-forms', 'allow-scripts', 'allow-same-origin'],
+      sandbox: ['allow-forms', 'allow-scripts', 'allow-same-origin', 'allow-popups'],
       // specifies valid sources for JavaScript. This includes not only URLs loaded directly into <script>
       scriptSrc: [`'self'`],
       // specifies valid sources for sources for stylesheets.
-      styleSrc: [`'self'`, `'unsafe-inline'`]
+      styleSrc: [`'self'`, `'unsafe-inline'`, `https://*.googleapis.com`]
       // instructs user agents to treat all of a site's insecure URLs (those served over HTTP) as though
       // they have been replaced with secure URLs (those served over HTTPS). This directive is intended
       // for web sites with large numbers of insecure legacy URLs that need to be rewritten.
@@ -216,6 +237,9 @@ app.use(
       // specifies valid sources for Worker, SharedWorker, or ServiceWorker scripts
       // workerSrc: false
     },
+    // This module will detect common mistakes in your directives and throw errors
+    // if it finds any. To disable this, enable "loose mode".
+    loose: false,
     // Set to true if you only want browsers to report errors, not block them
     reportOnly: false,
     // Set to true if you want to blindly set all headers: Content-Security-Policy,
@@ -263,54 +287,65 @@ app.use(
 // compress all reqs using gzip
 app.use(compression());
 
-app.use('/', express.static(path.join(__dirname, config.FRONT_END_PATH, '/')));
-
-logger.warn('Initializing hpp');
-// --SEC-- - http params pollution: activate http parameters pollution
-// use this ALWAYS AFTER app.use(bodyParser.urlencoded()) [NOT helmet]
-app.use(hpp());
-
 logger.warn('Initializing passportjs');
 app.use(passport.initialize());
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
   done(undefined, user);
 });
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser((user, done) => {
   done(undefined, user);
 });
 
-logger.warn('Initializing REST apis and CSRF');
+// Initialize bodyParser BEFORE CSRF!!!!!
+logger.warn('Initializing bodyParser');
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
+app.use(cookieParser(config.COOKIE_SECRET));
+
+// logger.warn('Initializing hpp (ALWAYS AFTER bodyParser)');
+// // --SEC-- - http params pollution: activate http parameters pollution
+// // use this ALWAYS AFTER app.use(bodyParser.urlencoded()) [NOT helmet]
+app.use(hpp());
+
+// CSRF must be added AFTER bodyParser and cookieParser, but BEFORE all APIS to protect
+logger.warn('Initializing CSRF protection');
+app.use(
+  csrf({
+    cookie: <CookieOptions>{
+      // http://expressjs.com/en/4x/api.html#req.cookies
+      key: '_csrf',
+      path: '/',
+      httpOnly: true,
+      secure: false, // if you enable https you should set this to true
+      signed: false, // investigate if csurf support signed cookies (probably not)
+      sameSite: 'strict', // https://www.owaspsafar.org/index.php/SameSite
+      maxAge: config.SESSION_TIMEOUT_MS
+    }
+  })
+);
+app.use((req: Request, res: Response, next: NextFunction) => {
+  const csrfTokenToSendToFrontEnd: any = <any>req.csrfToken();
+  res.cookie('XSRF-TOKEN', csrfTokenToSendToFrontEnd);
+  next();
+});
 
 // APIs for all route protected with CSRF
+logger.warn('Initializing REST apis');
 import * as APIS from './routes/apis';
 import * as routesApi from './routes';
 const apis: any = routesApi.getApis(express, passport);
 app.use(APIS.BASE_API_PATH, apis);
 
-// we need this because 'cookie' is true in csrf
-app.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-);
-app.use(cookieParser());
-app.use(
-  csrf({
-    cookie: <CookieOptions>{
-      key: 'X-XSRF-TOKEN', // must match the name defined in HttpClientModule on client side
-      path: '/'
-    }
-  })
-);
-
-app.use((req: Request, res: Response, next: NextFunction) => {
-  res.cookie('_csrf', (<any>req).csrfToken());
-  next();
+app.all('/api/*', (req: Request, res: Response) => {
+  logger.error('path API not exist');
+  res.status(404).send();
 });
 
-app.get('/*', function(req: Request, res: Response) {
-  res.sendFile(path.join(__dirname, config.FRONT_END_PATH, 'index.html'), { maxAge: 31557600000 });
-});
+logger.warn('Initializing express static');
+app.use('/', express.static(path.join(__dirname, config.FRONT_END_PATH)));
 
 // error handler
 app.use(function(err: any, req: Request, res: Response, next: NextFunction) {
@@ -347,8 +382,7 @@ if (!config.isProd()) {
 // no stacktraces leaked to user
 app.use((err: any, req: Request, res: Response) => {
   res.status(err.status || 500).json({
-    message: err.message, // if you want to hide this, use a text like 'Unknown error'
-    error: {}
+    message: 'Unknown server error'
   });
 });
 
