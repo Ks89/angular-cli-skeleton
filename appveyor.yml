@@ -5,6 +5,9 @@
 #      general configuration      #
 #---------------------------------#
 
+environment:
+  nodejs_version: "10"
+
 # Build version format
 # you can use {branch} name in version format too
 version: 1.0.{build}-{branch}
