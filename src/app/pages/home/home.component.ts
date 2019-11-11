@@ -44,6 +44,9 @@ export class HomeComponent implements OnDestroy {
   private loginSubscription: Subscription;
 
   constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {
+    // STILL USELESS BECAUSE ANGULAR 9.0.0 DOESN'T SUPPORT STRING EXATRACTIONS IN XLF FILES IF ADDED IN TYPESCRIPT FILES WITH THE NEW $localize
+    //$localize `some string to localize`;
+
     const fb = new FormBuilder();
     this.formModel = fb.group({
       username: [null, Validators.required],

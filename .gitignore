@@ -68,7 +68,4 @@ typings/
 # Angulardoc file
 .angulardoc.json
 
-# Sonarqube
-.scannerwork/
-/reports/
-
+**/public/*

@@ -91,6 +91,8 @@ angular-cli-skeleton/
  │ │ ├─environment.prod.ts        * environment file for production
  │ │ └─environment.ts             * environment file for development without hmr
  │ │
+ │ ├─locale/                      * localization file with all translations (english and italian only to do an example of i18n)
+ │ │
  │ ├─theme/                       * folder with a custom theme in scss
  │ │
  │ ├─_variables.scss              * file with scss variables to customize bootstrap and to import fonts from third-party deps

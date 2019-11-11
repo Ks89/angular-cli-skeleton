@@ -26,6 +26,7 @@ If you like it, please add a star. It will be really appreciated.
     - [Lazy loading](https://angular.io/guide/ngmodule#lazy-loading-modules-with-the-router)
     - The new [HttpClient](https://angular.io/guide/http#httpclient) of Angular >= 4.3
     - [RxJS 6](https://github.com/ReactiveX/rxjs/blob/master/doc/pipeable-operators.md) with pipeable operators
+    - [i18n](https://angular.io/guide/i18n) support to add multiple languages (in this example you can find a small example with english and italian)
 - [Bootstrap 4](http://getbootstrap.com/) with a custom theme (check `./src/_variables.scss`), [ng-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap)
 - [FontAwesome 5](https://fontawesome.com/)
 - [Web App Manifest](https://developers.google.com/web/fundamentals/web-app-manifest/) support to add it as a standalone app on mobile devices (see `manifest.webmanifest`)
@@ -173,6 +174,8 @@ angular-cli-skeleton/
  │ │ ├─environment.prod.ts        * environment file for production
  │ │ └─environment.ts             * environment file for development without  hmr
  │ │
+ │ ├─locale/                      * localization file with all translations (english and italian only to do an example of i18n)
+ │ │
  │ ├─theme/                       * folder with a custom theme in scss
  │ │
  │ ├─_variables.scss              * file with scss variables to customize  bootstrap and to import fonts from third-party deps
@@ -220,7 +223,7 @@ This is a 'work in progress' project, so if you need other info, please open an 
 ## Install
 
 ### Install global dependencies
-- `npm install -g lite-server`
+- `npm install -g http-server`
 
 ### Install local dependencies
 1. `npm install` (from the folder of this project)
@@ -231,59 +234,60 @@ This is a 'work in progress' project, so if you need other info, please open an 
 
 ## Build
 
-### Build client app in 'dist' folder (development mode)
+**Useful commands to build the front-end without to run the server-side**
+
+*`npm run deploy` is the recommended command*
+
+
+### Build client app in 'dist' folder (dev + AOT) without i18n
 - `npm run build:dev`
-- `cd dist`
-- `lite-server`
 
-### Build client app in 'dist' folder (production mode + AOT + build-optimizer)
+
+### Build client app in 'dist' folder (prod + AOT + build-optimizer) without i18n
 - `npm run build:prod`
-- `cd dist`
-- `lite-server`
 
-#### Build both client and server apps in 'dist' folder (production mode + AOT + build-optimizer + angular-universal)
+
+#### Build both client and server apps in 'dist' folder (prod + AOT + build-optimizer + angular-universal) without i18n
 - `npm run build:ssr`
 
+*At the moment I didn't add authentication to the SSR server*
 
-## Run (without server-side)
+#### Deploy client app with i18n support in all servers public folders (prod + AOT + build-optimizer + i18n) [recommended]
+- `npm run deploy`
 
-### Build and run development server with HMR (development mode)
+
+## Run (WITHOUT server-side) [not recommended]
+
+### Build and run development server with HMR (dev + AOT)
 - `npm start`
 
-### Build and run development server with HMR (production mode + AOT)
-- `npm start:prod`
+### Run client app previously built in 'dist' folder WITHOUT i18n
+- `cd dist/client`
+- `http-server`
+- access to `localhost:8080`
 
-### Run client app previously built in 'dist' folder (development mode)
-- `cd dist/browser`
-- `lite-server`
+### Run client app previously built in 'dist' folder WITH i18n
+- `cd dist`
+- `http-server`
+- access to `localhost:8080/en` or `localhost:8080/it`
 
-### Run client app previously built in 'dist' folder (production mode + AOT)
-- `cd dist/browser`
-- `lite-server`
-
-### Run client app previously built in 'dist' folder (production mode + AOT + angular-universal)
+### Run client app previously built in 'dist' folder (angular-universal) WITHOUT i18n
 - `npm run serve:ssr`
 
 
-## Run (WITH server-side and authentication features)
+## Run (WITH server-side and all authentication features) [recommended]
 
-### Build and run development vanilla javascript server with authentication feature
-1. `npm run build:dev`
+### Build and run vanilla javascript express server with authentication feature
+1. `npm run deploy`
 2. `cd servers/node-express-js && npm start`
 
-### Build and run production vanilla javascript server with authentication feature
-1. `npm run build:prod`
-2. `cd servers/node-express-js && npm start`
+### Build and run typescript express server with authentication feature
+1. `npm run deploy`
+2. `cd servers/node-express-ts && npm start`
 
-or
-
-### Build and run development Typescript server with authentication feature
-1. `npm run build:dev`
-2. `cd servers/node-express-ts && npm run build && npm start`
-
-### Build and run production Typescript server with authentication feature
-1. `npm run build:prod`
-2. `cd servers/node-express-ts && npm run build && npm start`
+### Build and run javascript koa server with authentication feature
+1. `npm run deploy`
+2. `cd servers/node-koa-js && npm start`
 
 
 ## Test
@@ -309,7 +313,7 @@ or
 
 ### Bundle analyzer
 - Run either `npm run build:dev:stats` or `npm run build:prod:stats`
-- Open analyzer with `npm run analyze:bundle` to see the result
+- Open analyzer with `npm run analyze` to see the result
 
 ## Further help
 
