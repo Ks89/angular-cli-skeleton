@@ -196,7 +196,7 @@ app.use(
       childSrc: [`'none'`],
       //restricts the URLs which can be loaded using script interfaces. The APIs that are restricted are:
       // <a> ping, Fetch, XMLHttpRequest, WebSocket, EventSource
-      connectSrc: [`'self'`, 'api.github.com', `https://*.google.com/`, `https://*.googleusercontent.com/`, `https://*.gstatic.com/`],
+      connectSrc: [`'self'`, 'api.github.com/', `https://*.google.com/`, `https://*.googleusercontent.com/`, `https://*.gstatic.com/`],
       // serves as a fallback for the other CSP fetch directives. For more info check:
       // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/default-src
       defaultSrc: [`'self'`],
@@ -233,13 +233,13 @@ app.use(
       // specifies valid sources for JavaScript. This includes not only URLs loaded directly into <script>
       scriptSrc: [`'self'`],
       // specifies valid sources for sources for stylesheets.
-      styleSrc: [`'self'`, `'unsafe-inline'`, `https://*.googleapis.com`]
+      styleSrc: [`'self'`, `'unsafe-inline'`, `https://*.googleapis.com`],
       // instructs user agents to treat all of a site's insecure URLs (those served over HTTP) as though
       // they have been replaced with secure URLs (those served over HTTPS). This directive is intended
       // for web sites with large numbers of insecure legacy URLs that need to be rewritten.
       // upgradeInsecureRequests: true,
       // specifies valid sources for Worker, SharedWorker, or ServiceWorker scripts
-      // workerSrc: false
+      workerSrc: [`'self'`]
     },
     // This module will detect common mistakes in your directives and throw errors
     // if it finds any. To disable this, enable "loose mode".
@@ -315,26 +315,26 @@ app.use(cookieParser(config.COOKIE_SECRET));
 app.use(hpp());
 
 // CSRF must be added AFTER bodyParser and cookieParser, but BEFORE all APIS to protect
-logger.warn('Initializing CSRF protection');
-app.use(
-  csrf({
-    cookie: {
-      // http://expressjs.com/en/4x/api.html#req.cookies
-      key: '_csrf',
-      path: '/',
-      httpOnly: true,
-      secure: false, // if you enable https you should set this to true
-      signed: false, // investigate if csurf support signed cookies (probably not)
-      sameSite: 'strict', // https://www.owaspsafar.org/index.php/SameSite
-      maxAge: config.SESSION_TIMEOUT_MS
-    }
-  })
-);
-app.use((req, res, next) => {
-  const csrfTokenToSendToFrontEnd = req.csrfToken();
-  res.cookie('XSRF-TOKEN', csrfTokenToSendToFrontEnd);
-  next();
-});
+// logger.warn('Initializing CSRF protection');
+// app.use(
+//   csrf({
+//     cookie: {
+//       // http://expressjs.com/en/4x/api.html#req.cookies
+//       key: '_csrf',
+//       path: '/',
+//       httpOnly: true,
+//       secure: false, // if you enable https you should set this to true
+//       signed: false, // investigate if csurf support signed cookies (probably not)
+//       sameSite: 'strict', // https://www.owaspsafar.org/index.php/SameSite
+//       maxAge: config.SESSION_TIMEOUT_MS
+//     }
+//   })
+// );
+// app.use((req, res, next) => {
+//   const csrfTokenToSendToFrontEnd = req.csrfToken();
+//   res.cookie('XSRF-TOKEN', csrfTokenToSendToFrontEnd);
+//   next();
+// });
 
 // APIs for all route protected with CSRF
 logger.warn('Initializing REST apis');
@@ -351,15 +351,15 @@ logger.warn('Initializing express static');
 app.use('/', express.static(path.join(__dirname, config.FRONT_END_PATH)));
 
 // error handler
-app.use((err, req, res, next) => {
-  if (err.code !== 'EBADCSRFTOKEN') {
-    return next(err);
-  }
-  // handle CSRF token errors here
-  res.status(403).json({
-    message: 'form tampered with'
-  });
-});
+// app.use((err, req, res, next) => {
+//   if (err.code !== 'EBADCSRFTOKEN') {
+//     return next(err);
+//   }
+//   // handle CSRF token errors here
+//   res.status(403).json({
+//     message: 'form tampered with'
+//   });
+// });
 
 // catch 404 and forward to error handler
 // taken from https://github.com/expressjs/express/blob/master/examples/error-pages/index.js

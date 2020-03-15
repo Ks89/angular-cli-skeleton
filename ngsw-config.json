@@ -6,7 +6,7 @@
       "name": "app",
       "installMode": "prefetch",
       "resources": {
-        "files": ["/favicon.png", "/index.html", "/404.html", "/500.html", "/*.css", "/*.js"]
+        "files": ["/favicon.png", "/index.html", "/manifest.webmanifest", "/404.html", "/500.html", "/*.css", "/*.js"]
       }
     },
     {
@@ -14,7 +14,7 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "resources": {
-        "files": ["/assets/**"]
+        "files": ["/assets/**", "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"]
       }
     },
     {

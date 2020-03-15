@@ -19,12 +19,12 @@ This project my previous older skeleton project called [angular-webpack-skeleton
 If you like it, please add a star. It will be really appreciated.
 
 ## Features
-- Typescript >= 3.6
+- Typescript >= 3.7
 - Angular 9
     - [IVY](https://blog.angularindepth.com/all-you-need-to-know-about-ivy-the-new-angular-engine-9cde471f42cf) enabled by default for Angular >= 9
     - [Ahead of Time (AOT)](https://angular.io/guide/aot-compiler) enabled by default for Angular >= 5
     - [Lazy loading](https://angular.io/guide/ngmodule#lazy-loading-modules-with-the-router)
-    - The new [HttpClient](https://angular.io/guide/http#httpclient) of Angular >= 4.3
+    - [HttpClient](https://angular.io/guide/http#httpclient) of Angular >= 4.3
     - [RxJS 6](https://github.com/ReactiveX/rxjs/blob/master/doc/pipeable-operators.md) with pipeable operators
     - [i18n](https://angular.io/guide/i18n) support to add multiple languages (in this example you can find a small example with english and italian)
 - [Bootstrap 4](http://getbootstrap.com/) with a custom theme (check `./src/_variables.scss`), [ng-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap)
@@ -33,8 +33,8 @@ If you like it, please add a star. It will be really appreciated.
 - [Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers/) to create an offline application (see `./src/ngsw-config.json`)
 - *[socket.io](https://github.com/socketio/socket.io) (still work in progress and TEMPORARY DISABLED. Check [this issue](https://github.com/Ks89/angular-cli-skeleton/issues/1)*
 - Reactive storage based on Redux
-    - [@ngrx/store](https://github.com/ngrx/store) >= 8 with the new 'create...' apis
-    - [@ngrx/store-devtools](https://github.com/ngrx/store-devtools) >= 8
+    - [@ngrx/store](https://github.com/ngrx/store) >= 9 with the new 'create...' apis
+    - [@ngrx/store-devtools](https://github.com/ngrx/store-devtools) >= 9
 - angular-cli
     - different profiles: 'development', 'development with HMR', 'production' and *'production with SSR' (TEMPORARY DISABLED)*
     - [Hot Module Replacement (HMR)](https://webpack.js.org/concepts/hot-module-replacement/)
