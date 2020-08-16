@@ -97,7 +97,7 @@
     "domino": "^2.1.4",
     "hammerjs": "^2.0.8",
     "jquery": "^3.4.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
     "ngx-toastr": "^12.0.0",
     "popper.js": "^1.16.1",
     "reflect-metadata": "^0.1.12",
