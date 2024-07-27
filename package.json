@@ -91,7 +91,7 @@
     "@ngrx/store": "^9.0.0",
     "@nguniversal/express-engine": "^9.0.2",
     "@nguniversal/module-map-ngfactory-loader": "^8.2.6",
-    "bootstrap": "^4.4.1",
+    "bootstrap": "^5.0.0",
     "compression": "^1.7.4",
     "core-js": "^3.6.4",
     "domino": "^2.1.4",
